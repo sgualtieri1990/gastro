@@ -17,6 +17,15 @@
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   border-bottom-color: transparent;
+  box-shadow: none;
+}
+
+.header--hero .nav-link {
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+}
+
+.header--hero .logo-wordmark {
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
 }
 
 .header--hero.scrolled {
