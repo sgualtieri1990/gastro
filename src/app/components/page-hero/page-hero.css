@@ -149,61 +149,36 @@
   margin-bottom: 28px;
 }
 
-.btn-split {
-  display: inline-flex;
-  align-items: stretch;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  transition: transform var(--transition-bounce), box-shadow var(--transition);
+.banner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
   margin-top: 8px;
 }
 
-.btn-split:hover {
+.banner-actions .btn-glass {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.banner-actions .btn-glass:hover {
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+}
+
+.btn-hero-secondary {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+}
+
+.btn-hero-secondary:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.55);
+  color: #fff;
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
-}
-
-.btn-split-label {
-  display: flex;
-  align-items: center;
-  padding: 16px 32px;
-  background: #fff;
-  color: var(--color-brand-dark);
-  font-size: var(--text-base);
-  font-weight: 700;
-}
-
-.btn-split-arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  background: linear-gradient(135deg, #f5a623, #e85c1a);
-  color: #fff;
-}
-
-.btn-split-arrow svg {
-  width: 22px;
-  height: 22px;
-  transition: transform var(--transition);
-}
-
-.btn-split:hover .btn-split-arrow svg {
-  transform: translateX(4px);
-}
-
-.banner-link {
-  display: block;
-  margin-top: 20px;
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.75);
-  transition: color var(--transition);
-}
-
-.banner-link:hover {
-  color: #fff;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
 }
 
 @media (max-width: 768px) {
@@ -255,5 +230,9 @@
   .banner-tagline {
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .banner-actions {
+    justify-content: center;
   }
 }

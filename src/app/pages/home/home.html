@@ -6,15 +6,23 @@
   [image]="images.hero"
   bgPosition="left 8%"
 >
-  <a routerLink="/produkte" class="btn-split">
-    <span class="btn-split-label">Entdecken</span>
-    <span class="btn-split-arrow" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <path d="M5 12h14M12 5l7 7-7 7" />
+  <div class="banner-actions">
+    <a routerLink="/produkte" class="btn btn-glass">
+      <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+        <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
       </svg>
-    </span>
-  </a>
-  <a routerLink="/termin" class="banner-link">Persönliche Beratung mit Carmelo →</a>
+      Entdecken
+    </a>
+    <a routerLink="/termin" class="btn btn-hero-secondary">
+      <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <rect x="3" y="4" width="18" height="18" rx="2" />
+        <path d="M16 2v4M8 2v4M3 10h18" />
+        <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" />
+      </svg>
+      Persönliche Beratung mit Carmelo
+    </a>
+  </div>
 </app-page-hero>
 
 <!-- ═══ TRUST STRIP ═══ -->
