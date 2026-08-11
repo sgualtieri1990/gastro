@@ -25,6 +25,7 @@ export interface InstagramPost {
 export const IMAGES = {
   logo: '/images/logo.png',
   hero: '/images/geschaeftsfuehrer-cannoli.jpg',
+  heroCutout: '/images/carmelo-cannoli-cutout.png',
   portrait: '/images/geschaeftsfuehrer-portrait.jpg',
   arancino: '/images/geschaeftsfuehrer-arancino.jpg',
   cornetti: '/images/geschaeftsfuehrer-cornetti.jpg',

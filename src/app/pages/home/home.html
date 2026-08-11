@@ -1,34 +1,33 @@
-<!-- ═══ HERO – Split Layout (Referenz-Stil) ═══ -->
+<!-- ═══ HERO – Person fließt in Header ═══ -->
 <section class="hero">
   <div class="hero-rings" aria-hidden="true"></div>
 
-  <div class="container hero-split">
-    <!-- Links: Produktbild -->
-    <div class="hero-visual" appScrollReveal appReveal="left">
-      <svg class="hero-brush" viewBox="0 0 400 300" aria-hidden="true">
-        <path
-          d="M30 180 Q120 80 280 120 Q350 140 380 90 L390 200 Q300 260 120 240 Z"
-          fill="url(#brushGrad)"
-          opacity="0.85"
-        />
-        <defs>
-          <linearGradient id="brushGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#f5a623" />
-            <stop offset="100%" stop-color="#e85c1a" />
-          </linearGradient>
-        </defs>
-      </svg>
-      <div class="hero-product">
-        <img
-          [src]="images.hero"
-          alt="Cannoli Siciliani – Sicitalia"
-          class="hero-product-img animate-float"
-          loading="eager"
-        />
-      </div>
-    </div>
+  <!-- Freigestellte Person – absolut, ohne Kasten -->
+  <div class="hero-figure-wrap" aria-hidden="true">
+    <svg class="hero-brush" viewBox="0 0 400 300">
+      <path
+        d="M30 180 Q120 80 280 120 Q350 140 380 90 L390 200 Q300 260 120 240 Z"
+        fill="url(#brushGrad)"
+        opacity="0.85"
+      />
+      <defs>
+        <linearGradient id="brushGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#f5a623" />
+          <stop offset="100%" stop-color="#e85c1a" />
+        </linearGradient>
+      </defs>
+    </svg>
+    <img
+      [src]="images.heroCutout"
+      alt=""
+      class="hero-figure"
+      loading="eager"
+    />
+  </div>
 
-    <!-- Rechts: Headline + CTA -->
+  <div class="container hero-split">
+    <div class="hero-spacer" aria-hidden="true"></div>
+
     <div class="hero-copy" appScrollReveal appReveal="right" [appScrollRevealDelay]="150">
       <p class="hero-eyebrow">Neu im Sortiment 2026</p>
       <h1 class="hero-headline">So schmeckt<br />der Süden.</h1>
