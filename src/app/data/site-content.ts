@@ -31,7 +31,7 @@ export interface JobOpening {
   profile: string[];
 }
 
-/** Zentrale Bild-Assets aus den Original-Screenshots */
+/** Zentrale Bild-Assets */
 export const IMAGES = {
   logo: '/images/logo.png',
   hero: '/images/geschaeftsfuehrer-cannoli.jpg',
@@ -42,6 +42,11 @@ export const IMAGES = {
   laPerfetta: '/images/la-perfetta-product.jpg',
   videoThumbnail: '/images/video-thumbnail.jpg',
   downloadsMenu: '/images/downloads-menu.jpg',
+  downloadPraesentation: '/images/download-praesentation.jpg',
+  downloadBindi: '/images/download-bindi-katalog.jpg',
+  downloadPizzella: '/images/download-pizzella.jpg',
+  downloadGelantine: '/images/download-gelantine.jpg',
+  downloadAlkoholfrei: '/images/download-alkoholfrei.jpg',
 } as const;
 
 export const NAV_ITEMS: NavItem[] = [
@@ -76,19 +81,27 @@ export const DOWNLOADS: DownloadItem[] = [
   {
     title: 'Präsentation Sicitalia',
     file: 'praesentation-sicitalia.pdf',
-    image: IMAGES.downloadsMenu,
+    image: IMAGES.downloadPraesentation,
   },
-  { title: 'Bindi-Katalog', file: 'bindi-katalog.pdf', image: IMAGES.downloadsMenu },
-  { title: 'Pizzella Katalog', file: 'pizzella-katalog.pdf', image: IMAGES.downloadsMenu },
+  {
+    title: 'Bindi-Katalog',
+    file: 'bindi-katalog.pdf',
+    image: IMAGES.downloadBindi,
+  },
+  {
+    title: 'Pizzella Katalog',
+    file: 'pizzella-katalog.pdf',
+    image: IMAGES.downloadPizzella,
+  },
   {
     title: 'Bindi Artikelliste Gelantine',
     file: 'bindi-gelantine.pdf',
-    image: IMAGES.downloadsMenu,
+    image: IMAGES.downloadGelantine,
   },
   {
     title: 'Bindi Artikelliste Alkoholfrei',
     file: 'bindi-alkoholfrei.pdf',
-    image: IMAGES.downloadsMenu,
+    image: IMAGES.downloadAlkoholfrei,
   },
 ];
 
@@ -128,23 +141,23 @@ export const PRODUCTS: ProductItem[] = [
 export const INSTAGRAM_POSTS: InstagramPost[] = [
   {
     image: '/images/instagram-1.jpg',
-    alt: 'Pinza – vielseitiges Produkt für Ihr Lokal',
+    alt: 'Frische Pizza – La Perfetta für deine Karte',
   },
   {
     image: '/images/instagram-2.jpg',
-    alt: 'Sicitalia – Ihr Partner für Wachstum',
+    alt: 'Italienisches Frühstück mit Cornetti',
   },
   {
     image: '/images/instagram-3.jpg',
-    alt: 'Wie gut kennst du Sicitalia?',
+    alt: 'Pasta und mediterrane Zutaten',
   },
   {
     image: '/images/instagram-4.jpg',
-    alt: 'Die neue Eis-Linie',
+    alt: 'Cremiges Gelato aus der Gelateria-Linie',
   },
   {
     image: '/images/instagram-5.jpg',
-    alt: 'Linea Pasticcera – Dolce Vita zum Selbermachen',
+    alt: 'Süße Klassiker aus der Pasticceria',
   },
 ];
 

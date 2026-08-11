@@ -18,6 +18,10 @@
       }
     </nav>
 
+    <div class="nav-logo">
+      <app-logo [variant]="heroMode ? 'hero' : 'default'" />
+    </div>
+
     <div class="nav-right-group">
       <nav class="nav-right nav-desktop" aria-label="Navigation rechts">
         @for (item of navRight; track item.path) {

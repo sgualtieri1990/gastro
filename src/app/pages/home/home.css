@@ -4,6 +4,23 @@
   position: relative;
 }
 
+/* Hero CTAs (projected into app-page-hero – styles must live here) */
+.banner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+  margin-top: 12px;
+}
+
+.banner-actions .btn-glass {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.banner-actions .btn-glass:hover {
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+}
+
 /* ═══ TRUST STRIP ═══ */
 .trust-strip {
   position: relative;
@@ -363,6 +380,11 @@
 @media (max-width: 768px) {
   .trust-grid {
     grid-template-columns: 1fr;
+  }
+
+  .banner-actions {
+    justify-content: center;
+    gap: 14px;
   }
 
   .intro-grid {
