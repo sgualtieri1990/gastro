@@ -5,6 +5,10 @@
   [class.header--hero]="heroMode"
 >
   <div class="container nav">
+    <div class="nav-logo">
+      <app-logo [variant]="heroMode ? 'hero' : 'default'" />
+    </div>
+
     <nav class="nav-left nav-desktop" aria-label="Navigation links">
       @for (item of navLeft; track item.path) {
         <a
@@ -17,10 +21,6 @@
         </a>
       }
     </nav>
-
-    <div class="nav-logo">
-      <app-logo [variant]="heroMode ? 'hero' : 'default'" />
-    </div>
 
     <div class="nav-right-group">
       <nav class="nav-right nav-desktop" aria-label="Navigation rechts">
