@@ -21,6 +21,16 @@ export interface InstagramPost {
   alt: string;
 }
 
+export interface JobOpening {
+  title: string;
+  location: string;
+  type: string;
+  start: string;
+  description: string;
+  tasks: string[];
+  profile: string[];
+}
+
 /** Zentrale Bild-Assets aus den Original-Screenshots */
 export const IMAGES = {
   logo: '/images/logo.png',
@@ -42,6 +52,7 @@ export const NAV_ITEMS: NavItem[] = [
   { path: '/la-perfetta', label: 'La Perfetta' },
   { path: '/termin', label: 'Termin buchen' },
   { path: '/kunde-werden', label: 'Kunde werden' },
+  { path: '/karriere', label: 'Karriere' },
   { path: 'https://www.instagram.com/sicitalia/', label: 'Instagram', external: true },
 ];
 
@@ -57,6 +68,7 @@ export const NAV_RIGHT: NavItem[] = [
   { path: '/la-perfetta', label: 'La Perfetta' },
   { path: '/termin', label: 'Termin' },
   { path: '/kunde-werden', label: 'B2B' },
+  { path: '/karriere', label: 'Karriere' },
   { path: 'https://www.instagram.com/sicitalia/', label: 'Instagram', external: true },
 ];
 
@@ -171,4 +183,61 @@ export const HIGHLIGHTS = [
   { emoji: '🍕', title: 'La Perfetta', desc: 'Pizza in Minuten auf der Karte' },
   { emoji: '🍨', title: 'Gelateria', desc: 'Premium-Eis für Deine Theke' },
   { emoji: '🫔', title: 'Cannoli', desc: 'Sizilianische Klassiker' },
+];
+
+export const JOB_OPENINGS: JobOpening[] = [
+  {
+    title: 'Außendienstmitarbeiter/in Gastronomie (m/w/d)',
+    location: 'NRW – Schwerpunkt Rhein-Ruhr',
+    type: 'Vollzeit',
+    start: 'Ab sofort',
+    description:
+      'Du bringst italienischen Genuss direkt zu Gastronomen und Händlern – mit Beratung, die überzeugt und Beziehungen, die bleiben.',
+    tasks: [
+      'Betreuung und Ausbau des bestehenden Kundenstamms in der Gastronomie',
+      'Präsentation unseres Sortiments vor Ort und auf Messen',
+      'Enge Zusammenarbeit mit dem Innendienst und der Logistik',
+    ],
+    profile: [
+      'Erfahrung im Lebensmittel- oder Gastronomie-Außendienst',
+      'Leidenschaft für italienische Produkte und gutes Essen',
+      'Reisebereitschaft in NRW und angrenzenden Regionen',
+    ],
+  },
+  {
+    title: 'Lagerist/in & Kommissionierung (m/w/d)',
+    location: 'Duisburg',
+    type: 'Vollzeit',
+    start: 'Ab sofort',
+    description:
+      'In unserem Lager in Duisburg sorgst du dafür, dass Cornetti, Cannoli und La Perfetta pünktlich bei unseren Kunden ankommen.',
+    tasks: [
+      'Warenannahme, Kontrolle und Einlagerung',
+      'Kommissionierung und Versandvorbereitung',
+      'Mitarbeit bei Inventur und Qualitätssicherung',
+    ],
+    profile: [
+      'Erfahrung im Lager oder in der Logistik von Vorteil',
+      'Sorgfältige und zuverlässige Arbeitsweise',
+      'Teamfähigkeit und körperliche Belastbarkeit',
+    ],
+  },
+  {
+    title: 'Marketing & Social Media (m/w/d)',
+    location: 'Duisburg / Hybrid',
+    type: 'Teilzeit (20–30 Std.)',
+    start: 'Nach Vereinbarung',
+    description:
+      'Du erzählst die Geschichte von Sicitalia – auf Instagram, in Newslettern und auf unserer Website. Authentisch, appetitlich, nah am Produkt.',
+    tasks: [
+      'Planung und Umsetzung von Social-Media-Inhalten',
+      'Unterstützung bei Newsletter, Website und Kampagnen',
+      'Enge Abstimmung mit Geschäftsführung und Außendienst',
+    ],
+    profile: [
+      'Erfahrung in Social Media, Content oder Marketing',
+      'Gespür für Food, Gastronomie und visuelle Storytelling',
+      'Sicher in Deutsch; Italienisch ist ein Plus',
+    ],
+  },
 ];

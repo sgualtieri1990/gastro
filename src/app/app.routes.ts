@@ -32,6 +32,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/kunde-werden/kunde-werden').then(m => m.KundeWerden),
       },
       {
+        path: 'karriere',
+        loadComponent: () => import('./pages/karriere/karriere').then(m => m.Karriere),
+      },
+      {
         path: 'tdb',
         loadComponent: () => import('./pages/legal/legal').then(m => m.Legal),
         data: { title: 'Technische Datenblätter (TDB) erhalten' },
