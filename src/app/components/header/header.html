@@ -1,0 +1,67 @@
+<header class="header" [class.scrolled]="scrolled()" [class.menu-open]="menuOpen()">
+  <div class="container nav">
+    <app-logo />
+
+    <nav class="nav-desktop" aria-label="Hauptnavigation">
+      @for (item of navItems; track item.path) {
+        @if (item.external) {
+          <a
+            class="nav-link"
+            [href]="item.path"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ item.label }}
+          </a>
+        } @else {
+          <a
+            class="nav-link"
+            [routerLink]="item.path"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+          >
+            {{ item.label }}
+          </a>
+        }
+      }
+    </nav>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      [attr.aria-expanded]="menuOpen()"
+      aria-label="Menü öffnen"
+      (click)="toggleMenu()"
+    >
+      <span class="menu-bar"></span>
+      <span class="menu-bar"></span>
+      <span class="menu-bar"></span>
+    </button>
+  </div>
+
+  <nav class="nav-mobile" [class.open]="menuOpen()" aria-label="Mobile Navigation">
+    @for (item of navItems; track item.path) {
+      @if (item.external) {
+        <a
+          class="nav-link"
+          [href]="item.path"
+          target="_blank"
+          rel="noopener noreferrer"
+          (click)="closeMenu()"
+        >
+          {{ item.label }}
+        </a>
+      } @else {
+        <a
+          class="nav-link"
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+          (click)="closeMenu()"
+        >
+          {{ item.label }}
+        </a>
+      }
+    }
+  </nav>
+</header>

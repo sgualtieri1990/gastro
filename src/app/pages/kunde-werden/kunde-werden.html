@@ -1,0 +1,69 @@
+<section class="section page-hero">
+  <div class="container">
+    <h1 class="page-title" appScrollReveal>Kunde werden</h1>
+    <p class="page-subtitle" appScrollReveal>Registrierung B2B – Gastronomie &amp; Handel</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="glass-panel form-panel" appScrollReveal>
+      @if (submitted) {
+        <p class="success-msg">
+          Vielen Dank für Ihre Registrierung, {{ name }}! Unser Team prüft Ihre Anfrage und meldet
+          sich in Kürze bei {{ company }}.
+        </p>
+      } @else {
+        <p class="form-intro">
+          Registrieren Sie sich als B2B-Kunde und erhalten Sie Zugang zu unserem Sortiment,
+          Katalogen und exklusiven Angeboten für Gastronomiebetriebe und Feinkosthandel.
+        </p>
+        <form (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="company">Firma / Betrieb *</label>
+              <input id="company" type="text" [(ngModel)]="company" name="company" required />
+            </div>
+            <div class="form-group">
+              <label for="name">Ansprechpartner *</label>
+              <input id="name" type="text" [(ngModel)]="name" name="name" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">E-Mail *</label>
+              <input id="email" type="email" [(ngModel)]="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Telefon</label>
+              <input id="phone" type="tel" [(ngModel)]="phone" name="phone" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="businessType">Betriebsart</label>
+            <select id="businessType" [(ngModel)]="businessType" name="businessType">
+              <option value="">Bitte wählen</option>
+              @for (type of businessTypes; track type) {
+                <option [value]="type">{{ type }}</option>
+              }
+            </select>
+          </div>
+          <label class="consent-label">
+            <input type="checkbox" [(ngModel)]="consent" name="consent" required />
+            <span>
+              Ich stimme zu, dass Sicitalia meine Daten zur Bearbeitung der B2B-Registrierung
+              verarbeitet und mich per E-Mail kontaktieren darf. *
+            </span>
+          </label>
+          <button
+            type="submit"
+            class="btn btn-primary btn-full"
+            [disabled]="!company || !name || !email || !consent"
+          >
+            Registrierung absenden
+          </button>
+        </form>
+      }
+    </div>
+  </div>
+</section>

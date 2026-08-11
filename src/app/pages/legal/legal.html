@@ -1,0 +1,26 @@
+<section class="section page-hero">
+  <div class="container">
+    <h1 class="page-title" appScrollReveal>{{ title }}</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="glass-panel legal-content" appScrollReveal>
+      <p>
+        Diese Seite wird derzeit aktualisiert. Für Fragen zu „{{ title }}" wenden Sie sich bitte
+        direkt an unser Team.
+      </p>
+      <p>
+        <strong>E-Mail:</strong>
+        <a [href]="'mailto:' + contact.email">{{ contact.email }}</a>
+      </p>
+      <p>
+        <strong>Telefon:</strong> {{ contact.phone }}
+      </p>
+      <p>
+        <strong>Adresse:</strong> {{ contact.name }}, {{ contact.address }}
+      </p>
+    </div>
+  </div>
+</section>

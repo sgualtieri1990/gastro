@@ -1,0 +1,59 @@
+<section class="section page-hero">
+  <div class="container">
+    <h1 class="page-title" appScrollReveal>Termin buchen</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container form-grid">
+    <div class="form-info" appScrollReveal>
+      <p>
+        Vereinbaren Sie einen persönlichen Beratungstermin mit unserem Team. Wir zeigen Ihnen unser
+        Sortiment, besprechen Ihre Anforderungen und finden die passenden Produkte für Ihr Konzept.
+      </p>
+      <div class="contact-shortcuts">
+        <p>
+          <strong>Telefon:</strong> {{ contact.phone }}
+        </p>
+        <p>
+          <strong>WhatsApp:</strong>
+          <a [href]="contact.whatsappLink" target="_blank" rel="noopener">{{ contact.whatsapp }}</a>
+        </p>
+        <p>
+          <strong>E-Mail:</strong>
+          <a [href]="'mailto:' + contact.email">{{ contact.email }}</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="glass-panel form-panel" appScrollReveal [appScrollRevealDelay]="100">
+      @if (submitted) {
+        <p class="success-msg">
+          Vielen Dank, {{ name }}! Wir melden uns in Kürze bei Ihnen unter {{ email }}.
+        </p>
+      } @else {
+        <form (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="name">Name *</label>
+            <input id="name" type="text" [(ngModel)]="name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">E-Mail *</label>
+            <input id="email" type="email" [(ngModel)]="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefon</label>
+            <input id="phone" type="tel" [(ngModel)]="phone" name="phone" />
+          </div>
+          <div class="form-group">
+            <label for="message">Nachricht</label>
+            <textarea id="message" [(ngModel)]="message" name="message" rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full" [disabled]="!name || !email">
+            Termin anfragen
+          </button>
+        </form>
+      }
+    </div>
+  </div>
+</section>

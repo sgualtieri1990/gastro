@@ -1,0 +1,25 @@
+<section class="section products-hero">
+  <div class="container">
+    <h1 class="page-title page-title--light" appScrollReveal>Unsere Produkte</h1>
+  </div>
+</section>
+
+<section class="section products-section">
+  <div class="container">
+    <div class="products-grid">
+      @for (product of products; track product.title; let i = $index) {
+        <article class="product-card glass-card" appScrollReveal [appScrollRevealDelay]="i * 80">
+          <div class="product-image">
+            <img [src]="product.image" [alt]="product.title" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <h3>{{ product.title }}</h3>
+            @if (product.description) {
+              <p>{{ product.description }}</p>
+            }
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
