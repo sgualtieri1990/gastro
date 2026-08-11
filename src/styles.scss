@@ -331,6 +331,27 @@ ul {
   transform: translateY(-2px);
 }
 
+.btn-hero-secondary {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+}
+
+.btn-hero-secondary:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.55);
+  color: #fff;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+}
+
+.btn-hero-secondary .btn-icon {
+  color: #fff;
+}
+
 .btn-outline {
   background: var(--glass-surface);
   backdrop-filter: var(--glass-blur);
