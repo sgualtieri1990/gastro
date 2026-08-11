@@ -25,15 +25,45 @@
   </div>
 </app-page-hero>
 
-<!-- ═══ TRUST STRIP ═══ -->
+<!-- ═══ TRUST STRIP – Transporter / Förderband ═══ -->
 <section class="trust-strip">
-  <div class="container trust-grid">
-    @for (stat of trustStats; track stat.label; let i = $index) {
-      <div class="trust-pill glass-panel" appScrollReveal [appScrollRevealDelay]="i * 100" appReveal="up">
-        <span class="trust-value">{{ stat.value }}</span>
-        <span class="trust-label">{{ stat.label }}</span>
+  <div class="container">
+    <div class="conveyor" appScrollReveal appReveal="up">
+      <div class="conveyor-frame" aria-label="Lieferversprechen auf dem Transporter">
+        <div class="conveyor-roller conveyor-roller--left" aria-hidden="true">
+          <span class="conveyor-roller-core"></span>
+        </div>
+
+        <div class="conveyor-track">
+          <div class="conveyor-belt" aria-hidden="true">
+            <div class="conveyor-belt-surface"></div>
+            <div class="conveyor-belt-guard conveyor-belt-guard--top"></div>
+            <div class="conveyor-belt-guard conveyor-belt-guard--bottom"></div>
+          </div>
+
+          <div class="conveyor-items">
+            @for (stat of trustStats; track stat.label; let i = $index) {
+              <div
+                class="conveyor-package"
+                appScrollReveal
+                [appScrollRevealDelay]="i * 120"
+                appReveal="up"
+              >
+                <div class="conveyor-package-top" aria-hidden="true"></div>
+                <div class="conveyor-package-body glass-panel">
+                  <span class="trust-value">{{ stat.value }}</span>
+                  <span class="trust-label">{{ stat.label }}</span>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="conveyor-roller conveyor-roller--right" aria-hidden="true">
+          <span class="conveyor-roller-core"></span>
+        </div>
       </div>
-    }
+    </div>
   </div>
 </section>
 
