@@ -1,28 +1,49 @@
-<!-- ═══ HERO ═══ -->
+<!-- ═══ HERO – Split Layout (Referenz-Stil) ═══ -->
 <section class="hero">
-  <div class="hero-bg" [style.background-image]="'url(' + images.hero + ')'"></div>
-  <div class="hero-overlay"></div>
+  <div class="hero-rings" aria-hidden="true"></div>
 
-  <div class="container hero-inner">
-    <div class="hero-glass glass-dark" appScrollReveal appReveal="scale">
-      <span class="hero-badge">🇮🇹 So schmeckt der Süden</span>
-      <h1 class="hero-title">Herzlich Willkommen bei Sicitalia</h1>
-      <p class="hero-sub">
-        Italienischer Genuss für Deine Gäste – direkt aus dem Süden, geliefert in Deine Küche.
-      </p>
-      <div class="hero-actions">
-        <a routerLink="/termin" class="btn btn-primary">
-          Persönliche Beratung
-          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </a>
-        <a routerLink="/produkte" class="btn btn-glass">Sortiment entdecken</a>
+  <div class="container hero-split">
+    <!-- Links: Produktbild -->
+    <div class="hero-visual" appScrollReveal appReveal="left">
+      <svg class="hero-brush" viewBox="0 0 400 300" aria-hidden="true">
+        <path
+          d="M30 180 Q120 80 280 120 Q350 140 380 90 L390 200 Q300 260 120 240 Z"
+          fill="url(#brushGrad)"
+          opacity="0.85"
+        />
+        <defs>
+          <linearGradient id="brushGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f5a623" />
+            <stop offset="100%" stop-color="#e85c1a" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="hero-product">
+        <img
+          [src]="images.hero"
+          alt="Cannoli Siciliani – Sicitalia"
+          class="hero-product-img animate-float"
+          loading="eager"
+        />
       </div>
     </div>
 
-    <div class="hero-scroll" aria-hidden="true">
-      <span class="scroll-dot"></span>
+    <!-- Rechts: Headline + CTA -->
+    <div class="hero-copy" appScrollReveal appReveal="right" [appScrollRevealDelay]="150">
+      <p class="hero-eyebrow">Neu im Sortiment 2026</p>
+      <h1 class="hero-headline">So schmeckt<br />der Süden.</h1>
+      <p class="hero-tagline">
+        LA PERFETTA PIZZABASEN &amp; SIZILIANISCHE KLASSIKER FÜR DEINE GASTRO!
+      </p>
+      <a routerLink="/produkte" class="btn-split">
+        <span class="btn-split-label">Entdecken</span>
+        <span class="btn-split-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </span>
+      </a>
+      <a routerLink="/termin" class="hero-secondary-link">Persönliche Beratung mit Carmelo →</a>
     </div>
   </div>
 </section>

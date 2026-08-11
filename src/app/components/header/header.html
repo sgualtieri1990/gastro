@@ -1,52 +1,94 @@
-<header class="header" [class.scrolled]="scrolled()" [class.menu-open]="menuOpen()">
+<header
+  class="header"
+  [class.scrolled]="scrolled()"
+  [class.menu-open]="menuOpen()"
+  [class.header--hero]="heroMode"
+>
   <div class="container nav">
-    <app-logo />
-
-    <nav class="nav-desktop" aria-label="Hauptnavigation">
-      @for (item of navItems; track item.path) {
-        @if (item.external) {
-          <a
-            class="nav-link"
-            [href]="item.path"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {{ item.label }}
-          </a>
-        } @else {
-          <a
-            class="nav-link"
-            [routerLink]="item.path"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: item.path === '/' }"
-          >
-            {{ item.label }}
-          </a>
-        }
+    <nav class="nav-left nav-desktop" aria-label="Navigation links">
+      @for (item of navLeft; track item.path) {
+        <a
+          class="nav-link"
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+        >
+          {{ item.label }}
+        </a>
       }
     </nav>
 
-    <button
-      class="menu-toggle"
-      type="button"
-      [attr.aria-expanded]="menuOpen()"
-      aria-label="Menü öffnen"
-      (click)="toggleMenu()"
-    >
-      <span class="menu-bar"></span>
-      <span class="menu-bar"></span>
-      <span class="menu-bar"></span>
-    </button>
+    <div class="nav-logo">
+      <app-logo [variant]="heroMode ? 'light' : 'default'" />
+    </div>
+
+    <div class="nav-right-group">
+      <nav class="nav-right nav-desktop" aria-label="Navigation rechts">
+        @for (item of navRight; track item.path) {
+          @if (item.external) {
+            <a class="nav-link" [href]="item.path" target="_blank" rel="noopener noreferrer">
+              {{ item.label }}
+            </a>
+          } @else {
+            <a
+              class="nav-link"
+              [routerLink]="item.path"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+            >
+              {{ item.label }}
+            </a>
+          }
+        }
+      </nav>
+
+      <a
+        class="nav-location"
+        [href]="contact.whatsappLink"
+        target="_blank"
+        rel="noopener"
+        aria-label="Kontakt via WhatsApp"
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+          <path
+            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+          />
+        </svg>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        [attr.aria-expanded]="menuOpen()"
+        aria-label="Menü öffnen"
+        (click)="toggleMenu()"
+      >
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+      </button>
+    </div>
   </div>
 
   <nav class="nav-mobile" [class.open]="menuOpen()" aria-label="Mobile Navigation">
-    @for (item of navItems; track item.path) {
+    @for (item of navLeft; track item.path) {
+      <a
+        class="nav-link"
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+        (click)="closeMenu()"
+      >
+        {{ item.label }}
+      </a>
+    }
+    @for (item of navRight; track item.path) {
       @if (item.external) {
         <a
           class="nav-link"
           [href]="item.path"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           (click)="closeMenu()"
         >
           {{ item.label }}
@@ -56,7 +98,6 @@
           class="nav-link"
           [routerLink]="item.path"
           routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: item.path === '/' }"
           (click)="closeMenu()"
         >
           {{ item.label }}

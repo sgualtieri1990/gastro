@@ -45,6 +45,21 @@ export const NAV_ITEMS: NavItem[] = [
   { path: 'https://www.instagram.com/sicitalia/', label: 'Instagram', external: true },
 ];
 
+/** Navigation links links vom Logo (Referenz-Layout) */
+export const NAV_LEFT: NavItem[] = [
+  { path: '/', label: 'Willkommen' },
+  { path: '/produkte', label: 'Produkte' },
+  { path: '/ueber-uns', label: 'Über uns' },
+];
+
+/** Navigation links rechts vom Logo */
+export const NAV_RIGHT: NavItem[] = [
+  { path: '/la-perfetta', label: 'La Perfetta' },
+  { path: '/termin', label: 'Termin' },
+  { path: '/kunde-werden', label: 'B2B' },
+  { path: 'https://www.instagram.com/sicitalia/', label: 'Instagram', external: true },
+];
+
 export const DOWNLOADS: DownloadItem[] = [
   {
     title: 'Präsentation Sicitalia',
