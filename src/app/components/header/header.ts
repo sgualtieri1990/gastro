@@ -1,12 +1,11 @@
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { filter } from 'rxjs';
-import { Logo } from '../logo/logo';
 import { CONTACT, NAV_LEFT, NAV_RIGHT } from '../../data/site-content';
 
 @Component({
   selector: 'app-header',
-  imports: [Logo, RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })

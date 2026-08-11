@@ -24,10 +24,6 @@
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
 }
 
-.header--hero .logo-wordmark {
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
-}
-
 .header--hero.scrolled {
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: var(--glass-blur-strong);
@@ -42,9 +38,9 @@
 }
 
 .nav {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 100%;
   gap: 16px;
 }
@@ -53,11 +49,6 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  justify-content: flex-start;
-}
-
-.nav-logo {
-  justify-self: center;
 }
 
 .nav-right-group {
@@ -209,15 +200,7 @@
   }
 
   .nav {
-    grid-template-columns: 1fr auto;
-  }
-
-  .nav-left {
-    display: none;
-  }
-
-  .nav-logo {
-    justify-self: start;
+    justify-content: flex-end;
   }
 
   .menu-toggle {
