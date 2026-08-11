@@ -13,6 +13,6 @@ export class PageHero {
   readonly subtitle = input<string>();
   readonly eyebrow = input<string>();
   readonly image = input<string>(IMAGES.hero);
-  readonly bgPosition = input('18% 12%');
+  readonly bgPosition = input('left 10%');
   readonly size = input<'full' | 'compact'>('compact');
 }

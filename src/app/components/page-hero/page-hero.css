@@ -31,14 +31,19 @@
 .banner-backdrop-photo {
   position: absolute;
   inset: 0;
-  background-size: cover;
+  background-size: auto 92%;
   background-repeat: no-repeat;
+  transform-origin: left center;
   animation: banner-bg-zoom 25s ease-in-out infinite alternate;
 }
 
+.banner-hero--full .banner-backdrop-photo {
+  background-size: auto 86%;
+}
+
 @keyframes banner-bg-zoom {
-  from { transform: scale(1.02); }
-  to { transform: scale(1.06); }
+  from { transform: scale(1); }
+  to { transform: scale(1.02); }
 }
 
 .banner-backdrop-shade {
@@ -61,9 +66,9 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 28% 45%, transparent 20%, rgba(0, 0, 0, 0.06) 21%, transparent 22%),
-    radial-gradient(circle at 28% 45%, transparent 32%, rgba(0, 0, 0, 0.04) 33%, transparent 34%),
-    radial-gradient(circle at 28% 45%, transparent 44%, rgba(0, 0, 0, 0.03) 45%, transparent 46%);
+    radial-gradient(circle at 16% 45%, transparent 20%, rgba(0, 0, 0, 0.06) 21%, transparent 22%),
+    radial-gradient(circle at 16% 45%, transparent 32%, rgba(0, 0, 0, 0.04) 33%, transparent 34%),
+    radial-gradient(circle at 16% 45%, transparent 44%, rgba(0, 0, 0, 0.03) 45%, transparent 46%);
   pointer-events: none;
 }
 
