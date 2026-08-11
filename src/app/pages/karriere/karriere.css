@@ -1,0 +1,145 @@
+.intro-block {
+  padding: 32px 40px;
+  margin-bottom: 48px;
+  font-size: var(--text-lg);
+  line-height: 1.75;
+}
+
+.jobs-header {
+  margin-bottom: 40px;
+}
+
+.jobs-header .section-subtitle a {
+  color: var(--color-brand-red);
+  font-weight: 600;
+}
+
+.jobs-header .section-subtitle a:hover {
+  text-decoration: underline;
+}
+
+.jobs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.job-card {
+  padding: 32px 36px;
+}
+
+.job-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.job-card h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  color: var(--color-brand-dark);
+  margin-bottom: 10px;
+}
+
+.job-description {
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  max-width: 640px;
+}
+
+.job-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.job-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-brand-dark);
+  white-space: nowrap;
+}
+
+.job-meta-item svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-brand-red);
+  flex-shrink: 0;
+}
+
+.job-card-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 28px;
+}
+
+.job-card-body h4 {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-brand-red);
+  margin-bottom: 12px;
+}
+
+.job-card-body ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.job-card-body li {
+  position: relative;
+  padding-left: 18px;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.job-card-body li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-brand-orange);
+}
+
+.job-card-footer {
+  padding-top: 8px;
+  border-top: 1px solid var(--glass-border);
+}
+
+@media (max-width: 900px) {
+  .job-card-head {
+    flex-direction: column;
+  }
+
+  .job-meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .job-card-body {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .job-card {
+    padding: 24px 20px;
+  }
+
+  .intro-block {
+    padding: 24px 20px;
+  }
+}

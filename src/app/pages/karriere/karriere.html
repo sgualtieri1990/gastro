@@ -1,0 +1,93 @@
+<app-page-hero
+  title="Karriere"
+  eyebrow="Team Sicitalia"
+  subtitle="WERDE TEIL VON SO SCHMECKT DER SÜDEN"
+  [image]="images.portrait"
+  bgPosition="center 15%"
+/>
+
+<section class="page-body">
+  <div class="container">
+    <div class="intro-block glass-panel" appScrollReveal>
+      <p>
+        Sicitalia wächst – und wir suchen Menschen, die italienische Lebensfreude, Qualität und
+        Gastronomie-Expertise mitbringen. Ob im Außendienst, im Lager oder im Marketing: Bei uns
+        arbeitest du in einem familiären Team mit echtem Süden im Herzen.
+      </p>
+    </div>
+
+    <div class="jobs-header" appScrollReveal>
+      <span class="section-tag">Offene Stellen</span>
+      <h2 class="section-title">{{ jobs.length }} aktuelle Stellenangebote</h2>
+      <p class="section-subtitle">
+        Initiativbewerbungen sind jederzeit willkommen – schreib uns einfach an
+        <a [href]="'mailto:' + contact.email">{{ contact.email }}</a>.
+      </p>
+    </div>
+
+    <div class="jobs-list">
+      @for (job of jobs; track job.title; let i = $index) {
+        <article class="job-card glass-panel" appScrollReveal [appScrollRevealDelay]="i * 80">
+          <div class="job-card-head">
+            <div>
+              <h3>{{ job.title }}</h3>
+              <p class="job-description">{{ job.description }}</p>
+            </div>
+            <div class="job-meta">
+              <span class="job-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                {{ job.location }}
+              </span>
+              <span class="job-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="2" y="7" width="20" height="14" rx="2" />
+                  <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" />
+                </svg>
+                {{ job.type }}
+              </span>
+              <span class="job-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+                {{ job.start }}
+              </span>
+            </div>
+          </div>
+
+          <div class="job-card-body">
+            <div>
+              <h4>Deine Aufgaben</h4>
+              <ul>
+                @for (task of job.tasks; track task) {
+                  <li>{{ task }}</li>
+                }
+              </ul>
+            </div>
+            <div>
+              <h4>Dein Profil</h4>
+              <ul>
+                @for (item of job.profile; track item) {
+                  <li>{{ item }}</li>
+                }
+              </ul>
+            </div>
+          </div>
+
+          <div class="job-card-footer">
+            <a [href]="applyLink(job.title)" class="btn btn-primary">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 4h16v16H4z" />
+                <path d="M22 6l-10 7L2 6" />
+              </svg>
+              Jetzt bewerben
+            </a>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
