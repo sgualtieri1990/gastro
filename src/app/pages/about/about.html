@@ -16,6 +16,7 @@
         Erfahren Sie mehr über unsere Philosophie und unser Engagement für Qualität und Geschmack.
       </p>
       <div class="video-wrap glass-frame">
+        <img [src]="images.videoThumbnail" alt="Sicitalia Imagevideo Vorschau" class="video-poster" />
         <iframe
           [src]="videoUrl"
           title="Sicitalia Imagevideo"
@@ -29,7 +30,7 @@
     <div class="about-col glass-panel" appScrollReveal [appScrollRevealDelay]="100">
       <div class="about-row">
         <img
-          src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400&q=80"
+          [src]="images.arancino"
           alt="Carmelo Marotta mit Arancino"
           loading="lazy"
         />
@@ -49,8 +50,8 @@
       <h2>Unsere Mission</h2>
       <div class="about-row">
         <img
-          src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400&q=80"
-          alt="Cornetti von Sicitalia"
+          [src]="images.cornetti"
+          alt="Carmelo Marotta mit Cornetti"
           loading="lazy"
         />
         <div>

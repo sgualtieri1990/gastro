@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
-import { CONTACT } from '../../data/site-content';
+import { CONTACT, IMAGES } from '../../data/site-content';
 
 @Component({
   selector: 'app-about',
@@ -12,6 +12,7 @@ import { CONTACT } from '../../data/site-content';
 export class About {
   private readonly sanitizer = inject(DomSanitizer);
   readonly contact = CONTACT;
+  readonly images = IMAGES;
   readonly videoUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
     CONTACT.youtubeVideo,
   );

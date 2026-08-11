@@ -1,5 +1,5 @@
 <section class="hero">
-  <div class="hero-bg" [style.background-image]="'url(' + heroImage + ')'"></div>
+  <div class="hero-bg" [style.background-image]="'url(' + images.hero + ')'"></div>
   <div class="hero-overlay"></div>
   <div class="container hero-inner">
     <h1 class="hero-title" appScrollReveal>Herzlich Willkommen bei Sicitalia</h1>
@@ -48,18 +48,10 @@
 
     <div class="intro-visual" appScrollReveal [appScrollRevealDelay]="150">
       <div class="intro-image-wrap glass-frame">
-        <img
-          src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80"
-          alt="Carmelo Marotta – Sicitalia"
-          loading="lazy"
-        />
+        <img [src]="images.portrait" alt="Carmelo Marotta – Geschäftsführer Sicitalia" loading="lazy" />
       </div>
       <div class="intro-accent-card glass-panel">
-        <img
-          src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&q=80"
-          alt="La Perfetta Pizzabasen"
-          loading="lazy"
-        />
+        <img [src]="images.laPerfetta" alt="La Perfetta Pizzabasen" loading="lazy" />
       </div>
     </div>
   </div>
@@ -78,11 +70,7 @@
           [appScrollRevealDelay]="i * 80"
         >
           <div class="download-image">
-            <img
-              src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&q=80"
-              alt="Download {{ item.title }}"
-              loading="lazy"
-            />
+            <img [src]="item.image" [alt]="'Download ' + item.title" loading="lazy" />
           </div>
           <div class="download-label">
             <strong>Download:</strong>
