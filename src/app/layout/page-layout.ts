@@ -8,6 +8,11 @@ import { WhatsappButton } from '../components/whatsapp-button/whatsapp-button';
   selector: 'app-page-layout',
   imports: [RouterOutlet, Header, Footer, WhatsappButton],
   template: `
+    <div class="ambient-bg" aria-hidden="true">
+      <span class="orb orb-1"></span>
+      <span class="orb orb-2"></span>
+      <span class="orb orb-3"></span>
+    </div>
     <app-header />
     <main class="main-content">
       <router-outlet />
@@ -20,11 +25,14 @@ import { WhatsappButton } from '../components/whatsapp-button/whatsapp-button';
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      position: relative;
     }
 
     .main-content {
       flex: 1;
       padding-top: var(--header-height);
+      position: relative;
+      z-index: 1;
     }
   `,
 })

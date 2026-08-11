@@ -1,7 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
-import { CONTACT, DOWNLOADS, IMAGES, INSTAGRAM_POSTS } from '../../data/site-content';
+import {
+  CONTACT,
+  DOWNLOADS,
+  HIGHLIGHTS,
+  IMAGES,
+  INSTAGRAM_POSTS,
+  TRUST_STATS,
+} from '../../data/site-content';
 
 @Component({
   selector: 'app-home',
@@ -14,4 +21,6 @@ export class Home {
   readonly instagramPosts = INSTAGRAM_POSTS;
   readonly contact = CONTACT;
   readonly images = IMAGES;
+  readonly trustStats = TRUST_STATS;
+  readonly highlights = HIGHLIGHTS;
 }

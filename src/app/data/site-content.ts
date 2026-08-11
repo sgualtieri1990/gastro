@@ -133,6 +133,7 @@ export const LEGAL_LINKS = [
 export const CONTACT = {
   email: 'info@sicitalia.eu',
   name: 'Carmelo Marotta',
+  role: 'Geschäftsführer & Gründer',
   address: 'Beckerfelder Str. 96, 47269 Duisburg',
   phone: '0800 SNACK-IT / 0800 762 2548',
   whatsapp: '0049-178 35 72 191',
@@ -140,4 +141,19 @@ export const CONTACT = {
   instagram: 'https://www.instagram.com/sicitalia/',
   facebook: 'https://www.facebook.com/sicitalia/',
   youtubeVideo: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+  quote:
+    '„Als Italiener in Deutschland kenne ich das Gefühl – den echten Süden vermissen. Genau deshalb haben wir Sicitalia gegründet: Damit Du Deinen Gästen echte Genussmomente schenken kannst."',
 };
+
+export const TRUST_STATS = [
+  { value: '100%', label: 'Italienische Qualität' },
+  { value: 'NRW', label: 'Standort & Herz' },
+  { value: 'DE-weit', label: 'Lieferung' },
+];
+
+export const HIGHLIGHTS = [
+  { emoji: '🥐', title: 'Cornetti & Babà', desc: 'Frisch, knusprig, authentisch' },
+  { emoji: '🍕', title: 'La Perfetta', desc: 'Pizza in Minuten auf der Karte' },
+  { emoji: '🍨', title: 'Gelateria', desc: 'Premium-Eis für Deine Theke' },
+  { emoji: '🫔', title: 'Cannoli', desc: 'Sizilianische Klassiker' },
+];
