@@ -1,0 +1,214 @@
+/* Shared banner hero – Home + alle Unterseiten */
+:host {
+  display: block;
+  position: relative;
+  z-index: 0;
+}
+
+.banner-hero {
+  position: relative;
+  margin-top: calc(-1 * var(--header-height));
+  padding-top: var(--header-height);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.banner-hero--full {
+  min-height: 100vh;
+}
+
+.banner-hero--compact {
+  min-height: 52vh;
+}
+
+.banner-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.banner-backdrop-photo {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: banner-bg-zoom 25s ease-in-out infinite alternate;
+}
+
+@keyframes banner-bg-zoom {
+  from { transform: scale(1.02); }
+  to { transform: scale(1.06); }
+}
+
+.banner-backdrop-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(80, 10, 18, 0.55) 0%, rgba(80, 10, 18, 0.08) 20%, transparent 45%),
+    linear-gradient(to right, transparent 0%, rgba(142, 26, 40, 0.5) 50%, rgba(158, 26, 40, 0.94) 75%),
+    linear-gradient(to top, rgba(158, 26, 40, 0.98) 0%, transparent 40%);
+}
+
+.banner-hero--compact .banner-backdrop-shade {
+  background:
+    linear-gradient(to bottom, rgba(80, 10, 18, 0.6) 0%, rgba(80, 10, 18, 0.15) 25%, transparent 50%),
+    linear-gradient(to right, transparent 0%, rgba(142, 26, 40, 0.45) 45%, rgba(158, 26, 40, 0.95) 70%),
+    linear-gradient(to top, #f5ebe0 0%, rgba(158, 26, 40, 0.85) 18%, transparent 55%);
+}
+
+.banner-backdrop-rings {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 28% 45%, transparent 20%, rgba(0, 0, 0, 0.06) 21%, transparent 22%),
+    radial-gradient(circle at 28% 45%, transparent 32%, rgba(0, 0, 0, 0.04) 33%, transparent 34%),
+    radial-gradient(circle at 28% 45%, transparent 44%, rgba(0, 0, 0, 0.03) 45%, transparent 46%);
+  pointer-events: none;
+}
+
+.banner-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  padding: 48px 24px;
+}
+
+.banner-hero--full .banner-content {
+  min-height: calc(100vh - var(--header-height));
+  padding-bottom: 80px;
+}
+
+.banner-hero--compact .banner-content {
+  min-height: calc(52vh - var(--header-height));
+  padding-bottom: 56px;
+}
+
+.banner-copy {
+  max-width: 540px;
+  text-align: left;
+}
+
+.banner-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 220, 100, 0.92);
+  margin-bottom: 14px;
+}
+
+.banner-title {
+  font-family: 'Oswald', 'Inter', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.banner-hero--compact .banner-title {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+}
+
+.banner-tagline {
+  font-size: clamp(0.75rem, 1.4vw, 0.875rem);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #c8e650;
+  line-height: 1.65;
+  max-width: 420px;
+  margin-bottom: 28px;
+}
+
+.btn-split {
+  display: inline-flex;
+  align-items: stretch;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  transition: transform var(--transition-bounce), box-shadow var(--transition);
+  margin-top: 8px;
+}
+
+.btn-split:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.btn-split-label {
+  display: flex;
+  align-items: center;
+  padding: 16px 32px;
+  background: #fff;
+  color: var(--color-brand-dark);
+  font-size: var(--text-base);
+  font-weight: 700;
+}
+
+.btn-split-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  background: linear-gradient(135deg, #f5a623, #e85c1a);
+  color: #fff;
+}
+
+.btn-split-arrow svg {
+  width: 22px;
+  height: 22px;
+  transition: transform var(--transition);
+}
+
+.btn-split:hover .btn-split-arrow svg {
+  transform: translateX(4px);
+}
+
+.banner-link {
+  display: block;
+  margin-top: 20px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+  transition: color var(--transition);
+}
+
+.banner-link:hover {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .banner-hero--compact {
+    min-height: 44vh;
+  }
+
+  .banner-backdrop-photo {
+    background-position: 35% 10% !important;
+  }
+
+  .banner-backdrop-shade {
+    background:
+      linear-gradient(to bottom, rgba(80, 10, 18, 0.65) 0%, transparent 40%),
+      linear-gradient(to top, #f5ebe0 0%, rgba(158, 26, 40, 0.9) 30%, transparent 100%) !important;
+  }
+
+  .banner-content {
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .banner-copy {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .banner-tagline {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

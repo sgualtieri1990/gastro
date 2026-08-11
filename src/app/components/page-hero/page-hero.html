@@ -1,0 +1,24 @@
+<section class="banner-hero" [class.banner-hero--full]="size() === 'full'" [class.banner-hero--compact]="size() === 'compact'">
+  <div class="banner-backdrop" aria-hidden="true">
+    <div
+      class="banner-backdrop-photo"
+      [style.background-image]="'url(' + image() + ')'"
+      [style.background-position]="bgPosition()"
+    ></div>
+    <div class="banner-backdrop-shade"></div>
+    <div class="banner-backdrop-rings"></div>
+  </div>
+
+  <div class="container banner-content">
+    <div class="banner-copy" appScrollReveal appReveal="right">
+      @if (eyebrow()) {
+        <p class="banner-eyebrow">{{ eyebrow() }}</p>
+      }
+      <h1 class="banner-title">{{ title() }}</h1>
+      @if (subtitle()) {
+        <p class="banner-tagline">{{ subtitle() }}</p>
+      }
+      <ng-content />
+    </div>
+  </div>
+</section>

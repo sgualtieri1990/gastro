@@ -1,10 +1,12 @@
-<section class="section page-hero">
-  <div class="container">
-    <h1 class="page-title" appScrollReveal>Termin buchen</h1>
-  </div>
-</section>
+<app-page-hero
+  title="Termin buchen"
+  eyebrow="Beratung"
+  subtitle="PERSÖNLICH, UNVERBINDLICH & AUF AUGENHÖHE"
+  [image]="images.portrait"
+  bgPosition="center 10%"
+/>
 
-<section class="section">
+<section class="page-body">
   <div class="container form-grid">
     <div class="form-info" appScrollReveal>
       <p>
@@ -12,9 +14,7 @@
         Sortiment, besprechen Ihre Anforderungen und finden die passenden Produkte für Ihr Konzept.
       </p>
       <div class="contact-shortcuts">
-        <p>
-          <strong>Telefon:</strong> {{ contact.phone }}
-        </p>
+        <p><strong>Telefon:</strong> {{ contact.phone }}</p>
         <p>
           <strong>WhatsApp:</strong>
           <a [href]="contact.whatsappLink" target="_blank" rel="noopener">{{ contact.whatsapp }}</a>

@@ -1,10 +1,12 @@
-<section class="section products-hero">
-  <div class="container">
-    <h1 class="page-title page-title--light" appScrollReveal>Unsere Produkte</h1>
-  </div>
-</section>
+<app-page-hero
+  title="Unsere Produkte"
+  eyebrow="Sortiment"
+  subtitle="VON CANNOLI BIS PIZZABASEN – ALLES FÜR DEINE GASTRO"
+  [image]="images.hero"
+  bgPosition="20% 15%"
+/>
 
-<section class="section products-section">
+<section class="page-body">
   <div class="container">
     <div class="products-grid">
       @for (product of products; track product.title; let i = $index) {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { PageHero } from '../../components/page-hero/page-hero';
 import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 import {
   CONTACT,
@@ -12,7 +13,7 @@ import {
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, ScrollRevealDirective],
+  imports: [RouterLink, ScrollRevealDirective, PageHero],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

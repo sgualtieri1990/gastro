@@ -1,10 +1,12 @@
-<section class="section page-hero">
-  <div class="container">
-    <h1 class="page-title" appScrollReveal>La Perfetta</h1>
-  </div>
-</section>
+<app-page-hero
+  title="La Perfetta"
+  eyebrow="Premium Pizzabasen"
+  subtitle="AUTHENTISCHER PIZZAGENUSS IN MINUTEN AUF DEINER KARTE"
+  [image]="'/images/produkt-pizzabasen.jpg'"
+  bgPosition="center center"
+/>
 
-<section class="section">
+<section class="page-body">
   <div class="container la-perfetta-grid">
     <div class="glass-panel content-panel" appScrollReveal>
       <p class="kicker">Premium Pizzabasen</p>
@@ -32,11 +34,7 @@
     </div>
     <div class="visual-panel" appScrollReveal [appScrollRevealDelay]="150">
       <div class="glass-frame hero-image">
-        <img
-          [src]="images.laPerfetta"
-          alt="La Perfetta Premium Pizzabasen"
-          loading="lazy"
-        />
+        <img [src]="images.laPerfetta" alt="La Perfetta Premium Pizzabasen" loading="lazy" />
       </div>
     </div>
   </div>

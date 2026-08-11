@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { PageHero } from '../../components/page-hero/page-hero';
 import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
+import { IMAGES } from '../../data/site-content';
 
 @Component({
   selector: 'app-kunde-werden',
-  imports: [FormsModule, ScrollRevealDirective],
+  imports: [FormsModule, PageHero, ScrollRevealDirective],
   templateUrl: './kunde-werden.html',
   styleUrl: './kunde-werden.css',
 })
 export class KundeWerden {
+  readonly images = IMAGES;
+
   company = '';
   name = '';
   email = '';

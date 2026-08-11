@@ -1,10 +1,12 @@
-<section class="section page-hero">
-  <div class="container">
-    <h1 class="page-title" appScrollReveal>Über Uns</h1>
-  </div>
-</section>
+<app-page-hero
+  title="Über Uns"
+  eyebrow="Sicitalia"
+  subtitle="SO SCHMECKT DER SÜDEN – SEIT DEM ERSTEN TAG"
+  [image]="images.portrait"
+  bgPosition="center 15%"
+/>
 
-<section class="section about-section">
+<section class="page-body">
   <div class="container about-grid">
     <div class="about-col glass-panel" appScrollReveal>
       <h2>Unsere Geschichte</h2>
@@ -29,18 +31,13 @@
 
     <div class="about-col glass-panel" appScrollReveal [appScrollRevealDelay]="100">
       <div class="about-row">
-        <img
-          [src]="images.arancino"
-          alt="Carmelo Marotta mit Arancino"
-          loading="lazy"
-        />
+        <img [src]="images.arancino" alt="Carmelo Marotta mit Arancino" loading="lazy" />
         <div>
           <p>
             „La dolce Vita" – dieser Ausdruck steht für Gelassenheit und die Fähigkeit, den Moment
             nach getaner Arbeit zu genießen. Mit Produkten von Sicitalia liefern wir als gebürtige
             ItalienerInnen die Genussmomente, nach denen wir uns lange Zeit in Deutschland gesehnt
-            haben und die dieses Lebensgefühl vermitteln. Damit bringen wir unseren Süden nach
-            Deutschland und fördern die italienische Snack- und Dessertkultur im gesamten Land.
+            haben und die dieses Lebensgefühl vermitteln.
           </p>
         </div>
       </div>
@@ -49,18 +46,13 @@
     <div class="about-col glass-panel" appScrollReveal [appScrollRevealDelay]="200">
       <h2>Unsere Mission</h2>
       <div class="about-row">
-        <img
-          [src]="images.cornetti"
-          alt="Carmelo Marotta mit Cornetti"
-          loading="lazy"
-        />
+        <img [src]="images.cornetti" alt="Carmelo Marotta mit Cornetti" loading="lazy" />
         <div>
           <p>
             Wir beliefern ein breites Spektrum an Kunden mit konsequent hochwertigen Produkten, die
             den Geschmack und die Lebenseinstellung Italiens widerspiegeln. Selbst in der kleinsten
-            Küche können unsere Produkte schnell zubereitet werden. Ganz ohne Fachwissen, ohne
-            Schwund und mit präziser Kalkulationsgrundlage für den Gastronomen – und das in einer
-            immer gleichbleibenden Qualität.
+            Küche können unsere Produkte schnell zubereitet werden – ganz ohne Fachwissen, ohne
+            Schwund und mit präziser Kalkulationsgrundlage.
           </p>
         </div>
       </div>

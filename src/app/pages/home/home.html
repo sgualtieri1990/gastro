@@ -1,27 +1,194 @@
-<!-- ═══ HERO – Carmelo als Hintergrund, Header transparent darüber ═══ -->
-<section class="hero">
-  <div class="hero-backdrop" aria-hidden="true">
-    <div class="hero-backdrop-photo" [style.background-image]="'url(' + images.hero + ')'"></div>
-    <div class="hero-backdrop-shade"></div>
-    <div class="hero-backdrop-rings"></div>
-  </div>
+<app-page-hero
+  size="full"
+  eyebrow="Neu im Sortiment 2026"
+  title="So schmeckt der Süden."
+  subtitle="LA PERFETTA PIZZABASEN & SIZILIANISCHE KLASSIKER FÜR DEINE GASTRO!"
+  [image]="images.hero"
+>
+  <a routerLink="/produkte" class="btn-split">
+    <span class="btn-split-label">Entdecken</span>
+    <span class="btn-split-arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    </span>
+  </a>
+  <a routerLink="/termin" class="banner-link">Persönliche Beratung mit Carmelo →</a>
+</app-page-hero>
 
-  <div class="container hero-content">
-    <div class="hero-copy" appScrollReveal appReveal="right" [appScrollRevealDelay]="100">
-      <p class="hero-eyebrow">Neu im Sortiment 2026</p>
-      <h1 class="hero-headline">So schmeckt<br />der Süden.</h1>
-      <p class="hero-tagline">
-        LA PERFETTA PIZZABASEN &amp; SIZILIANISCHE KLASSIKER FÜR DEINE GASTRO!
+<!-- ═══ TRUST STRIP ═══ -->
+<section class="trust-strip">
+  <div class="container trust-grid">
+    @for (stat of trustStats; track stat.label; let i = $index) {
+      <div class="trust-pill glass-panel" appScrollReveal [appScrollRevealDelay]="i * 100" appReveal="up">
+        <span class="trust-value">{{ stat.value }}</span>
+        <span class="trust-label">{{ stat.label }}</span>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- ═══ INTRO + Carmelo ═══ -->
+<section class="section intro-section">
+  <div class="container intro-grid">
+    <div class="intro-content glass-panel" appScrollReveal appReveal="left">
+      <span class="section-tag">Für Gastronomen &amp; Händler</span>
+      <h2 class="intro-kicker">Italienischer Genuss für deine Kunden!</h2>
+      <p>
+        Tauche ein in die Welt der italienischen Snack-, Back-, &amp; Dessertkultur mit Sicitalia.
       </p>
-      <a routerLink="/produkte" class="btn-split">
-        <span class="btn-split-label">Entdecken</span>
-        <span class="btn-split-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </span>
-      </a>
-      <a routerLink="/termin" class="hero-secondary-link">Persönliche Beratung mit Carmelo →</a>
+      <p>
+        Du betreibst eine <strong>Gastronomie oder einen Feinkosthandel?</strong> Dann sind wir der
+        richtige <strong>Partner für Dich!</strong>
+      </p>
+      <p>
+        Wir bieten Dir eine exquisite Auswahl an Gourmet-Desserts und Backwaren, sowie echte,
+        traditionelle Highlights, darunter Cannoli, Cornetti, Arancini und Babà.
+      </p>
+      <p>
+        <strong>Neu im Sortiment:</strong> Mit den hochwertigen Pizzabasen von
+        <strong>La Perfetta</strong> bringst Du authentischen Pizzagenuss schnell und unkompliziert
+        auf die Karte.
+      </p>
+      <p class="intro-closing">
+        Entdecke den Geschmack Italiens direkt bei Dir in NRW mit deutschlandweiter Lieferung.
+      </p>
+
+      <div class="cta-stack">
+        <a href="/downloads/praesentation-sicitalia.pdf" class="btn btn-primary" download>
+          📄 Katalog runterladen
+        </a>
+        <a routerLink="/kunde-werden" class="btn btn-outline">Info erhalten (Gastro &amp; Handel)</a>
+        <a routerLink="/kunde-werden" class="btn btn-outline">Kunde werden (B2B)</a>
+        <a routerLink="/termin" class="btn btn-glass">📅 Termin buchen</a>
+      </div>
+    </div>
+
+    <div class="intro-visual" appScrollReveal appReveal="right" [appScrollRevealDelay]="150">
+      <div class="intro-image-wrap glass-frame animate-float">
+        <img [src]="images.portrait" alt="Carmelo Marotta – Geschäftsführer Sicitalia" loading="lazy" />
+        <div class="owner-badge glass-panel">
+          <strong>{{ contact.name }}</strong>
+          <span>{{ contact.role }}</span>
+        </div>
+      </div>
+      <div class="intro-accent-card glass-card">
+        <img [src]="images.laPerfetta" alt="La Perfetta Pizzabasen" loading="lazy" />
+        <span class="accent-label">Neu: La Perfetta</span>
+      </div>
+      <blockquote class="owner-quote glass-panel" appScrollReveal appReveal="up" [appScrollRevealDelay]="300">
+        {{ contact.quote }}
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="section highlights-section">
+  <div class="container">
+    <div class="section-header" appScrollReveal>
+      <span class="section-tag">Unsere Highlights</span>
+      <h2 class="section-title">Was Deine Gäste lieben werden</h2>
+      <p class="section-subtitle">
+        Von der Morgencroissant bis zum Abend-Cannoli – alles in gleichbleibender Premium-Qualität.
+      </p>
+    </div>
+    <div class="highlights-grid">
+      @for (item of highlights; track item.title; let i = $index) {
+        <article
+          class="highlight-card glass-card"
+          appScrollReveal
+          appReveal="scale"
+          [appScrollRevealDelay]="i * 90"
+        >
+          <span class="highlight-emoji">{{ item.emoji }}</span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.desc }}</p>
+        </article>
+      }
+    </div>
+    <div class="highlights-cta" appScrollReveal appReveal="up">
+      <a routerLink="/produkte" class="btn btn-primary">Alle Produkte ansehen</a>
+    </div>
+  </div>
+</section>
+
+<section class="section downloads-section">
+  <div class="container">
+    <div class="section-header" appScrollReveal>
+      <span class="section-tag">Kataloge &amp; Listen</span>
+      <h2 class="section-title">Downloads</h2>
+    </div>
+    <div class="downloads-grid">
+      @for (item of downloads; track item.file; let i = $index) {
+        <a
+          class="download-card glass-card"
+          [href]="'/downloads/' + item.file"
+          download
+          appScrollReveal
+          appReveal="up"
+          [appScrollRevealDelay]="i * 80"
+        >
+          <div class="download-image">
+            <img [src]="item.image" [alt]="'Download ' + item.title" loading="lazy" />
+            <span class="download-icon">⬇</span>
+          </div>
+          <div class="download-label">
+            <strong>Download</strong>
+            <span>{{ item.title }}</span>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section instagram-section">
+  <div class="container">
+    <div class="section-header" appScrollReveal>
+      <span class="section-tag">Social Media</span>
+      <h2 class="section-title">Folgen Sie Uns</h2>
+      <p class="section-subtitle">Ein Blick hinter die Kulissen – Rezepte, News und Inspiration.</p>
+    </div>
+    <div class="instagram-grid">
+      @for (post of instagramPosts; track post.alt; let i = $index) {
+        <a
+          class="instagram-card glass-card"
+          [href]="contact.instagram"
+          target="_blank"
+          rel="noopener"
+          appScrollReveal
+          appReveal="scale"
+          [appScrollRevealDelay]="i * 70"
+        >
+          <img [src]="post.image" [alt]="post.alt" loading="lazy" />
+          <div class="instagram-overlay">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+              />
+            </svg>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section cta-banner-section">
+  <div class="container">
+    <div class="cta-banner glass-dark" appScrollReveal appReveal="scale">
+      <div class="cta-banner-text">
+        <h2>Bereit für italienischen Genuss?</h2>
+        <p>
+          {{ contact.name }} und sein Team beraten Dich persönlich – unverbindlich und auf Augenhöhe.
+        </p>
+      </div>
+      <div class="cta-banner-actions">
+        <a routerLink="/termin" class="btn btn-primary">Termin vereinbaren</a>
+        <a [href]="contact.whatsappLink" target="_blank" rel="noopener" class="btn btn-glass">
+          WhatsApp schreiben
+        </a>
+      </div>
     </div>
   </div>
 </section>

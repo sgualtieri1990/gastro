@@ -1,10 +1,12 @@
-<section class="section page-hero">
-  <div class="container">
-    <h1 class="page-title" appScrollReveal>{{ title }}</h1>
-  </div>
-</section>
+<app-page-hero
+  [title]="title"
+  eyebrow="Sicitalia"
+  subtitle="INFORMATIONEN & RECHTLICHES"
+  [image]="images.hero"
+  bgPosition="18% 12%"
+/>
 
-<section class="section">
+<section class="page-body">
   <div class="container">
     <div class="glass-panel legal-content" appScrollReveal>
       <p>
@@ -15,12 +17,8 @@
         <strong>E-Mail:</strong>
         <a [href]="'mailto:' + contact.email">{{ contact.email }}</a>
       </p>
-      <p>
-        <strong>Telefon:</strong> {{ contact.phone }}
-      </p>
-      <p>
-        <strong>Adresse:</strong> {{ contact.name }}, {{ contact.address }}
-      </p>
+      <p><strong>Telefon:</strong> {{ contact.phone }}</p>
+      <p><strong>Adresse:</strong> {{ contact.name }}, {{ contact.address }}</p>
     </div>
   </div>
 </section>

@@ -1,11 +1,12 @@
-<section class="section page-hero">
-  <div class="container">
-    <h1 class="page-title" appScrollReveal>Kunde werden</h1>
-    <p class="page-subtitle" appScrollReveal>Registrierung B2B – Gastronomie &amp; Handel</p>
-  </div>
-</section>
+<app-page-hero
+  title="Kunde werden"
+  eyebrow="B2B Registrierung"
+  subtitle="GASTRO & FEINKOST – ZUGANG ZU UNSEREM SORTIMENT"
+  [image]="images.hero"
+  bgPosition="22% 12%"
+/>
 
-<section class="section">
+<section class="page-body">
   <div class="container">
     <div class="glass-panel form-panel" appScrollReveal>
       @if (submitted) {
