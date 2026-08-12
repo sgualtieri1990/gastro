@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PageHero } from '../../components/page-hero/page-hero';
 import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 import { CONTACT, IMAGES } from '../../data/site-content';
+import { ProductInterestService } from '../../services/product-interest.service';
 
 @Component({
   selector: 'app-termin',
@@ -10,9 +11,12 @@ import { CONTACT, IMAGES } from '../../data/site-content';
   templateUrl: './termin.html',
   styleUrl: './termin.css',
 })
-export class Termin {
+export class Termin implements OnInit {
+  private readonly interest = inject(ProductInterestService);
+
   readonly contact = CONTACT;
   readonly images = IMAGES;
+  readonly selectedProducts = this.interest.selectedProducts;
 
   name = '';
   email = '';
@@ -20,9 +24,17 @@ export class Termin {
   message = '';
   submitted = false;
 
+  ngOnInit(): void {
+    const inquiry = this.interest.buildInquiryText();
+    if (inquiry) {
+      this.message = inquiry;
+    }
+  }
+
   onSubmit(): void {
     if (this.name && this.email) {
       this.submitted = true;
+      this.interest.clear();
     }
   }
 }

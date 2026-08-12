@@ -1,13 +1,13 @@
 <app-page-hero
   size="full"
   eyebrow="Neu im Sortiment 2026"
-  title="So schmeckt der Süden."
+  title="So schmeckt der&nbsp;Süden."
   subtitle="LA PERFETTA PIZZABASEN & SIZILIANISCHE KLASSIKER FÜR DEINE GASTRO!"
   [image]="images.hero"
   bgPosition="left bottom"
 >
   <div class="banner-actions">
-    <a routerLink="/produkte" class="btn btn-glass">
+    <a routerLink="/" fragment="sortiment" class="btn btn-glass">
       <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
         <path d="M12 2L2 7l10 5 10-5-10-5z" />
         <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
@@ -23,49 +23,22 @@
       Persönliche Beratung mit Carmelo
     </a>
   </div>
+  <app-hero-keyword-roll banner-keywords [keywords]="heroKeywords" />
 </app-page-hero>
 
-<!-- ═══ TRUST STRIP – Transporter / Förderband ═══ -->
+<!-- ═══ TRUST STRIP ═══ -->
 <section class="trust-strip">
-  <div class="container">
-    <div class="conveyor" appScrollReveal appReveal="up">
-      <div class="conveyor-frame" aria-label="Lieferversprechen auf dem Transporter">
-        <div class="conveyor-roller conveyor-roller--left" aria-hidden="true">
-          <span class="conveyor-roller-core"></span>
-        </div>
-
-        <div class="conveyor-track">
-          <div class="conveyor-belt" aria-hidden="true">
-            <div class="conveyor-belt-surface"></div>
-            <div class="conveyor-belt-guard conveyor-belt-guard--top"></div>
-            <div class="conveyor-belt-guard conveyor-belt-guard--bottom"></div>
-          </div>
-
-          <div class="conveyor-items">
-            @for (stat of trustStats; track stat.label; let i = $index) {
-              <div
-                class="conveyor-package"
-                appScrollReveal
-                [appScrollRevealDelay]="i * 120"
-                appReveal="up"
-              >
-                <div class="conveyor-package-top" aria-hidden="true"></div>
-                <div class="conveyor-package-body glass-panel">
-                  <span class="trust-value">{{ stat.value }}</span>
-                  <span class="trust-label">{{ stat.label }}</span>
-                </div>
-              </div>
-            }
-          </div>
-        </div>
-
-        <div class="conveyor-roller conveyor-roller--right" aria-hidden="true">
-          <span class="conveyor-roller-core"></span>
-        </div>
+  <div class="container trust-grid">
+    @for (stat of trustStats; track stat.label; let i = $index) {
+      <div class="trust-pill glass-panel" appScrollReveal [appScrollRevealDelay]="i * 100" appReveal="up">
+        <span class="trust-value">{{ stat.value }}</span>
+        <span class="trust-label">{{ stat.label }}</span>
       </div>
-    </div>
+    }
   </div>
 </section>
+
+<app-product-catalog sectionId="sortiment" [compactIntro]="true" />
 
 <!-- ═══ INTRO + Carmelo ═══ -->
 <section class="section intro-section">
@@ -146,7 +119,7 @@
       }
     </div>
     <div class="highlights-cta" appScrollReveal appReveal="up">
-      <a routerLink="/produkte" class="btn btn-primary">Alle Produkte ansehen</a>
+      <a routerLink="/" fragment="sortiment" class="btn btn-primary">Zum Sortiment</a>
     </div>
   </div>
 </section>

@@ -49,6 +49,19 @@
               }
             </select>
           </div>
+          <div class="form-group">
+            <label for="productInterest">Produkte, die mich interessieren</label>
+            <textarea
+              id="productInterest"
+              [(ngModel)]="productInterest"
+              name="productInterest"
+              rows="4"
+              placeholder="Wähle Produkte auf der Sortimentsseite oder trage hier deine Wunschprodukte ein."
+            ></textarea>
+            @if (selectedProducts().length) {
+              <p class="form-hint">{{ selectedProducts().length }} Produkt(e) aus dem Portfolio übernommen.</p>
+            }
+          </div>
           <label class="consent-label">
             <input type="checkbox" [(ngModel)]="consent" name="consent" required />
             <span>

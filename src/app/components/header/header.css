@@ -73,12 +73,13 @@
   grid-template-columns: auto 1fr auto;
   align-items: center;
   height: 100%;
-  gap: 20px;
+  gap: 24px;
 }
 
 .nav-logo {
   justify-self: start;
   flex-shrink: 0;
+  margin-right: 20px;
 }
 
 .nav-left {
@@ -86,6 +87,7 @@
   align-items: center;
   gap: 4px;
   justify-content: flex-start;
+  padding-left: 8px;
 }
 
 .nav-right-group {

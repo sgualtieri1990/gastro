@@ -10,15 +10,20 @@
   </div>
 
   <div class="container banner-content">
-    <div class="banner-copy" appScrollReveal appReveal="right">
-      @if (eyebrow()) {
-        <p class="banner-eyebrow">{{ eyebrow() }}</p>
-      }
-      <h1 class="banner-title">{{ title() }}</h1>
-      @if (subtitle()) {
-        <p class="banner-tagline">{{ subtitle() }}</p>
-      }
-      <ng-content />
+    <div class="banner-layout" [class.banner-layout--with-keywords]="size() === 'full'">
+      <div class="banner-copy-wrap">
+        <div class="banner-copy" appScrollReveal appReveal="left">
+          @if (eyebrow()) {
+            <p class="banner-eyebrow">{{ eyebrow() }}</p>
+          }
+          <h1 class="banner-title" [innerHTML]="title()"></h1>
+          @if (subtitle()) {
+            <p class="banner-tagline">{{ subtitle() }}</p>
+          }
+          <ng-content />
+        </div>
+      </div>
+      <ng-content select="[banner-keywords]" />
     </div>
   </div>
 </section>

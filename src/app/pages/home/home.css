@@ -9,6 +9,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-start;
   gap: 16px 24px;
   margin-top: 12px;
 }
@@ -21,152 +22,23 @@
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
 }
 
-/* ═══ TRUST STRIP – Transporter / Förderband ═══ */
+/* ═══ TRUST STRIP ═══ */
 .trust-strip {
   position: relative;
   z-index: 2;
-  padding: 56px 0 28px;
+  padding: 48px 0 20px;
   background: linear-gradient(to bottom, #9e1a28 0%, #f5ebe0 45%);
 }
 
-.conveyor {
-  padding: 8px 0 4px;
-}
-
-.conveyor-frame {
-  display: grid;
-  grid-template-columns: 28px 1fr 28px;
-  align-items: end;
-  gap: 0;
-  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.18));
-}
-
-.conveyor-roller {
-  position: relative;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #8a8a8a 0%, #4f4f4f 45%, #2f2f2f 100%);
-  box-shadow:
-    inset 0 2px 4px rgba(255, 255, 255, 0.35),
-    inset 0 -3px 6px rgba(0, 0, 0, 0.45),
-    0 4px 10px rgba(0, 0, 0, 0.25);
-  margin-bottom: 18px;
-}
-
-.conveyor-roller-core {
-  position: absolute;
-  inset: 5px;
-  border-radius: 50%;
-  background: repeating-conic-gradient(
-    from 0deg,
-    #5e5e5e 0deg 18deg,
-    #888 18deg 36deg
-  );
-  animation: conveyor-roller-spin 2.4s linear infinite;
-}
-
-.conveyor-roller--right .conveyor-roller-core {
-  animation-direction: reverse;
-}
-
-.conveyor-track {
-  position: relative;
-  min-height: 132px;
-}
-
-.conveyor-belt {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 54px;
-  border-radius: 6px;
-  overflow: hidden;
-  background: linear-gradient(180deg, #3d3d3d 0%, #2a2a2a 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    inset 0 -4px 10px rgba(0, 0, 0, 0.35),
-    0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.conveyor-belt-surface {
-  position: absolute;
-  inset: 8px 0;
-  background:
-    repeating-linear-gradient(
-      -45deg,
-      #1f1f1f 0 10px,
-      #333 10px 20px,
-      #262626 20px 30px,
-      #3a3a3a 30px 40px
-    );
-  background-size: 56px 56px;
-  animation: conveyor-belt-move 1.8s linear infinite;
-}
-
-.conveyor-belt-guard {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 6px;
-  background: linear-gradient(180deg, #6d6d6d, #454545);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.conveyor-belt-guard--top {
-  top: 0;
-}
-
-.conveyor-belt-guard--bottom {
-  bottom: 0;
-  background: linear-gradient(180deg, #454545, #2f2f2f);
-}
-
-.conveyor-items {
-  position: relative;
-  z-index: 1;
+.trust-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  padding: 0 12px 34px;
 }
 
-.conveyor-package {
-  position: relative;
-  animation: conveyor-package-bob 1.8s ease-in-out infinite;
-}
-
-.conveyor-package:nth-child(2) {
-  animation-delay: -0.6s;
-}
-
-.conveyor-package:nth-child(3) {
-  animation-delay: -1.2s;
-}
-
-.conveyor-package-top {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: calc(100% - 8px);
-  height: 14px;
-  transform: translateX(-50%) skewX(-12deg);
-  background: linear-gradient(180deg, #d9c4a8, #b89b78);
-  border-radius: 3px 3px 0 0;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
-}
-
-.conveyor-package-body {
-  margin-top: 10px;
-  padding: 22px 18px 20px;
+.trust-pill {
+  padding: 24px 20px;
   text-align: center;
-  border: 2px solid rgba(92, 46, 46, 0.12);
-  border-top: none;
-  border-radius: 0 0 var(--radius-md) var(--radius-md);
-  box-shadow:
-    0 10px 24px rgba(92, 46, 46, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.65);
 }
 
 .trust-value {
@@ -181,31 +53,7 @@
 .trust-label {
   font-size: var(--text-sm);
   color: var(--color-text-muted);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-}
-
-@keyframes conveyor-belt-move {
-  from { background-position: 0 0; }
-  to { background-position: 56px 0; }
-}
-
-@keyframes conveyor-roller-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes conveyor-package-bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .conveyor-belt-surface,
-  .conveyor-roller-core,
-  .conveyor-package {
-    animation: none;
-  }
+  font-weight: 500;
 }
 
 /* ═══ INTRO ═══ */
@@ -531,36 +379,12 @@
 }
 
 @media (max-width: 768px) {
-  .trust-grid,
-  .trust-strip .conveyor-items {
+  .trust-grid {
     grid-template-columns: 1fr;
   }
 
-  .conveyor-frame {
-    grid-template-columns: 22px 1fr 22px;
-  }
-
-  .conveyor-roller {
-    width: 22px;
-    height: 22px;
-    margin-bottom: 16px;
-  }
-
-  .conveyor-roller-core {
-    inset: 4px;
-  }
-
-  .conveyor-items {
-    padding: 0 8px 30px;
-    gap: 16px;
-  }
-
-  .conveyor-track {
-    min-height: auto;
-  }
-
   .banner-actions {
-    justify-content: center;
+    justify-content: flex-start;
     gap: 14px;
   }
 

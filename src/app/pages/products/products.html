@@ -1,27 +1,9 @@
 <app-page-hero
   title="Unsere Produkte"
-  eyebrow="Sortiment"
-  subtitle="VON CANNOLI BIS PIZZABASEN – ALLES FÜR DEINE GASTRO"
+  eyebrow="Sortiment für Gastronomie"
+  subtitle="SERVIERFERTIGE FEINKOST AUS DEM SÜDEN – FÜR CAFÉS, BISTROS & GASTRO"
   [image]="images.hero"
   bgPosition="20% 15%"
 />
 
-<section class="page-body">
-  <div class="container">
-    <div class="products-grid">
-      @for (product of products; track product.title; let i = $index) {
-        <article class="product-card glass-card" appScrollReveal appReveal="scale" [appScrollRevealDelay]="i * 80">
-          <div class="product-image">
-            <img [src]="product.image" [alt]="product.title" loading="lazy" />
-          </div>
-          <div class="product-body">
-            <h3>{{ product.title }}</h3>
-            @if (product.description) {
-              <p>{{ product.description }}</p>
-            }
-          </div>
-        </article>
-      }
-    </div>
-  </div>
-</section>
+<app-product-catalog sectionId="sortiment" />
