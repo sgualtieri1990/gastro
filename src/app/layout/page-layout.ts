@@ -9,6 +9,7 @@ import { WhatsappButton } from '../components/whatsapp-button/whatsapp-button';
   imports: [RouterOutlet, Header, Footer, WhatsappButton],
   template: `
     <div class="ambient-bg" aria-hidden="true">
+      <div class="food-pattern-bg"></div>
       <span class="orb orb-1"></span>
       <span class="orb orb-2"></span>
       <span class="orb orb-3"></span>

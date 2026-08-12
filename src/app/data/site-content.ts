@@ -61,6 +61,16 @@ export interface InstagramPost {
   alt: string;
 }
 
+export interface InstagramReel {
+  id: string;
+  episode: number;
+  title: string;
+  subtitle?: string;
+  thumbnail: string;
+  reelUrl: string;
+  alt: string;
+}
+
 export interface JobOpening {
   title: string;
   location: string;
@@ -533,6 +543,47 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
       'Italienische Streetfood-Klassiker für Foodtrucks, Bistros und Events – originell, schnell servierbar und perfekt für deine Gäste.',
     features: ['Event-tauglich', 'Schnelle Ausgabe', 'Süditalien im Snack'],
     readyToServe: true,
+  },
+];
+
+export const INSTAGRAM_REEL_SERIES = 'DIY Pasticceria';
+
+export const INSTAGRAM_REELS: InstagramReel[] = [
+  {
+    id: 'folge-1',
+    episode: 1,
+    title: 'La Perfetta – Qualität am Teig',
+    subtitle: 'Carmelo prüft jede Pizzabase – authentisch, luftig, servierfertig.',
+    thumbnail: '/images/instagram-reel-folge-1.jpg',
+    reelUrl: 'https://www.instagram.com/sicitalia/reels/',
+    alt: 'Instagram Reel Folge 1 – La Perfetta Teigqualität',
+  },
+  {
+    id: 'folge-2',
+    episode: 2,
+    title: 'Behind the Scenes – Zutaten & Handwerk',
+    subtitle: 'Ein Blick in die Produktion: echte Zutaten, echte italienische Handarbeit.',
+    thumbnail: '/images/instagram-reel-folge-2.jpg',
+    reelUrl: 'https://www.instagram.com/sicitalia/reels/',
+    alt: 'Instagram Reel Folge 2 – Zutaten und Handwerk',
+  },
+  {
+    id: 'folge-3',
+    episode: 3,
+    title: 'In der Produktion – Küche & Team',
+    subtitle: 'Wo Sicitalia-Qualität entsteht – hinter den Kulissen in der Küche.',
+    thumbnail: '/images/instagram-reel-folge-3.jpg',
+    reelUrl: 'https://www.instagram.com/sicitalia/reels/',
+    alt: 'Instagram Reel Folge 3 – Küche und Team',
+  },
+  {
+    id: 'folge-4',
+    episode: 4,
+    title: 'Pasticceria – Süße Highlights',
+    subtitle: 'Dessert-Klassiker und süße Momente für deine Gäste.',
+    thumbnail: '/images/instagram-reel-folge-4.jpg',
+    reelUrl: 'https://www.instagram.com/sicitalia/reels/',
+    alt: 'Instagram Reel Folge 4 – Pasticceria Highlights',
   },
 ];
 

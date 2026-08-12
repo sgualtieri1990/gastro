@@ -58,7 +58,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   color: var(--color-text);
-  background: #f5ebe0;
+  background-color: #f5ebe0;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -91,6 +91,27 @@ ul {
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+}
+
+.food-pattern-bg {
+  position: absolute;
+  inset: -8%;
+  opacity: 0.34;
+  background-image: url('/images/food-bg-pattern.svg');
+  background-size: 520px 520px;
+  background-repeat: repeat;
+  animation: food-pattern-drift 140s linear infinite;
+}
+
+@keyframes food-pattern-drift {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-160px, -120px, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .food-pattern-bg {
+    animation: none;
+  }
 }
 
 .orb {
@@ -154,7 +175,7 @@ ul {
 .page-body {
   position: relative;
   z-index: 1;
-  background: #f5ebe0;
+  background: transparent;
   padding: 64px 0 80px;
 }
 
