@@ -17,7 +17,7 @@ import { ScrollNavService } from '../../services/scroll-nav.service';
 
 const FRAGMENT_SCROLL: Record<string, ScrollLogicalPosition> = {
   sortiment: 'start',
-  geschaeftsfuehrer: 'center',
+  geschaeftsfuehrer: 'start',
   'ueber-uns': 'start',
 };
 

@@ -29,10 +29,16 @@
     <div class="glass-panel form-panel" appScrollReveal [appScrollRevealDelay]="100">
       @if (submitted) {
         <p class="success-msg">
-          Vielen Dank, {{ name }}! Wir melden uns in Kürze bei Ihnen unter {{ email }}.
+          Vielen Dank, {{ name }}! Wir melden uns in Kürze bei Ihnen unter {{ email }} –
+          Wunschtermin: {{ submittedSummary }}.
         </p>
       } @else {
         <form (ngSubmit)="onSubmit()">
+          <app-appointment-picker
+            [(selectedDate)]="selectedDate"
+            [(selectedTime)]="selectedTime"
+          />
+
           <div class="form-group">
             <label for="name">Name *</label>
             <input id="name" type="text" [(ngModel)]="name" name="name" required />
@@ -58,7 +64,7 @@
               <p class="form-hint">{{ selectedProducts().length }} Produkt(e) aus dem Portfolio übernommen.</p>
             }
           </div>
-          <button type="submit" class="btn btn-primary btn-full" [disabled]="!name || !email">
+          <button type="submit" class="btn btn-primary btn-full" [disabled]="!canSubmit">
             Termin anfragen
           </button>
         </form>

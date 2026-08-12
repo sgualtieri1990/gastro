@@ -15,7 +15,7 @@ export const routes: Routes = [
       {
         path: 'ueber-uns',
         loadComponent: () => import('./pages/scroll-redirect/scroll-redirect').then(m => m.ScrollRedirect),
-        data: { fragment: 'geschaeftsfuehrer', scrollBlock: 'center' },
+        data: { fragment: 'geschaeftsfuehrer', scrollBlock: 'start' },
       },
       {
         path: 'gastrogeraete',

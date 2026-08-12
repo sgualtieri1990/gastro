@@ -26,76 +26,7 @@
   <app-hero-keyword-roll banner-keywords [keywords]="heroKeywords" />
 </app-page-hero>
 
-<!-- ═══ TRUST STRIP ═══ -->
-<section class="trust-strip">
-  <div class="container trust-grid">
-    @for (stat of trustStats; track stat.label; let i = $index) {
-      <div class="trust-pill glass-panel" appScrollReveal [appScrollRevealDelay]="i * 100" appReveal="up">
-        <span class="trust-value">{{ stat.value }}</span>
-        <span class="trust-label">{{ stat.label }}</span>
-      </div>
-    }
-  </div>
-</section>
-
-<app-product-catalog sectionId="sortiment" [compactIntro]="true" />
-
-<!-- ═══ INTRO + Carmelo ═══ -->
-<section class="section intro-section" id="ueber-uns">
-  <div class="container intro-grid">
-    <div class="intro-content glass-panel" appScrollReveal appReveal="left">
-      <span class="section-tag">Für Gastronomen &amp; Händler</span>
-      <h2 class="intro-kicker">Italienischer Genuss für deine Kunden!</h2>
-      <p>
-        Tauche ein in die Welt der italienischen Snack-, Back-, &amp; Dessertkultur mit Sicitalia.
-      </p>
-      <p>
-        Du betreibst eine <strong>Gastronomie oder einen Feinkosthandel?</strong> Dann sind wir der
-        richtige <strong>Partner für Dich!</strong>
-      </p>
-      <p>
-        Wir bieten Dir eine exquisite Auswahl an Gourmet-Desserts und Backwaren, sowie echte,
-        traditionelle Highlights, darunter Cannoli, Cornetti, Arancini und Babà.
-      </p>
-      <p>
-        <strong>Neu im Sortiment:</strong> Mit den hochwertigen Pizzabasen von
-        <strong>La Perfetta</strong> bringst Du authentischen Pizzagenuss schnell und unkompliziert
-        auf die Karte.
-      </p>
-      <p class="intro-closing">
-        Entdecke den Geschmack Italiens direkt bei Dir in NRW mit deutschlandweiter Lieferung.
-      </p>
-
-      <div class="cta-stack">
-        <a href="/downloads/praesentation-sicitalia.pdf" class="btn btn-primary" download>
-          📄 Katalog runterladen
-        </a>
-        <a routerLink="/kunde-werden" class="btn btn-outline">Info erhalten (Gastro &amp; Handel)</a>
-        <a routerLink="/kunde-werden" class="btn btn-outline">Kunde werden (B2B)</a>
-        <a routerLink="/termin" class="btn btn-glass">📅 Termin buchen</a>
-      </div>
-    </div>
-
-    <div class="intro-visual" id="geschaeftsfuehrer" appScrollReveal appReveal="right" [appScrollRevealDelay]="150">
-      <div class="intro-image-wrap glass-frame animate-float">
-        <img [src]="images.portrait" alt="Carmelo Marotta – Geschäftsführer Sicitalia" loading="lazy" />
-        <div class="owner-badge glass-panel">
-          <strong>{{ contact.name }}</strong>
-          <span>{{ contact.role }}</span>
-        </div>
-      </div>
-      <div class="intro-accent-card glass-card">
-        <img [src]="images.laPerfetta" alt="La Perfetta Pizzabasen" loading="lazy" />
-        <span class="accent-label">Neu: La Perfetta</span>
-      </div>
-      <blockquote class="owner-quote glass-panel" appScrollReveal appReveal="up" [appScrollRevealDelay]="300">
-        {{ contact.quote }}
-      </blockquote>
-    </div>
-  </div>
-</section>
-
-<section class="section highlights-section">
+<section class="section highlights-section highlights-section--top">
   <div class="container">
     <div class="section-header" appScrollReveal>
       <span class="section-tag">Unsere Highlights</span>
@@ -120,6 +51,98 @@
     </div>
     <div class="highlights-cta" appScrollReveal appReveal="up">
       <a href="/#sortiment" class="btn btn-primary" (click)="scrollTo($event, 'sortiment')">Zum Sortiment</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TRUST STRIP ═══ -->
+<section class="trust-strip">
+  <div class="container trust-grid">
+    @for (stat of trustStats; track stat.label; let i = $index) {
+      <div class="trust-pill glass-panel" appScrollReveal [appScrollRevealDelay]="i * 100" appReveal="up">
+        <span class="trust-value">{{ stat.value }}</span>
+        <span class="trust-label">{{ stat.label }}</span>
+      </div>
+    }
+  </div>
+</section>
+
+<app-product-catalog sectionId="sortiment" [compactIntro]="true" />
+
+<!-- ═══ FOUNDER / Über uns ═══ -->
+<section class="founder-section" id="ueber-uns">
+  <div class="founder-bg">
+    <img
+      class="founder-bg-photo"
+      [src]="images.hero"
+      alt=""
+      loading="lazy"
+      aria-hidden="true"
+    />
+    <div class="founder-bg-overlay" aria-hidden="true"></div>
+    <span class="founder-bg-orb founder-bg-orb--one" aria-hidden="true"></span>
+    <span class="founder-bg-orb founder-bg-orb--two" aria-hidden="true"></span>
+  </div>
+
+  <div class="container founder-layout">
+    <div class="founder-content" id="geschaeftsfuehrer" appScrollReveal appReveal="left">
+      <span class="founder-eyebrow">Für Gastronomen &amp; Händler</span>
+      <h2 class="founder-title">Italienischer Genuss für deine Kunden!</h2>
+
+      <div class="founder-copy">
+        <p>
+          Tauche ein in die Welt der italienischen Snack-, Back- &amp; Dessertkultur mit Sicitalia –
+          Deinem Partner für echte sizilianische Qualität in Gastronomie und Feinkosthandel.
+        </p>
+        <p>
+          Von Cannoli, Cornetti und Arancini bis zu den neuen
+          <strong>La Perfetta Pizzabasen</strong>: servierfertige Highlights, die Deine Karte
+          sofort bereichern – deutschlandweit geliefert.
+        </p>
+      </div>
+
+      <blockquote class="founder-quote">{{ contact.quote }}</blockquote>
+
+      <div class="founder-meta">
+        <strong>{{ contact.name }}</strong>
+        <span>{{ contact.role }}</span>
+      </div>
+
+      <div class="founder-actions">
+        <a href="/downloads/praesentation-sicitalia.pdf" class="btn btn-founder" download>
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 3v12" />
+            <path d="M7 10l5 5 5-5" />
+            <path d="M5 19h14" />
+          </svg>
+          Katalog herunterladen
+        </a>
+        <a routerLink="/kunde-werden" class="btn btn-founder btn-founder--ghost">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 10v6" />
+            <path d="M12 7h.01" />
+          </svg>
+          Info erhalten
+        </a>
+        <a routerLink="/kunde-werden" class="btn btn-founder btn-founder--ghost">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          Kunde werden (B2B)
+        </a>
+        <a routerLink="/termin" class="btn btn-founder btn-founder--light">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18" />
+            <path d="M8 14h.01M12 14h.01M16 14h.01" />
+          </svg>
+          Termin buchen
+        </a>
+      </div>
     </div>
   </div>
 </section>

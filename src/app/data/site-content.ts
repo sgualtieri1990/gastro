@@ -80,6 +80,7 @@ export const IMAGES = {
   cornetti: '/images/geschaeftsfuehrer-cornetti.jpg',
   introCornetto: '/images/intro-cornetto.jpg',
   laPerfetta: '/images/la-perfetta-pinza-hero.jpg',
+  laPerfettaCover: '/images/la-perfetta-card-cover.jpg',
   laPerfettaBasis: '/images/la-perfetta-basis-tomatensauce.jpg',
   laPerfettaBelegung: '/images/la-perfetta-belegung.jpg',
   videoThumbnail: '/images/video-thumbnail.jpg',
@@ -130,7 +131,7 @@ export const NAV_ITEMS: NavItem[] = [
 export const NAV_LEFT: NavItem[] = [
   { path: '/', label: 'Willkommen' },
   { path: '/', label: 'Produkte', fragment: 'sortiment' },
-  { path: '/', label: 'Über uns', fragment: 'geschaeftsfuehrer', scrollBlock: 'center' },
+  { path: '/', label: 'Über uns', fragment: 'geschaeftsfuehrer', scrollBlock: 'start' },
 ];
 
 /** Navigation links rechts vom Logo */
@@ -215,7 +216,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     id: 'la-perfetta',
     name: 'La Perfetta Pizzabasen',
     description: 'Authentische Pizzabasen – schnell belegt, perfekt gebacken, sofort auf der Karte.',
-    coverImage: IMAGES.laPerfetta,
+    coverImage: IMAGES.laPerfettaCover,
   },
   {
     id: 'gelateria',

@@ -26,6 +26,11 @@
   padding: 40px;
 }
 
+.form-panel app-appointment-picker {
+  display: block;
+  margin-bottom: 24px;
+}
+
 .form-group {
   margin-bottom: 20px;
 }

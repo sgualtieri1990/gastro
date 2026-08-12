@@ -1,0 +1,86 @@
+<div class="appointment-picker">
+  <div class="picker-block">
+    <p class="picker-label">Wunschdatum *</p>
+    <div class="calendar" role="application" aria-label="Kalender zur Terminauswahl">
+      <div class="calendar-nav">
+        <button
+          type="button"
+          class="calendar-nav-btn"
+          (click)="prevMonth()"
+          [disabled]="!canGoPrev()"
+          aria-label="Vorheriger Monat"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+        <p class="calendar-month">{{ monthLabel() }}</p>
+        <button
+          type="button"
+          class="calendar-nav-btn"
+          (click)="nextMonth()"
+          [disabled]="!canGoNext()"
+          aria-label="Nächster Monat"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="calendar-weekdays" aria-hidden="true">
+        @for (weekday of weekdays; track weekday) {
+          <span>{{ weekday }}</span>
+        }
+      </div>
+
+      <div class="calendar-grid">
+        @for (cell of calendarCells(); track cell.key) {
+          <button
+            type="button"
+            class="calendar-day"
+            [class.is-outside]="!cell.inMonth"
+            [class.is-today]="cell.today"
+            [class.is-selected]="cell.selected"
+            [disabled]="cell.disabled"
+            (click)="pickDate(cell.date)"
+            [attr.aria-label]="cell.label + '.'"
+            [attr.aria-pressed]="cell.selected"
+          >
+            {{ cell.label }}
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+
+  @if (selectedDate()) {
+    <div class="picker-block picker-block--times">
+      <p class="picker-label">Wunschuhrzeit *</p>
+      <div class="time-slots" role="listbox" aria-label="Verfügbare Uhrzeiten">
+        @for (slot of timeSlots; track slot) {
+          <button
+            type="button"
+            class="time-slot"
+            role="option"
+            [class.is-selected]="selectedTime() === slot"
+            [attr.aria-selected]="selectedTime() === slot"
+            (click)="pickTime(slot)"
+          >
+            {{ slot }}
+          </button>
+        }
+      </div>
+    </div>
+  }
+
+  @if (formattedSelection()) {
+    <p class="picker-summary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <rect x="3" y="4" width="18" height="18" rx="2" />
+        <path d="M16 2v4M8 2v4M3 10h18" />
+      </svg>
+      {{ formattedSelection() }}
+    </p>
+  }
+</div>
