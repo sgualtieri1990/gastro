@@ -29,7 +29,7 @@ export class ScrollRevealDirective implements AfterViewInit {
           observer.unobserve(element);
         }
       },
-      { threshold: 0.1, rootMargin: '0px 0px -4% 0px' },
+      { threshold: 0, rootMargin: '0px 0px -4% 0px' },
     );
 
     observer.observe(element);

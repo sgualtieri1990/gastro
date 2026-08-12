@@ -5,109 +5,75 @@
       <h2 class="section-title">Servierfertige Feinkost für deine Gastronomie</h2>
       @if (compactIntro()) {
         <p class="section-subtitle">
-          Wähle Kategorien, entdecke Serien wie Dolce Vita Mono oder Fritto Misto – und markiere
-          Produkte mit „Das interessiert mich“.
+          Wähle eine Serie oder Produktwelt – dann siehst du alle Details und kannst markieren, was
+          dich interessiert.
         </p>
       } @else {
         <p class="section-subtitle">
-          Stöbere durch unsere Produktwelten und Serien, sieh dir die Bilder in Ruhe an und markiere
-          alles, was für dein Konzept spannend ist – mit einem Klick sagst du uns: „Das interessiert
-          mich“.
+          Wähle eine Serie oder Produktwelt aus, sieh dir die Produkte in Ruhe an und markiere alles,
+          was für dein Konzept spannend ist – mit einem Klick sagst du uns: „Das interessiert mich“.
         </p>
       }
     </header>
 
-    <nav
-      class="category-filter glass-panel"
-      appScrollReveal
-      [appScrollRevealDelay]="80"
-      aria-label="Produktkategorien"
-    >
-      <button
-        type="button"
-        class="category-pill"
-        [class.category-pill--active]="activeCategory() === 'all'"
-        (click)="setCategory('all')"
-      >
-        Alle Kategorien
-      </button>
-      @for (category of categories; track category.id) {
-        <button
-          type="button"
-          class="category-pill"
-          [class.category-pill--active]="activeCategory() === category.id"
-          (click)="setCategory(category.id)"
-        >
-          {{ category.name }}
+    @if (!activeBrowseId()) {
+      <div class="browse-grid" appScrollReveal [appScrollRevealDelay]="80">
+        @for (entry of browseEntries; track entry.id; let entryIndex = $index) {
+          <button
+            type="button"
+            class="browse-card glass-card"
+            (click)="openBrowse(entry.id)"
+            appScrollReveal
+            appReveal="scale"
+            [appScrollRevealDelay]="entryIndex * 60"
+          >
+            <div class="browse-card-image glass-frame">
+              <img [src]="entry.coverImage" [alt]="entry.name" loading="lazy" />
+            </div>
+            <div class="browse-card-body">
+              <p class="browse-card-eyebrow">{{ entry.seriesId ? 'Serie' : 'Kategorie' }}</p>
+              <h3>{{ entry.name }}</h3>
+              <p>{{ entry.description }}</p>
+              <span class="browse-card-cta btn btn-glass">Entdecken</span>
+            </div>
+          </button>
+        }
+      </div>
+    } @else if (activeCategory(); as category) {
+      <div class="portfolio-detail" id="portfolio-detail">
+        <button type="button" class="browse-back btn btn-glass" (click)="closeBrowse()">
+          ← Zurück zur Übersicht
         </button>
-      }
-    </nav>
 
-    @for (category of visibleCategories(); track category.id; let categoryIndex = $index) {
-      <section
-        class="portfolio-category"
-        [id]="category.id"
-        appScrollReveal
-        [appScrollRevealDelay]="categoryIndex * 60"
-      >
         <header class="portfolio-category-header">
           <div class="portfolio-category-copy">
             <p class="portfolio-category-eyebrow">Kategorie</p>
             <h3>{{ category.name }}</h3>
             <p>{{ category.description }}</p>
           </div>
-          <div class="portfolio-category-cover glass-frame">
-            <img [src]="category.coverImage" [alt]="category.name" loading="lazy" />
-          </div>
         </header>
 
-        @for (series of seriesForCategory(category.id); track series.id; let seriesIndex = $index) {
-          <div class="portfolio-series" [id]="series.id">
-            <header
-              class="portfolio-series-header glass-panel"
-              appScrollReveal
-              [appScrollRevealDelay]="seriesIndex * 40"
-            >
-              <div class="portfolio-series-copy">
-                <p class="portfolio-series-eyebrow">Serie</p>
-                <h4>{{ series.name }}</h4>
-                <p>{{ series.description }}</p>
-              </div>
-              <div class="portfolio-series-cover glass-frame">
-                <img [src]="series.coverImage" [alt]="series.name" loading="lazy" />
-              </div>
+        @if (activeEntry(); as entry) {
+          @if (entry.seriesId) {
+            <header class="portfolio-entry-header">
+              <p class="portfolio-entry-eyebrow">Serie</p>
+              <h4>{{ entry.name }}</h4>
+              <p>{{ entry.description }}</p>
             </header>
-
-            <div class="portfolio-list">
-              @for (product of productsForSeries(series.id); track product.id; let productIndex = $index) {
-                <app-product-portfolio-card
-                  [product]="product"
-                  appScrollReveal
-                  appReveal="scale"
-                  [appScrollRevealDelay]="productIndex * 80"
-                />
-              }
-            </div>
-          </div>
+          }
         }
 
-        @if (standaloneProductsForCategory(category.id).length) {
-          <div class="portfolio-list">
-            @for (
-              product of standaloneProductsForCategory(category.id);
-              track product.id;
-              let productIndex = $index
-            ) {
-              <app-product-portfolio-card
-                [product]="product"
-                appScrollReveal
-                appReveal="scale"
-                [appScrollRevealDelay]="productIndex * 80"
-              />
-            }
-          </div>
-        }
-      </section>
+        <div class="portfolio-list">
+          @for (product of activeProducts(); track product.id; let productIndex = $index) {
+            <app-product-portfolio-card
+              [product]="product"
+              appScrollReveal
+              appReveal="scale"
+              [appScrollRevealDelay]="productIndex * 80"
+            />
+          }
+        </div>
+      </div>
     }
   </div>
 

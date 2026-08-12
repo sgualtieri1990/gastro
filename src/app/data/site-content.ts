@@ -77,7 +77,9 @@ export const IMAGES = {
   arancino: '/images/geschaeftsfuehrer-arancino.jpg',
   cornetti: '/images/geschaeftsfuehrer-cornetti.jpg',
   introCornetto: '/images/intro-cornetto.jpg',
-  laPerfetta: '/images/la-perfetta-product.jpg',
+  laPerfetta: '/images/la-perfetta-pinza-hero.jpg',
+  laPerfettaBasis: '/images/la-perfetta-basis-tomatensauce.jpg',
+  laPerfettaBelegung: '/images/la-perfetta-belegung.jpg',
   videoThumbnail: '/images/video-thumbnail.jpg',
   downloadsMenu: '/images/downloads-menu.jpg',
   downloadPraesentation: '/images/download-praesentation.jpg',
@@ -96,6 +98,7 @@ export const IMAGES = {
   glutenfreieLineRange: '/images/glutenfreie-line-range.png',
   frittoMistoHero: '/images/fritto-misto-napoli-hero.png',
   frittoMistoSpecialties: '/images/fritto-misto-specialties.png',
+  gelateria: '/images/gelateria-gelati.jpg',
 } as const;
 
 export const HERO_KEYWORDS = [
@@ -168,7 +171,7 @@ export const DOWNLOADS: DownloadItem[] = [
 export const PRODUCTS: ProductItem[] = [
   {
     title: 'La Perfetta Premium Pizzabasen',
-    image: '/images/produkt-pizzabasen.jpg',
+    image: IMAGES.laPerfetta,
     description: 'Authentische vorgebackene Pizzabasen – schnell belegt, perfekt gebacken.',
   },
   {
@@ -188,7 +191,7 @@ export const PRODUCTS: ProductItem[] = [
   },
   {
     title: 'Gelateria Eisdiele',
-    image: '/images/produkt-gelateria.jpg',
+    image: IMAGES.gelateria,
     description: 'Premium-Eisprodukte für Ihre Eisdiele.',
   },
   {
@@ -216,7 +219,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     id: 'gelateria',
     name: 'Gelateria',
     description: 'Premium-Eis und Dessertbegleiter für Eisdielen, Cafés und Feinkosttheken.',
-    coverImage: '/images/produkt-gelateria.jpg',
+    coverImage: IMAGES.gelateria,
   },
   {
     id: 'fritto-misto',
@@ -422,8 +425,8 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     line: 'La Perfetta',
     name: 'Premium Pizzabasen',
     tagline: 'Pizza in Minuten auf der Karte',
-    coverImage: IMAGES.laPerfetta,
-    gallery: [IMAGES.laPerfetta, '/images/produkt-pizzabasen.jpg', '/images/instagram-1.jpg'],
+    coverImage: IMAGES.laPerfettaBasis,
+    gallery: [IMAGES.laPerfettaBasis, IMAGES.laPerfettaBelegung, IMAGES.laPerfetta],
     description:
       'Vorgebackene Premium-Pizzabasen für Gastronomie und Bistros – schnell belegt, perfekt gebacken, authentischer Geschmack ohne großen Aufwand.',
     features: ['Zeitersparnis in der Küche', 'Konstante Qualität', 'Flexibel belegbar'],
@@ -435,8 +438,8 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     line: 'Gelateria Sicitalia',
     name: 'Premium Gelato & Desserts',
     tagline: 'Cremig · Intensiv · Für Eisdielen & Cafés',
-    coverImage: '/images/produkt-gelateria.jpg',
-    gallery: ['/images/produkt-gelateria.jpg', '/images/instagram-4.jpg'],
+    coverImage: IMAGES.gelateria,
+    gallery: [IMAGES.gelateria],
     description:
       'Premium-Eisprodukte und Dessertbegleiter für Eisdielen, Cafés und Feinkosthandel – italienische Qualität für deine Theke.',
     features: ['Sortimentsvielfalt', 'Gastro-tauglich', 'Italienische Rezeptur'],
