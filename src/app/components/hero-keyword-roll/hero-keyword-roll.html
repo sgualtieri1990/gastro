@@ -1,0 +1,17 @@
+<div class="keyword-roll" aria-live="polite" aria-atomic="true">
+  <span class="keyword-roll-marker" aria-hidden="true"></span>
+
+  <div class="keyword-roll-viewport">
+    <ul class="keyword-roll-track" [style.transform]="trackOffset()">
+      @for (word of keywords(); track word; let i = $index) {
+        <li
+          class="keyword-roll-item"
+          [class.is-active]="isActive(i)"
+          [class.is-near]="isNear(i)"
+        >
+          {{ word }}
+        </li>
+      }
+    </ul>
+  </div>
+</div>

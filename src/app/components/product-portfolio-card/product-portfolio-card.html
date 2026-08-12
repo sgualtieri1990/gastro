@@ -1,0 +1,86 @@
+<article class="portfolio-card glass-card" [class.portfolio-card--selected]="isSelected()">
+  <div class="portfolio-gallery">
+    <div class="portfolio-main-image">
+      <img [src]="currentImage()" [alt]="product().name" loading="lazy" />
+      @if (product().readyToServe) {
+        <span class="portfolio-badge">Servierfertig</span>
+      }
+    </div>
+
+    <div class="portfolio-thumbs" role="tablist" aria-label="Produktbilder">
+      @for (image of galleryImages(); track image) {
+        <button
+          type="button"
+          class="portfolio-thumb"
+          [class.portfolio-thumb--active]="currentImage() === image"
+          (click)="selectImage(image)"
+          [attr.aria-label]="'Bild ' + ($index + 1)"
+        >
+          <img [src]="image" alt="" loading="lazy" />
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="portfolio-body">
+    @if (product().line) {
+      <p class="portfolio-line">{{ product().line }}</p>
+    }
+    <h3 class="portfolio-name">{{ product().name }}</h3>
+    @if (product().tagline) {
+      <p class="portfolio-tagline">{{ product().tagline }}</p>
+    }
+    <p class="portfolio-description">{{ product().description }}</p>
+
+    @if (product().variants?.length) {
+      <div class="portfolio-variants">
+        <p class="portfolio-variants-label">Varianten</p>
+        <div class="portfolio-variant-list">
+          @for (variant of product().variants; track variant.id) {
+            <button
+              type="button"
+              class="portfolio-variant"
+              [class.portfolio-variant--active]="activeVariantId() === variant.id"
+              (click)="selectVariant(variant.id, variant.detailImage ?? variant.image)"
+            >
+              {{ variant.name }}
+            </button>
+          }
+        </div>
+        @if (product().variants; as variants) {
+          @for (variant of variants; track variant.id) {
+            @if (activeVariantId() === variant.id && variant.highlights?.length) {
+              <ul class="portfolio-highlights">
+                @for (highlight of variant.highlights; track highlight) {
+                  <li>{{ highlight }}</li>
+                }
+              </ul>
+            }
+          }
+        }
+      </div>
+    }
+
+    @if (product().features?.length) {
+      <ul class="portfolio-features">
+        @for (feature of product().features; track feature) {
+          <li>{{ feature }}</li>
+        }
+      </ul>
+    }
+
+    <button
+      type="button"
+      class="btn"
+      [class.btn-primary]="!isSelected()"
+      [class.btn-glass]="isSelected()"
+      (click)="toggleInterest()"
+    >
+      @if (isSelected()) {
+        Ausgewählt – interessiert mich
+      } @else {
+        Das interessiert mich
+      }
+    </button>
+  </div>
+</article>

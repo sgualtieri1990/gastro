@@ -1,0 +1,22 @@
+@if (interest.count() > 0) {
+  <aside class="interest-bar glass-panel" aria-live="polite">
+    <div class="interest-bar-inner container">
+      <div class="interest-bar-copy">
+        <span class="interest-count">{{ interest.count() }}</span>
+        <div>
+          <p class="interest-title">
+            {{ interest.count() === 1 ? 'Produkt ausgewählt' : 'Produkte ausgewählt' }}
+          </p>
+          <p class="interest-subtitle">Sende deine Auswahl unverbindlich an unser Team</p>
+        </div>
+      </div>
+
+      <div class="interest-bar-actions">
+        <button type="button" class="btn btn-outline btn-sm" (click)="interest.clear()">
+          Auswahl löschen
+        </button>
+        <a routerLink="/termin" class="btn btn-primary btn-sm">Anfrage senden</a>
+      </div>
+    </div>
+  </aside>
+}
