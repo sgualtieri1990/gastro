@@ -8,16 +8,18 @@ export const routes: Routes = [
     children: [
       { path: '', loadComponent: () => import('./pages/home/home').then(m => m.Home) },
       {
-        path: 'gastrogeraete',
-        loadComponent: () => import('./pages/gastrogeraete/gastrogeraete').then(m => m.Gastrogeraete),
+        path: 'produkte',
+        loadComponent: () => import('./pages/scroll-redirect/scroll-redirect').then(m => m.ScrollRedirect),
+        data: { fragment: 'sortiment' },
       },
       {
         path: 'ueber-uns',
-        loadComponent: () => import('./pages/about/about').then(m => m.About),
+        loadComponent: () => import('./pages/scroll-redirect/scroll-redirect').then(m => m.ScrollRedirect),
+        data: { fragment: 'geschaeftsfuehrer', scrollBlock: 'center' },
       },
       {
-        path: 'produkte',
-        loadComponent: () => import('./pages/products/products').then(m => m.Products),
+        path: 'gastrogeraete',
+        loadComponent: () => import('./pages/gastrogeraete/gastrogeraete').then(m => m.Gastrogeraete),
       },
       {
         path: 'la-perfetta',

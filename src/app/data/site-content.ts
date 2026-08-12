@@ -2,6 +2,8 @@ export interface NavItem {
   path: string;
   label: string;
   external?: boolean;
+  fragment?: string;
+  scrollBlock?: ScrollLogicalPosition;
 }
 
 export interface DownloadItem {
@@ -127,8 +129,8 @@ export const NAV_ITEMS: NavItem[] = [
 /** Navigation links links vom Logo (Referenz-Layout) */
 export const NAV_LEFT: NavItem[] = [
   { path: '/', label: 'Willkommen' },
-  { path: '/produkte', label: 'Produkte' },
-  { path: '/ueber-uns', label: 'Über uns' },
+  { path: '/', label: 'Produkte', fragment: 'sortiment' },
+  { path: '/', label: 'Über uns', fragment: 'geschaeftsfuehrer', scrollBlock: 'center' },
 ];
 
 /** Navigation links rechts vom Logo */

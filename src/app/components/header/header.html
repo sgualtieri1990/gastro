@@ -10,15 +10,21 @@
     </div>
 
     <nav class="nav-left nav-desktop" aria-label="Navigation links">
-      @for (item of navLeft; track item.path) {
-        <a
-          class="nav-link"
-          [routerLink]="item.path"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: item.path === '/' }"
-        >
-          {{ item.label }}
-        </a>
+      @for (item of navLeft; track item.label) {
+        @if (item.fragment || item.path === '/') {
+          <a
+            class="nav-link"
+            href="/"
+            [class.active]="isActive(item)"
+            (click)="onNavClick($event, item)"
+          >
+            {{ item.label }}
+          </a>
+        } @else {
+          <a class="nav-link" [routerLink]="item.path" [class.active]="isActive(item)">
+            {{ item.label }}
+          </a>
+        }
       }
     </nav>
 
@@ -29,13 +35,17 @@
             <a class="nav-link" [href]="item.path" target="_blank" rel="noopener noreferrer">
               {{ item.label }}
             </a>
-          } @else {
+          } @else if (item.fragment || item.path === '/') {
             <a
               class="nav-link"
-              [routerLink]="item.path"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+              href="/"
+              [class.active]="isActive(item)"
+              (click)="onNavClick($event, item)"
             >
+              {{ item.label }}
+            </a>
+          } @else {
+            <a class="nav-link" [routerLink]="item.path" [class.active]="isActive(item)">
               {{ item.label }}
             </a>
           }
@@ -71,16 +81,21 @@
   </div>
 
   <nav class="nav-mobile" [class.open]="menuOpen()" aria-label="Mobile Navigation">
-    @for (item of navLeft; track item.path) {
-      <a
-        class="nav-link"
-        [routerLink]="item.path"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: item.path === '/' }"
-        (click)="closeMenu()"
-      >
-        {{ item.label }}
-      </a>
+    @for (item of navLeft; track item.label) {
+      @if (item.fragment || item.path === '/') {
+        <a
+          class="nav-link"
+          href="/"
+          [class.active]="isActive(item)"
+          (click)="onNavClick($event, item)"
+        >
+          {{ item.label }}
+        </a>
+      } @else {
+        <a class="nav-link" [routerLink]="item.path" [class.active]="isActive(item)" (click)="closeMenu()">
+          {{ item.label }}
+        </a>
+      }
     }
     @for (item of navRight; track item.path) {
       @if (item.external) {
@@ -93,13 +108,17 @@
         >
           {{ item.label }}
         </a>
-      } @else {
+      } @else if (item.fragment || item.path === '/') {
         <a
           class="nav-link"
-          [routerLink]="item.path"
-          routerLinkActive="active"
-          (click)="closeMenu()"
+          href="/"
+          [class.active]="isActive(item)"
+          (click)="onNavClick($event, item)"
         >
+          {{ item.label }}
+        </a>
+      } @else {
+        <a class="nav-link" [routerLink]="item.path" [class.active]="isActive(item)" (click)="closeMenu()">
           {{ item.label }}
         </a>
       }
