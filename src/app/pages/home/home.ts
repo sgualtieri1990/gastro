@@ -2,6 +2,7 @@ import { AfterViewInit, Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PageHero } from '../../components/page-hero/page-hero';
 import { HeroKeywordRoll } from '../../components/hero-keyword-roll/hero-keyword-roll';
+import { CatalogReader } from '../../components/catalog-reader/catalog-reader';
 import { InstagramReelsGallery } from '../../components/instagram-reels-gallery/instagram-reels-gallery';
 import { ProductCatalog } from '../../components/product-catalog/product-catalog';
 import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
@@ -24,7 +25,15 @@ const FRAGMENT_SCROLL: Record<string, ScrollLogicalPosition> = {
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, ScrollRevealDirective, PageHero, HeroKeywordRoll, ProductCatalog, InstagramReelsGallery],
+  imports: [
+    RouterLink,
+    ScrollRevealDirective,
+    PageHero,
+    HeroKeywordRoll,
+    ProductCatalog,
+    InstagramReelsGallery,
+    CatalogReader,
+  ],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
@@ -39,6 +48,12 @@ export class Home implements AfterViewInit {
   readonly images = IMAGES;
   readonly highlights = HIGHLIGHTS;
   readonly heroKeywords = HERO_KEYWORDS;
+
+  activeCatalogIndex: number | null = null;
+
+  openCatalog(index: number): void {
+    this.activeCatalogIndex = index;
+  }
 
   ngAfterViewInit(): void {
     this.route.fragment.subscribe((fragment) => {

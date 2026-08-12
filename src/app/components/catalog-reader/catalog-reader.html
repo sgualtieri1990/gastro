@@ -1,0 +1,81 @@
+@if (activeCatalog(); as catalog) {
+  <div class="reader-overlay" role="dialog" aria-modal="true" [attr.aria-label]="catalog.title">
+    <div class="reader-backdrop" (click)="close()"></div>
+
+    <div class="reader-shell">
+      <header class="reader-topbar">
+        <div class="reader-titles">
+          <p class="reader-kicker">Katalog lesen</p>
+          <h2 class="reader-title">{{ catalog.title }}</h2>
+        </div>
+
+        <div class="reader-tools">
+          <a
+            class="reader-tool"
+            [href]="activeUrl()"
+            target="_blank"
+            rel="noopener"
+            aria-label="In neuem Tab öffnen"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <path d="M15 3h6v6" />
+              <path d="M10 14L21 3" />
+            </svg>
+          </a>
+          <a class="reader-tool" [href]="activeUrl()" download aria-label="PDF herunterladen">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 3v12" />
+              <path d="M7 10l5 5 5-5" />
+              <path d="M5 19h14" />
+            </svg>
+          </a>
+          <button type="button" class="reader-tool reader-tool--close" (click)="close()" aria-label="Schließen">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="reader-body">
+        <nav class="reader-menu" aria-label="Alle Kataloge">
+          <p class="reader-menu-label">Kataloge</p>
+          @for (item of catalogs(); track item.file; let i = $index) {
+            <button
+              type="button"
+              class="reader-menu-item"
+              [class.is-active]="activeIndex() === i"
+              (click)="select(i)"
+            >
+              <img [src]="item.image" [alt]="item.title" loading="lazy" />
+              <span>{{ item.title }}</span>
+            </button>
+          }
+        </nav>
+
+        <div class="reader-stage">
+          <button type="button" class="reader-page-btn reader-page-btn--prev" (click)="prev()" aria-label="Vorheriger Katalog">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+
+          <div class="reader-frame">
+            <iframe
+              class="reader-iframe"
+              [src]="embedUrl()"
+              [title]="catalog.title"
+            ></iframe>
+          </div>
+
+          <button type="button" class="reader-page-btn reader-page-btn--next" (click)="next()" aria-label="Nächster Katalog">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
