@@ -26,35 +26,6 @@
   <app-hero-keyword-roll banner-keywords [keywords]="heroKeywords" />
 </app-page-hero>
 
-<section class="section highlights-section highlights-section--top">
-  <div class="container">
-    <div class="section-header" appScrollReveal>
-      <span class="section-tag">Unsere Highlights</span>
-      <h2 class="section-title">Was Deine Gäste lieben werden</h2>
-      <p class="section-subtitle">
-        Von der Morgencroissant bis zum Abend-Cannoli – alles in gleichbleibender Premium-Qualität.
-      </p>
-    </div>
-    <div class="highlights-grid">
-      @for (item of highlights; track item.title; let i = $index) {
-        <article
-          class="highlight-card glass-card"
-          appScrollReveal
-          appReveal="scale"
-          [appScrollRevealDelay]="i * 90"
-        >
-          <span class="highlight-emoji">{{ item.emoji }}</span>
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.desc }}</p>
-        </article>
-      }
-    </div>
-    <div class="highlights-cta" appScrollReveal appReveal="up">
-      <a href="/#sortiment" class="btn btn-primary" (click)="scrollTo($event, 'sortiment')">Zum Sortiment</a>
-    </div>
-  </div>
-</section>
-
 <app-product-catalog sectionId="sortiment" [compactIntro]="true" />
 
 <!-- ═══ FOUNDER / Über uns ═══ -->
@@ -212,6 +183,35 @@
       appScrollReveal
       appReveal="up"
     />
+  </div>
+</section>
+
+<section class="section highlights-section highlights-section--outro">
+  <div class="container">
+    <div class="section-header" appScrollReveal>
+      <span class="section-tag">Unsere Highlights</span>
+      <h2 class="section-title">Was Deine Gäste lieben werden</h2>
+      <p class="section-subtitle">
+        Von der Morgencroissant bis zum Abend-Cannoli – alles in gleichbleibender Premium-Qualität.
+      </p>
+    </div>
+    <div class="highlights-grid">
+      @for (item of highlights; track item.title; let i = $index) {
+        <article
+          class="highlight-card glass-card"
+          appScrollReveal
+          appReveal="scale"
+          [appScrollRevealDelay]="i * 90"
+        >
+          <span class="highlight-emoji">{{ item.emoji }}</span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.desc }}</p>
+        </article>
+      }
+    </div>
+    <div class="highlights-cta" appScrollReveal appReveal="up">
+      <a href="/#sortiment" class="btn btn-primary" (click)="scrollTo($event, 'sortiment')">Zum Sortiment</a>
+    </div>
   </div>
 </section>
 

@@ -32,6 +32,18 @@ import { IMAGES } from '../../data/site-content';
       filter: drop-shadow(0 1px 8px rgba(255, 255, 255, 0.55))
         drop-shadow(0 2px 14px rgba(0, 0, 0, 0.35));
     }
+
+    @media (max-width: 1100px) {
+      .logo-img {
+        height: 38px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo-img {
+        height: 32px;
+      }
+    }
   `,
 })
 export class Logo {
