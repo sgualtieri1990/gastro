@@ -229,16 +229,22 @@
 }
 
 /* ═══ HIGHLIGHTS ═══ */
-.highlights-section--top {
+.highlights-section--outro {
   position: relative;
   z-index: 2;
   padding-top: 72px;
   padding-bottom: 56px;
-  background: linear-gradient(180deg, rgba(158, 26, 40, 0.14) 0%, transparent 140px);
+  background: linear-gradient(180deg, transparent 0%, rgba(225, 198, 162, 0.22) 100%);
 }
 
-.highlights-section--top .section-header {
+.highlights-section--outro .section-header {
   margin-bottom: 36px;
+}
+
+/* Sortiment folgt direkt auf den Hero – weicher Farbübergang */
+app-product-catalog {
+  display: block;
+  background: linear-gradient(180deg, rgba(158, 26, 40, 0.14) 0%, transparent 140px);
 }
 
 .highlights-grid {
