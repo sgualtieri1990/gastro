@@ -3,13 +3,13 @@ import { RouterOutlet } from '@angular/router';
 import { Header } from '../components/header/header';
 import { Footer } from '../components/footer/footer';
 import { WhatsappButton } from '../components/whatsapp-button/whatsapp-button';
+import { WhatsappChooser } from '../components/whatsapp-chooser/whatsapp-chooser';
 
 @Component({
   selector: 'app-page-layout',
-  imports: [RouterOutlet, Header, Footer, WhatsappButton],
+  imports: [RouterOutlet, Header, Footer, WhatsappButton, WhatsappChooser],
   template: `
     <div class="ambient-bg" aria-hidden="true">
-      <div class="food-pattern-bg"></div>
       <span class="orb orb-1"></span>
       <span class="orb orb-2"></span>
       <span class="orb orb-3"></span>
@@ -20,6 +20,7 @@ import { WhatsappButton } from '../components/whatsapp-button/whatsapp-button';
     </main>
     <app-footer />
     <app-whatsapp-button />
+    <app-whatsapp-chooser />
   `,
   styles: `
     :host {

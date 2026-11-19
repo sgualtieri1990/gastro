@@ -1,74 +1,13 @@
 <app-page-hero
-  title="Termin buchen"
+  title="Video-Call buchen"
   eyebrow="Beratung"
-  subtitle="PERSÖNLICH, UNVERBINDLICH & AUF AUGENHÖHE"
+  subtitle="DIGITAL, PRAKTISCH & ZEITNAH – PER GOOGLE MEET"
   [image]="images.portrait"
   bgPosition="center 10%"
 />
 
 <section class="page-body">
-  <div class="container form-grid">
-    <div class="form-info" appScrollReveal>
-      <p>
-        Vereinbaren Sie einen persönlichen Beratungstermin mit unserem Team. Wir zeigen Ihnen unser
-        Sortiment, besprechen Ihre Anforderungen und finden die passenden Produkte für Ihr Konzept.
-      </p>
-      <div class="contact-shortcuts">
-        <p><strong>Telefon:</strong> {{ contact.phone }}</p>
-        <p>
-          <strong>WhatsApp:</strong>
-          <a [href]="contact.whatsappLink" target="_blank" rel="noopener">{{ contact.whatsapp }}</a>
-        </p>
-        <p>
-          <strong>E-Mail:</strong>
-          <a [href]="'mailto:' + contact.email">{{ contact.email }}</a>
-        </p>
-      </div>
-    </div>
-
-    <div class="glass-panel form-panel" appScrollReveal [appScrollRevealDelay]="100">
-      @if (submitted) {
-        <p class="success-msg">
-          Vielen Dank, {{ name }}! Wir melden uns in Kürze bei Ihnen unter {{ email }} –
-          Wunschtermin: {{ submittedSummary }}.
-        </p>
-      } @else {
-        <form (ngSubmit)="onSubmit()">
-          <app-appointment-picker
-            [(selectedDate)]="selectedDate"
-            [(selectedTime)]="selectedTime"
-          />
-
-          <div class="form-group">
-            <label for="name">Name *</label>
-            <input id="name" type="text" [(ngModel)]="name" name="name" required />
-          </div>
-          <div class="form-group">
-            <label for="email">E-Mail *</label>
-            <input id="email" type="email" [(ngModel)]="email" name="email" required />
-          </div>
-          <div class="form-group">
-            <label for="phone">Telefon</label>
-            <input id="phone" type="tel" [(ngModel)]="phone" name="phone" />
-          </div>
-          <div class="form-group">
-            <label for="message">Nachricht</label>
-            <textarea
-              id="message"
-              [(ngModel)]="message"
-              name="message"
-              rows="4"
-              placeholder="Optional: Betrieb, Konzept oder gewünschte Produkte"
-            ></textarea>
-            @if (selectedProducts().length) {
-              <p class="form-hint">{{ selectedProducts().length }} Produkt(e) aus dem Portfolio übernommen.</p>
-            }
-          </div>
-          <button type="submit" class="btn btn-primary btn-full" [disabled]="!canSubmit">
-            Termin anfragen
-          </button>
-        </form>
-      }
-    </div>
+  <div class="container" appScrollReveal>
+    <app-video-call-booking />
   </div>
 </section>

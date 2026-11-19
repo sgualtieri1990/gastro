@@ -22,20 +22,21 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/gastrogeraete/gastrogeraete').then(m => m.Gastrogeraete),
       },
       {
-        path: 'la-perfetta',
-        loadComponent: () => import('./pages/la-perfetta/la-perfetta').then(m => m.LaPerfetta),
-      },
-      {
         path: 'termin',
         loadComponent: () => import('./pages/termin/termin').then(m => m.Termin),
       },
       {
         path: 'kunde-werden',
-        loadComponent: () => import('./pages/kunde-werden/kunde-werden').then(m => m.KundeWerden),
+        loadComponent: () => import('./pages/scroll-redirect/scroll-redirect').then(m => m.ScrollRedirect),
+        data: { fragment: 'b2b-katalog' },
       },
       {
         path: 'karriere',
         loadComponent: () => import('./pages/karriere/karriere').then(m => m.Karriere),
+      },
+      {
+        path: 'produktportfolio',
+        loadComponent: () => import('./pages/produktportfolio/produktportfolio').then(m => m.Produktportfolio),
       },
       {
         path: 'tdb',

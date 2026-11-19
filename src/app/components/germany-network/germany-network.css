@@ -1,0 +1,136 @@
+:host {
+  display: block;
+}
+
+.network {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.network-outline {
+  fill: rgba(255, 255, 255, 0.03);
+  stroke: rgba(255, 215, 168, 0.35);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+
+.network-dots circle {
+  fill: rgba(255, 255, 255, 0.16);
+}
+
+.network-route {
+  fill: none;
+  stroke: rgba(255, 215, 168, 0.28);
+  stroke-width: 1.2;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i) * 110ms + 300ms);
+}
+
+.network-flow {
+  fill: none;
+  stroke: url(#net-route);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-dasharray: 0.08 0.92;
+  stroke-dashoffset: 1;
+  opacity: 0;
+}
+
+.network-city {
+  opacity: 0;
+  transform-box: fill-box;
+  transition: opacity 0.6s ease;
+  transition-delay: calc(var(--i) * 110ms + 1100ms);
+}
+
+.network-city-dot {
+  fill: #ffd7a8;
+  stroke: rgba(92, 46, 46, 0.9);
+  stroke-width: 2;
+}
+
+.network-city-pulse {
+  fill: none;
+  stroke: #ffd7a8;
+  stroke-width: 1;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.network-city text {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  fill: rgba(255, 255, 255, 0.78);
+}
+
+.network-hub-core {
+  fill: #e85c1a;
+  stroke: #fff;
+  stroke-width: 2.5;
+}
+
+.network-hub-ring {
+  fill: none;
+  stroke: #e85c1a;
+  stroke-width: 1.5;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hub-ring 2.6s ease-out infinite;
+}
+
+.network-hub-ring--late {
+  animation-delay: 1.3s;
+}
+
+.network-hub-label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: #fff;
+}
+
+.is-visible .network-route {
+  stroke-dashoffset: 0;
+}
+
+.is-visible .network-flow {
+  opacity: 1;
+  animation: route-flow 3.2s linear infinite;
+  animation-delay: calc(var(--i) * 260ms + 1.6s);
+}
+
+.is-visible .network-city {
+  opacity: 1;
+}
+
+.is-visible .network-city-pulse {
+  animation: city-pulse 3s ease-out infinite;
+  animation-delay: calc(var(--i) * 260ms + 2.2s);
+}
+
+@keyframes route-flow {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: -0.08; }
+}
+
+@keyframes city-pulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  70%, 100% { transform: scale(3); opacity: 0; }
+}
+
+@keyframes hub-ring {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(4.5); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .network-route { stroke-dashoffset: 0; }
+  .network-city { opacity: 1; }
+}

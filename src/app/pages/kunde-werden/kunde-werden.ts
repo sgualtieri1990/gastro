@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { PageHero } from '../../components/page-hero/page-hero';
 import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 import { IMAGES } from '../../data/site-content';
@@ -13,6 +14,7 @@ import { ProductInterestService } from '../../services/product-interest.service'
 })
 export class KundeWerden implements OnInit {
   private readonly interest = inject(ProductInterestService);
+  private readonly route = inject(ActivatedRoute);
 
   readonly images = IMAGES;
   readonly selectedProducts = this.interest.selectedProducts;
@@ -37,6 +39,10 @@ export class KundeWerden implements OnInit {
   ];
 
   ngOnInit(): void {
+    const params = this.route.snapshot.queryParamMap;
+    this.company = params.get('firma') ?? '';
+    this.email = params.get('email') ?? '';
+
     const inquiry = this.interest.buildInquiryText();
     if (inquiry) {
       this.productInterest = inquiry;

@@ -1,0 +1,148 @@
+<section class="portfolio-hero">
+  <div class="container">
+    <p class="eyebrow">Vorgeschmack</p>
+    <h1 class="display">Produkt<em>portfolio.</em></h1>
+    <p class="lead">
+      Ein Ausschnitt aus hunderten Produkten. Den gesamten Katalog mit Preisen gibt es, wenn du Kunde wirst.
+    </p>
+    <p class="portfolio-prompt">
+      Sie wollen direkt den <strong>Produktkatalog mit Preisen</strong> erhalten? Dann klicken Sie hier auf „Kunde werden“.
+    </p>
+    <a class="btn btn-primary portfolio-cta" routerLink="/" fragment="kunde-werden">Kunde werden</a>
+  </div>
+</section>
+
+<section class="portfolio">
+  <div class="container">
+    <div class="portfolio-bar">
+      <label class="portfolio-search">
+        <span class="visually-hidden">Nach Produktname filtern</span>
+        <input
+          type="search"
+          placeholder="Produktname"
+          [value]="query()"
+          (input)="onQuery($any($event.target).value)"
+        />
+      </label>
+      <p class="portfolio-count">{{ visible().length }} Produkte</p>
+    </div>
+
+    <div class="portfolio-filters" role="tablist" aria-label="Bereiche">
+      <button
+        type="button"
+        class="filter-chip"
+        [class.is-active]="activeCategory() === 'alle'"
+        (click)="selectCategory('alle')"
+      >
+        Alle
+        <span>{{ countFor('alle') }}</span>
+      </button>
+      @for (category of categories; track category.id) {
+        <button
+          type="button"
+          class="filter-chip"
+          [class.is-active]="activeCategory() === category.id"
+          (click)="selectCategory(category.id)"
+        >
+          {{ category.name }}
+          <span>{{ countFor(category.id) }}</span>
+        </button>
+      }
+    </div>
+
+    @if (visible().length === 0) {
+      <p class="portfolio-empty">Zu diesem Produktnamen liegt nichts im Katalog.</p>
+    } @else {
+      <div class="portfolio-grid">
+        @for (product of visible(); track product.id) {
+          <article class="product-card">
+            <button type="button" class="product-hit" (click)="open(product)">
+              <span class="product-media">
+                @if (product.image) {
+                  <img [src]="product.image" [alt]="product.name" />
+                } @else {
+                  <span
+                    class="product-flavor"
+                    [style.background]="flavorColor(product.name)"
+                    [style.color]="flavorInk(product.name)"
+                  >
+                    {{ product.name }}
+                  </span>
+                }
+              </span>
+              <span class="product-copy">
+                <span class="product-area">{{ product.category }}</span>
+                <span class="product-name">{{ product.name }}</span>
+                @if (product.meta) {
+                  <span class="product-meta">{{ product.meta }}</span>
+                }
+              </span>
+            </button>
+          </article>
+        }
+      </div>
+    }
+
+    <div class="portfolio-end">
+      <p class="portfolio-prompt">
+        Sie wollen direkt den <strong>Produktkatalog mit Preisen</strong> erhalten? Dann klicken Sie hier auf „Kunde werden“.
+      </p>
+      <a class="btn btn-primary portfolio-cta" routerLink="/" fragment="kunde-werden">Kunde werden</a>
+    </div>
+  </div>
+</section>
+
+@if (selected(); as product) {
+  <div class="sheet" (click)="close()">
+    <div
+      class="sheet-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="portfolio-title"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="sheet-media">
+        @if (product.image) {
+          <img [src]="product.image" [alt]="product.name" />
+        } @else {
+          <span
+            class="product-flavor product-flavor--sheet"
+            [style.background]="flavorColor(product.name)"
+            [style.color]="flavorInk(product.name)"
+          >
+            {{ product.name }}
+          </span>
+        }
+      </div>
+      <div class="sheet-copy">
+        <button type="button" class="sheet-close" (click)="close()" aria-label="Schließen">×</button>
+        <p class="product-area">{{ product.category }}</p>
+        <h2 id="portfolio-title" class="display">{{ product.name }}</h2>
+        @if (product.description) {
+          <p class="sheet-text">{{ product.description }}</p>
+        }
+        <dl class="sheet-facts">
+          @if (product.meta) {
+            <div>
+              <dt>Gebinde</dt>
+              <dd>{{ product.meta }}</dd>
+            </div>
+          }
+          @if (product.sku) {
+            <div>
+              <dt>Artikelnr.</dt>
+              <dd>{{ product.sku }}</dd>
+            </div>
+          }
+          <div>
+            <dt>Preis</dt>
+            <dd>{{ catalogPrice(product) ?? 'Preis auf Anfrage' }}</dd>
+          </div>
+        </dl>
+        <a class="btn btn-primary" routerLink="/" fragment="kunde-werden" (click)="close()">
+          Kunde werden
+        </a>
+      </div>
+    </div>
+  </div>
+}

@@ -1,235 +1,691 @@
-<app-page-hero
-  size="full"
-  eyebrow="Neu im Sortiment 2026"
-  title="So schmeckt der&nbsp;Süden."
-  subtitle="LA PERFETTA PIZZABASEN & SIZILIANISCHE KLASSIKER FÜR DEINE GASTRO!"
-  [image]="images.hero"
-  bgPosition="left bottom"
->
-  <div class="banner-actions">
-    <a href="/#sortiment" class="btn btn-glass" (click)="scrollTo($event, 'sortiment')">
-      <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <path d="M12 2L2 7l10 5 10-5-10-5z" />
-        <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
-      </svg>
-      Entdecken
-    </a>
-    <a routerLink="/termin" class="btn btn-hero-secondary">
-      <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <rect x="3" y="4" width="18" height="18" rx="2" />
-        <path d="M16 2v4M8 2v4M3 10h18" />
-        <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" />
-      </svg>
-      Persönliche Beratung mit Carmelo
-    </a>
-  </div>
-  <app-hero-keyword-roll banner-keywords [keywords]="heroKeywords" />
-</app-page-hero>
+<div class="scroll-progress" aria-hidden="true" [style.transform]="'scaleX(' + scrollProgress() + ')'"></div>
 
-<app-product-catalog sectionId="sortiment" [compactIntro]="true" />
-
-<!-- ═══ FOUNDER / Über uns ═══ -->
-<section class="founder-section" id="ueber-uns">
-  <div class="founder-bg">
-    <img
-      class="founder-bg-photo"
-      [src]="images.hero"
-      alt=""
-      loading="lazy"
-      aria-hidden="true"
-    />
-    <div class="founder-bg-overlay" aria-hidden="true"></div>
-    <span class="founder-bg-orb founder-bg-orb--one" aria-hidden="true"></span>
-    <span class="founder-bg-orb founder-bg-orb--two" aria-hidden="true"></span>
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <img class="hero-photo" src="/images/hero-carmelo.jpg" alt="" />
+    <div class="hero-shade"></div>
+    <div class="hero-stage" aria-hidden="true">
+      <img class="hero-photo hero-photo--shine" src="/images/hero-carmelo.jpg" alt="" />
+    </div>
   </div>
 
-  <div class="container founder-layout">
-    <div class="founder-content" id="geschaeftsfuehrer" appScrollReveal appReveal="left">
-      <span class="founder-eyebrow">Für Gastronomen &amp; Händler</span>
-      <h2 class="founder-title">Italienischer Genuss für deine Kunden!</h2>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <p class="hero-badge hero-anim" style="--d: 0">
+        <span class="hero-badge-dot"></span>
+        B2B-Lieferant für Gastronomie &amp; Handel
+      </p>
 
-      <div class="founder-copy">
-        <p>
-          Tauche ein in die Welt der italienischen Snack-, Back- &amp; Dessertkultur mit Sicitalia –
-          Deinem Partner für echte sizilianische Qualität in Gastronomie und Feinkosthandel.
-        </p>
-        <p>
-          Von Cannoli, Cornetti und Arancini bis zu den neuen
-          <strong>La Perfetta Pizzabasen</strong>: servierfertige Highlights, die Deine Karte
-          sofort bereichern – deutschlandweit geliefert.
+      <h1 class="hero-title">
+        <span class="hero-line"><span class="hero-anim" style="--d: 1">So schmeckt</span></span>
+        <span class="hero-line"><span class="hero-anim" style="--d: 2">der <em>Süden.</em></span></span>
+      </h1>
+
+      <p class="hero-sub hero-anim" style="--d: 3">
+        Authentische italienische Spezialitäten – entwickelt für Gastronomie und Handel. Import, Lager
+        und Distribution aus einer Hand.
+      </p>
+
+      <div class="hero-actions hero-anim" style="--d: 4">
+        <a href="/#b2b-katalog" class="btn btn-primary btn-lg" (click)="scrollTo($event, 'b2b-katalog')">
+          Produktkatalog mit Preisen
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </a>
+        <button type="button" class="btn btn-ghost-light btn-lg" (click)="openWhatsapp()">
+          Kontaktieren Sie uns!
+        </button>
+      </div>
+
+      <ul class="hero-trust hero-anim" style="--d: 5">
+        <li><strong>Seit 2009</strong><span>am Markt</span></li>
+        <li><strong>Tausende</strong><span>Kunden</span></li>
+        <li><strong>Tiefgekühlt</strong><span>DE-weit geliefert</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <a href="/#was-ist-sicitalia" class="hero-scroll" (click)="scrollTo($event, 'was-ist-sicitalia')" aria-label="Weiter scrollen">
+    <span></span>
+  </a>
+</section>
+
+<!-- ═══ MARQUEE ═══ -->
+<section class="marquee" aria-label="Sortiment im Überblick">
+  <div class="marquee-track">
+    @for (pass of [0, 1]; track pass) {
+      <ul [attr.aria-hidden]="pass === 1">
+        @for (word of heroKeywords; track word; let i = $index) {
+          <li>
+            {{ word }}
+            <img class="marquee-food" [src]="marqueeFoods[i]" alt="" />
+          </li>
+        }
+      </ul>
+    }
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section class="stats">
+  <div class="container">
+    <ul class="stats-grid">
+      @for (stat of stats; track stat.label; let i = $index) {
+        <li appScrollReveal appReveal="up" [appScrollRevealDelay]="i * 90">
+          <p class="stat-value">
+            @if (stat.prefix) {
+              <small>{{ stat.prefix }}</small>
+            }
+            <span [appCountUp]="stat.value" [appCountUpFrom]="stat.value > 1900 ? 1980 : 0"></span>{{ stat.suffix }}
+          </p>
+          <p class="stat-label">{{ stat.label }}</p>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ UNSERE BESTSELLER ═══ -->
+<section class="kings" id="bestseller">
+  <div class="container">
+    <header class="section-head section-head--split" appScrollReveal>
+      <div>
+        <p class="eyebrow">Die Favoriten</p>
+        <h2 class="display">Unsere <em>Bestseller.</em></h2>
+      </div>
+      <a href="/#b2b-katalog" class="link-arrow" (click)="scrollTo($event, 'b2b-katalog')">
+        Preise im Katalog ansehen
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+      </a>
+    </header>
+
+    <ol class="kings-grid">
+      @for (king of kings; track king.id; let i = $index) {
+        <li class="king-card" appScrollReveal appReveal="up" [appScrollRevealDelay]="i * 120">
+          <span class="king-rank" aria-hidden="true">{{ king.rank }}</span>
+          <div class="king-stage">
+            <div class="king-halo"></div>
+            @if (king.image) {
+              <img [src]="king.image" [alt]="king.name" loading="lazy" />
+            }
+          </div>
+          <p class="king-tagline">{{ king.tagline }}</p>
+          <h3>{{ king.name }}</h3>
+          <p class="king-sales">
+            <span class="king-sales-over">Über</span>
+            <strong [appCountUp]="king.delivered">0</strong>
+            <span>Mal geliefert</span>
+          </p>
+          <p class="king-desc">{{ king.description }}</p>
+          <ul class="king-facts">
+            @for (fact of king.facts; track fact) {
+              <li>{{ fact }}</li>
+            }
+          </ul>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<!-- ═══ LIEFERNETZ ═══ -->
+<section class="network-section" id="liefernetz">
+  <div class="network-bg" aria-hidden="true"></div>
+  <div class="container network-grid">
+    <div class="network-copy">
+      <p class="eyebrow eyebrow--light" appScrollReveal>Import · Lager · Distribution</p>
+      <h2 class="display display--light" appScrollReveal [appScrollRevealDelay]="80">
+        Vom Süden Italiens <em>bis in Deine Küche.</em>
+      </h2>
+      <p class="lead lead--light" appScrollReveal [appScrollRevealDelay]="160">
+        Als einer der erfolgreichsten Lieferanten Süditaliens in Deutschland beliefern wir
+        Gastronomie und Handel in allen Bundesländern – tiefgekühlt, pünktlich und in immer
+        gleichbleibender Qualität.
+      </p>
+
+      <ol class="supply-steps">
+        @for (step of supplySteps; track step.step; let i = $index) {
+          <li appScrollReveal appReveal="left" [appScrollRevealDelay]="200 + i * 140">
+            <span class="supply-num">{{ step.step }}</span>
+            <div>
+              <h3>{{ step.title }}</h3>
+              <p>{{ step.desc }}</p>
+            </div>
+          </li>
+        }
+      </ol>
+
+      <a href="/#b2b-katalog" class="btn btn-light btn-lg network-cta" (click)="scrollTo($event, 'b2b-katalog')">
+        Ich möchte auch geliefert werden!
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="network-map" appScrollReveal appReveal="scale">
+      <app-germany-network />
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DAS IST SICITALIA ═══ -->
+<section class="intro" id="was-ist-sicitalia">
+  <div class="intro-orb" aria-hidden="true"></div>
+  <div class="container">
+    <div class="intro-grid">
+    <div class="intro-head" appScrollReveal appReveal="left">
+      <p class="eyebrow">Das ist Sicitalia</p>
+      <h2 class="display">Lieferanten gibt es viele. <em>Ein Partner wie wir ist selten.</em></h2>
+      <p class="lead">
+        Pünktlich liefern kann jeder. Wir kennen deinen Service-Alltag und helfen dir, dein
+        Restaurant erfolgreicher und entspannter zu führen.
+      </p>
+      <p class="intro-promise">Mehr Bestellungen servieren.<br />In derselben Zeit.</p>
+      <div class="intro-actions">
+        <a href="/#b2b-katalog" class="btn btn-primary btn-lg" (click)="scrollTo($event, 'b2b-katalog')">
+          Lass uns Partner werden!
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </a>
+        <a routerLink="/produktportfolio" class="btn btn-outline btn-lg">Portfolio</a>
+        <a
+          class="btn btn-outline btn-lg"
+          href="/downloads/portfolio-katalog.pdf"
+          download="Portfolio-Katalog.pdf"
+        >
+          Portfolio-Katalog als PDF
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 3v12M6 11l6 6 6-6M4 21h16" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="intro-panel" appScrollReveal appReveal="right">
+      <p class="intro-panel-label">Was das für dich heißt</p>
+      <ol class="value-list">
+        @for (point of introPoints; track point; let i = $index) {
+          <li appScrollReveal appReveal="up" [appScrollRevealDelay]="i * 110" [style.--i]="i">
+            <div class="value-card">
+              <span class="value-mark" aria-hidden="true">
+                <img src="/images/logo-mark-dark.png" alt="" />
+              </span>
+              <span class="value-text">{{ point }}</span>
+              <span class="value-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </span>
+            </div>
+          </li>
+        }
+      </ol>
+      <p class="intro-closing" appScrollReveal [appScrollRevealDelay]="600">Zusammen wachsen. Jeden einzelnen Tag.</p>
+    </div>
+    </div>
+  </div>
+
+  <div class="intro-fleet" id="fuer-wen">
+    <div class="container">
+      <header class="section-head" appScrollReveal>
+        <p class="eyebrow eyebrow--light">Für wen wir liefern</p>
+        <h2 class="display display--light">Ein Lieferant. <em>Fünf Branchen.</em></h2>
+      </header>
+
+      <svg class="fleet-chalk-def" width="0" height="0" aria-hidden="true">
+        <filter id="fleet-chalk" x="-12%" y="-12%" width="124%" height="124%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.65" result="drawn" />
+          <feOffset in="drawn" dx="1.6" dy="1.3" result="shifted" />
+          <feFlood flood-color="#f6efe6" flood-opacity="0.38" result="flood" />
+          <feComposite in="flood" in2="shifted" operator="in" result="echo" />
+          <feMerge>
+            <feMergeNode in="echo" />
+            <feMergeNode in="drawn" />
+          </feMerge>
+        </filter>
+      </svg>
+
+      <ul class="fleet">
+        @for (group of targetGroups; track group.title; let i = $index) {
+          <li class="fleet-van" appScrollReveal appReveal="up" [appScrollRevealDelay]="i * 90" [style.--i]="i">
+            <div class="fleet-sketch">
+              <svg class="fleet-truck" viewBox="0 0 340 200" aria-hidden="true">
+                <path d="M42 48 H168 Q184 48 184 64 V118 H28 Q16 118 16 104 V64 Q16 48 42 48 Z" />
+                <path d="M184 76 H236 Q268 76 274 98 V116 Q274 128 260 128 H184 Z" />
+                <path d="M202 86 H232 Q246 86 246 98 V112 H202 Z" />
+                <path d="M198 78 V126" />
+                <path d="M52 118 Q52 96 76 96 Q100 96 100 118" />
+                <path d="M208 128 Q208 106 232 106 Q256 106 256 128" />
+                <circle cx="76" cy="140" r="22" />
+                <circle cx="76" cy="140" r="8" />
+                <circle cx="232" cy="140" r="22" />
+                <circle cx="232" cy="140" r="8" />
+                <path d="M274 112 H286" />
+                <circle cx="280" cy="108" r="3" />
+                <path class="fleet-road" d="M8 172 Q100 166 180 174 T332 168" />
+              </svg>
+              <p class="fleet-name">{{ group.title }}</p>
+            </div>
+            <p class="fleet-desc">{{ group.desc }}</p>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ B2B: DIGITALER KATALOG ═══ -->
+<section class="b2b" id="b2b-katalog">
+  <div class="b2b-bg" aria-hidden="true">
+    <video class="b2b-video" autoplay muted loop playsinline preload="auto">
+      <source src="/videos/menu-restaurant.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="container">
+    <div class="b2b-card" id="kunde-werden" appScrollReveal appReveal="up">
+      <div class="b2b-copy">
+        <p class="eyebrow eyebrow--light">Kunde werden · kostenlos</p>
+        <h2 class="display display--light">Erhalte kostenlos den Produktkatalog. <em>Mit Preisen.</em></h2>
+        <p class="lead lead--light">
+          Du betreibst eine Gastronomie und möchtest mehr echtes Italien in Deinem Betrieb? Fülle das
+          Formular aus, um Dein Kundenkonto zu eröffnen. Wir prüfen Deine Angaben und melden uns zur
+          Freischaltung – mit dem Katalog und Deinen Preisen.
         </p>
       </div>
 
-      <blockquote class="founder-quote">{{ contact.quote }}</blockquote>
+      <ul class="b2b-benefits">
+        @for (benefit of b2bBenefits; track benefit.title; let i = $index) {
+          <li appScrollReveal appReveal="right" [appScrollRevealDelay]="i * 100" [style.--i]="i">
+            <span class="b2b-icon" aria-hidden="true">
+              <img src="/images/logo-mark-dark.png" alt="" />
+            </span>
+            <div>
+              <strong>{{ benefit.title }}</strong>
+              <span>{{ benefit.desc }}</span>
+            </div>
+          </li>
+        }
+      </ul>
 
-      <div class="founder-meta">
-        <strong>{{ contact.name }}</strong>
-        <span>{{ contact.role }}</span>
+      @if (submitted) {
+        <p class="b2b-success">
+          Vielen Dank, {{ firstName }}! Wir prüfen Deine Angaben und melden uns zur Freischaltung
+          mit dem Katalog und Deinen Preisen.
+        </p>
+      } @else {
+        <form class="b2b-form" (ngSubmit)="submitRegistration()">
+          <div class="b2b-stepper" id="b2b-stepper">
+            <div class="b2b-stepper-track" aria-hidden="true">
+              <span [style.width.%]="progressPercent"></span>
+            </div>
+            <ol>
+              @for (step of formSteps; track step.id; let i = $index) {
+                <li [class.is-done]="i < formStep && isStepValid(i)" [class.is-current]="i === formStep">
+                  <button type="button" (click)="goToStep(i)" [disabled]="!canOpenStep(i)" [attr.aria-current]="i === formStep ? 'step' : null">
+                    <span>{{ i + 1 }}</span>
+                    {{ step.label }}
+                  </button>
+                </li>
+              }
+            </ol>
+          </div>
+
+          @if (formStep === 0) {
+            <div class="b2b-fields">
+              <label>
+                Vorname *
+                <input id="b2b-first-name" type="text" name="firstName" [(ngModel)]="firstName" required />
+              </label>
+              <label>
+                Nachname *
+                <input id="b2b-last-name" type="text" name="lastName" [(ngModel)]="lastName" required />
+              </label>
+              <label class="b2b-field--wide">
+                Position in der Firma *
+                <app-wine-select [options]="positions" [(value)]="position" />
+              </label>
+              <label class="b2b-field--wide">
+                Unternehmensname *
+                <input id="b2b-company" type="text" name="company" [(ngModel)]="company" required />
+              </label>
+              <label>
+                Art des Unternehmens *
+                <app-wine-select [options]="businessTypes" [(value)]="businessType" />
+              </label>
+              <label>
+                Gesellschaftsform *
+                <app-wine-select [options]="legalForms" [(value)]="legalForm" />
+              </label>
+            </div>
+          }
+
+          @if (formStep === 1) {
+            <div class="b2b-fields">
+              <label class="b2b-field--wide">
+                Straße *
+                <input id="b2b-street" type="text" name="street" [(ngModel)]="street" required />
+                <span class="b2b-hint">
+                  Trage hier bitte Deine <strong>Geschäftsadresse</strong> ein, in der sich Dein
+                  <strong>Betrieb</strong> befindet. <strong>Abweichende Liefer- &amp; Rechnungsadressen</strong>
+                  kannst Du in diesem Schritt ergänzen.
+                </span>
+              </label>
+              <label>
+                Hausnummer *
+                <input id="b2b-house" type="text" name="houseNumber" [(ngModel)]="houseNumber" required />
+              </label>
+              <label>
+                PLZ *
+                <input id="b2b-zip" type="text" name="zip" [(ngModel)]="zip" required />
+              </label>
+              <label class="b2b-field--wide">
+                Ort *
+                <input id="b2b-city" type="text" name="city" [(ngModel)]="city" required />
+              </label>
+              <label class="b2b-consent b2b-field--wide">
+                <input type="checkbox" name="differentDelivery" [(ngModel)]="differentDelivery" />
+                <span>Abweichende Lieferadresse angeben</span>
+              </label>
+              @if (differentDelivery) {
+                <div class="b2b-optional">
+                  <div class="b2b-fields">
+                    <label class="b2b-field--wide">
+                      Lieferadresse · Straße *
+                      <input type="text" name="deliveryStreet" [(ngModel)]="deliveryStreet" required />
+                    </label>
+                    <label>
+                      Hausnummer *
+                      <input type="text" name="deliveryHouseNumber" [(ngModel)]="deliveryHouseNumber" required />
+                    </label>
+                    <label>
+                      PLZ *
+                      <input type="text" name="deliveryZip" [(ngModel)]="deliveryZip" required />
+                    </label>
+                    <label class="b2b-field--wide">
+                      Ort *
+                      <input type="text" name="deliveryCity" [(ngModel)]="deliveryCity" required />
+                    </label>
+                  </div>
+                </div>
+              }
+              <label class="b2b-consent b2b-field--wide">
+                <input type="checkbox" name="differentBilling" [(ngModel)]="differentBilling" />
+                <span>Abweichende Rechnungsadresse angeben</span>
+              </label>
+              @if (differentBilling) {
+                <div class="b2b-optional">
+                  <div class="b2b-fields">
+                    <label class="b2b-field--wide">
+                      Rechnungsadresse · Straße *
+                      <input type="text" name="billingStreet" [(ngModel)]="billingStreet" required />
+                    </label>
+                    <label>
+                      Hausnummer *
+                      <input type="text" name="billingHouseNumber" [(ngModel)]="billingHouseNumber" required />
+                    </label>
+                    <label>
+                      PLZ *
+                      <input type="text" name="billingZip" [(ngModel)]="billingZip" required />
+                    </label>
+                    <label class="b2b-field--wide">
+                      Ort *
+                      <input type="text" name="billingCity" [(ngModel)]="billingCity" required />
+                    </label>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+
+          @if (formStep === 2) {
+            <div class="b2b-fields">
+              <label class="b2b-field--wide">
+                E-Mail-Adresse (persönlich)
+                <input id="b2b-email" type="email" name="email" [(ngModel)]="email" />
+                <span class="b2b-hint">
+                  Für Angebote und <strong>persönliche Nachrichten</strong>, wie z. B. Zustellung neuer Preislisten.
+                </span>
+              </label>
+              <label class="b2b-field--wide">
+                E-Mail-Adresse Rechnungsstellung *
+                <input id="b2b-billing-email" type="email" name="billingEmail" [(ngModel)]="billingEmail" required />
+                <span class="b2b-hint">
+                  Teile uns hier die E-Mail-Adresse mit, an die wir <strong>Deine Rechnung</strong> senden dürfen.
+                </span>
+              </label>
+              <label>
+                Telefonnummer (primäre Nummer) *
+                <input id="b2b-phone" type="tel" name="phone" [(ngModel)]="phone" placeholder="+49" required />
+              </label>
+              <label>
+                Telefonnummer (optional)
+                <input id="b2b-phone-alt" type="tel" name="phoneAlt" [(ngModel)]="phoneAlt" placeholder="+49" />
+              </label>
+              <fieldset class="b2b-checks">
+                <legend>Wie sollen wir Dich am besten kontaktieren? * <span>Mehrfachauswahl möglich</span></legend>
+                <label class="b2b-consent">
+                  <input type="checkbox" name="contactEmail" [(ngModel)]="contactEmail" />
+                  <span>E-Mail</span>
+                </label>
+                <label class="b2b-consent">
+                  <input type="checkbox" name="contactLandline" [(ngModel)]="contactLandline" />
+                  <span>Festnetznummer (bitte als primäre Telefonnummer angeben)</span>
+                </label>
+                <label class="b2b-consent">
+                  <input type="checkbox" name="contactMobile" [(ngModel)]="contactMobile" />
+                  <span>Handy (bitte als primäre Telefonnummer angeben)</span>
+                </label>
+                <label class="b2b-consent">
+                  <input type="checkbox" name="contactWhatsapp" [(ngModel)]="contactWhatsapp" />
+                  <span>WhatsApp (bitte als primäre Telefonnummer angeben)</span>
+                </label>
+                <span class="b2b-hint">
+                  Wie bist Du am besten erreichbar, ohne dass wir Deinen Betriebsablauf stören? Lass es uns bitte wissen.
+                </span>
+              </fieldset>
+            </div>
+          }
+
+          @if (formStep === 3) {
+            <div class="b2b-fields">
+              <label>
+                USt-IdNr. *
+                <input id="b2b-vat" type="text" name="vatId" [(ngModel)]="vatId" placeholder="z. B. DE123123123" required />
+                <span class="b2b-hint">Wenn Du keine USt-IdNr. hast, gib bitte Deine Steuernummer an.</span>
+              </label>
+              <label>
+                Belieferung gewünscht ab (optional)
+                <app-wine-select [options]="deliveryStarts" [(value)]="deliveryStart" />
+              </label>
+              <label class="b2b-field--wide">
+                Produkte, die mich interessieren
+                <textarea
+                  id="b2b-products"
+                  name="productInterest"
+                  rows="3"
+                  [(ngModel)]="productInterest"
+                  placeholder="Wähle Produkte auf der Sortimentsseite oder trage hier Deine Wunschprodukte ein."
+                ></textarea>
+                @if (selectedProducts().length) {
+                  <span class="b2b-hint">{{ selectedProducts().length }} Produkt(e) aus dem Portfolio übernommen.</span>
+                }
+              </label>
+            </div>
+            <label class="b2b-consent">
+              <input type="checkbox" name="consent" [(ngModel)]="consent" required />
+              <span>Ich stimme zu, dass meine Daten zum Zweck der Kontoerstellung verarbeitet werden. *</span>
+            </label>
+          }
+
+          <div class="b2b-step-nav">
+            @if (formStep > 0) {
+              <button type="button" class="btn btn-ghost-light" (click)="prevStep()">Zurück</button>
+            }
+            @if (formStep < formSteps.length - 1) {
+              <button type="button" class="btn btn-light" (click)="nextStep()" [disabled]="!isStepValid()">Weiter</button>
+            } @else {
+              <button type="submit" class="btn btn-light" [disabled]="!formReady">Kundenkonto eröffnen</button>
+            }
+          </div>
+        </form>
+        <p class="b2b-note">Unverbindlich · Freischaltung meist innerhalb von 24 Std.</p>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GESCHICHTE ═══ -->
+<section class="story" id="ueber-uns">
+  <div class="container" id="geschaeftsfuehrer">
+    <header class="section-head" appScrollReveal>
+      <p class="eyebrow">Unsere Geschichte</p>
+      <h2 class="display">Geschichte, <em>die schmeckt.</em></h2>
+    </header>
+
+    <ol class="timeline">
+      @for (entry of timeline; track entry.year; let i = $index) {
+        <li class="timeline-item">
+          <p
+            class="timeline-year"
+            [class.timeline-year--text]="entry.year !== '2009'"
+            appScrollReveal
+            appReveal="left"
+            [appScrollRevealDelay]="i * 180"
+          >
+            {{ entry.year }}
+          </p>
+          <span class="timeline-node" aria-hidden="true"></span>
+          <article class="timeline-body" appScrollReveal appReveal="up" [appScrollRevealDelay]="120 + i * 180">
+            <h3>{{ entry.title }}</h3>
+            <p>
+              {{ entry.before }}@if (entry.emphasis) {<strong>{{ entry.emphasis }}</strong>}{{ entry.after }}
+            </p>
+          </article>
+        </li>
+      }
+    </ol>
+
+    <div class="story-grid">
+      <div class="story-video" appScrollReveal appReveal="scale">
+        <iframe
+          [src]="videoUrl"
+          title="Sicitalia Imagevideo – So schmeckt der Süden"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
       </div>
 
-      <div class="founder-actions">
-        <a href="/downloads/praesentation-sicitalia.pdf" class="btn btn-founder" download>
-          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M12 3v12" />
-            <path d="M7 10l5 5 5-5" />
-            <path d="M5 19h14" />
-          </svg>
-          Katalog herunterladen
-        </a>
-        <a routerLink="/kunde-werden" class="btn btn-founder btn-founder--ghost">
-          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <circle cx="12" cy="12" r="9" />
-            <path d="M12 10v6" />
-            <path d="M12 7h.01" />
-          </svg>
-          Info erhalten
-        </a>
-        <a routerLink="/kunde-werden" class="btn btn-founder btn-founder--ghost">
-          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-            <circle cx="9" cy="7" r="4" />
-            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-          </svg>
-          Kunde werden (B2B)
-        </a>
-        <a routerLink="/termin" class="btn btn-founder btn-founder--light">
-          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <rect x="3" y="4" width="18" height="18" rx="2" />
-            <path d="M16 2v4M8 2v4M3 10h18" />
-            <path d="M8 14h.01M12 14h.01M16 14h.01" />
-          </svg>
-          Termin buchen
-        </a>
+      <figure class="story-quote" appScrollReveal appReveal="right">
+        <img [src]="images.portrait" [alt]="contact.name" loading="lazy" />
+        <blockquote>{{ contact.quote }}</blockquote>
+        <figcaption>
+          <strong>{{ contact.name }}</strong>
+          <span>{{ contact.role }}</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PIZZELLA ═══ -->
+<section class="pizzella" id="pizzella">
+  <div class="pizzella-card" appScrollReveal>
+    <div class="pizzella-media">
+      <img [src]="pizzella.image" alt="Pizzella" loading="lazy" />
+      <span class="pizzella-seal">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <defs><path id="seal-path" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0" /></defs>
+          <text><textPath href="#seal-path">EXKLUSIV · NUR BEI SICITALIA · EXKLUSIV · </textPath></text>
+        </svg>
+        <b>★</b>
+      </span>
+    </div>
+    <div class="pizzella-copy">
+      <p class="eyebrow eyebrow--gold">{{ pizzella.badge }}</p>
+      <h2 class="display display--light">Ein einzigartiges <em>Produkt.</em></h2>
+      <p class="lead lead--light">{{ pizzella.description }}</p>
+      <ul class="pizzella-benefits">
+        @for (benefit of pizzella.benefits; track benefit) {
+          <li>{{ benefit }}</li>
+        }
+      </ul>
+      <div class="pizzella-actions">
+        <button type="button" class="btn btn-gold" (click)="openCatalog(pizzellaIndex)">Katalog ansehen</button>
+        <a href="/#b2b-katalog" class="btn btn-ghost-light" (click)="scrollTo($event, 'b2b-katalog')">Preise anfragen</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section downloads-section">
+<!-- ═══ VIDEO-CALL BUCHEN ═══ -->
+<section class="video-call-section" id="video-call">
   <div class="container">
-    <div class="section-header" appScrollReveal>
-      <span class="section-tag">Kataloge &amp; Listen</span>
-      <h2 class="section-title">Katalog-Menü</h2>
-      <p class="section-subtitle">
-        Kataloge direkt hier durchblättern – oder als PDF herunterladen.
-      </p>
-    </div>
-    <div class="downloads-grid">
+    <app-video-call-booking class="booking--wine" />
+  </div>
+</section>
+
+<!-- ═══ KATALOG-MENÜ ═══ -->
+<section class="downloads" id="alles-ueber-sicitalia">
+  <div class="container">
+    <header class="section-head section-head--split" appScrollReveal>
+      <div>
+        <p class="eyebrow">Alles über Sicitalia</p>
+        <h2 class="display">Katalog-<em>Menü.</em></h2>
+      </div>
+      <p class="lead">Die Präsentation ist frei verfügbar. Durchblättern oder als PDF herunterladen – ohne Registrierung.</p>
+    </header>
+
+    <ul class="download-grid">
       @for (item of downloads; track item.file; let i = $index) {
-        <article
-          class="download-card glass-card"
-          appScrollReveal
-          appReveal="up"
-          [appScrollRevealDelay]="i * 80"
-        >
-          <button type="button" class="download-preview" (click)="openCatalog(i)">
-            <img [src]="item.image" [alt]="'Katalog ' + item.title" loading="lazy" />
-            <span class="download-preview-shade" aria-hidden="true"></span>
-            <span class="download-read-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M2 5h8a3 3 0 0 1 2 1 3 3 0 0 1 2-1h8v13h-8a3 3 0 0 0-2 1 3 3 0 0 0-2-1H2z" />
-                <path d="M12 6v13" />
-              </svg>
-              Blättern
-            </span>
+        <li class="download-card" appScrollReveal appReveal="up" [appScrollRevealDelay]="i * 80">
+          <button type="button" class="download-cover" (click)="openCatalog(i)" [attr.aria-label]="item.title + ' lesen'">
+            <img [src]="item.image" alt="" loading="lazy" />
+            <span class="download-read">Lesen</span>
           </button>
-          <div class="download-label">
-            <strong>Katalog</strong>
+          <div class="download-meta">
             <span>{{ item.title }}</span>
-          </div>
-          <div class="download-actions">
-            <button type="button" class="download-action" (click)="openCatalog(i)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z" />
-                <circle cx="12" cy="12" r="3" />
-              </svg>
-              Lesen
-            </button>
-            <a
-              class="download-action download-action--ghost"
-              [href]="'/downloads/' + item.file"
-              download
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M12 3v12" />
-                <path d="M7 10l5 5 5-5" />
-                <path d="M5 19h14" />
-              </svg>
-              PDF
+            <a [href]="'/downloads/' + item.file" download [attr.aria-label]="item.title + ' als PDF herunterladen'">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M6 11l6 6 6-6M4 21h16" /></svg>
             </a>
           </div>
-        </article>
+        </li>
       }
-    </div>
+    </ul>
   </div>
 </section>
 
 <app-catalog-reader [catalogs]="downloads" [(activeIndex)]="activeCatalogIndex" />
 
-<section class="section reels-section">
+<section class="preview" id="sortiment">
   <div class="container">
-    <div class="section-header" appScrollReveal>
-      <span class="section-tag">Video-Serie</span>
-      <h2 class="section-title">DIY Pasticceria</h2>
-      <p class="section-subtitle">
-        Folgen aus Küche, Produktion und Sortiment – jede Episode ein Blick hinter die Kulissen.
+    <header class="section-head section-head--split" appScrollReveal>
+      <div>
+        <p class="eyebrow eyebrow--light">Vorgeschmack</p>
+        <h2 class="display display--light">Ein Vorgeschmack unserer <em>servierfertigen Feinkost.</em></h2>
+      </div>
+      <p class="lead lead--light">
+        Das ist nur ein Ausschnitt. Dahinter liegen hunderte weitere Produkte. Den gesamten Katalog
+        mit Preisen gibt es, wenn du Kunde wirst.
       </p>
-    </div>
-    <app-instagram-reels-gallery
-      [reels]="instagramReels"
-      [instagramUrl]="contact.instagram"
-      [seriesTitle]="reelSeriesTitle"
-      appScrollReveal
-      appReveal="up"
-    />
-  </div>
-</section>
+    </header>
 
-<section class="section highlights-section highlights-section--outro">
-  <div class="container">
-    <div class="section-header" appScrollReveal>
-      <span class="section-tag">Unsere Highlights</span>
-      <h2 class="section-title">Was Deine Gäste lieben werden</h2>
-      <p class="section-subtitle">
-        Von der Morgencroissant bis zum Abend-Cannoli – alles in gleichbleibender Premium-Qualität.
-      </p>
-    </div>
-    <div class="highlights-grid">
-      @for (item of highlights; track item.title; let i = $index) {
-        <article
-          class="highlight-card glass-card"
-          appScrollReveal
-          appReveal="scale"
-          [appScrollRevealDelay]="i * 90"
-        >
-          <span class="highlight-emoji">{{ item.emoji }}</span>
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.desc }}</p>
-        </article>
+    <ul class="preview-scroller">
+      @for (product of previewProducts; track product.id) {
+        <li>
+          <a class="preview-card" routerLink="/produktportfolio">
+            @if (product.image) {
+              <img [src]="product.image" [alt]="product.name" loading="lazy" />
+            }
+            <span>{{ product.name }}</span>
+          </a>
+        </li>
       }
-    </div>
-    <div class="highlights-cta" appScrollReveal appReveal="up">
-      <a href="/#sortiment" class="btn btn-primary" (click)="scrollTo($event, 'sortiment')">Zum Sortiment</a>
-    </div>
-  </div>
-</section>
+    </ul>
 
-<section class="section cta-banner-section">
-  <div class="container">
-    <div class="cta-banner glass-dark" appScrollReveal appReveal="scale">
-      <div class="cta-banner-text">
-        <h2>Bereit für italienischen Genuss?</h2>
-        <p>
-          {{ contact.name }} und sein Team beraten Dich persönlich – unverbindlich und auf Augenhöhe.
-        </p>
-      </div>
-      <div class="cta-banner-actions">
-        <a routerLink="/termin" class="btn btn-primary">Termin vereinbaren</a>
-        <a [href]="contact.whatsappLink" target="_blank" rel="noopener" class="btn btn-glass">
-          WhatsApp schreiben
-        </a>
-      </div>
-    </div>
+    <a routerLink="/produktportfolio" class="btn btn-primary btn-lg preview-more">Zum Portfolio</a>
   </div>
 </section>

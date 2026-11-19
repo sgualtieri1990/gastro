@@ -105,27 +105,6 @@ ul {
   overflow: hidden;
 }
 
-.food-pattern-bg {
-  position: absolute;
-  inset: -8%;
-  opacity: 0.34;
-  background-image: url('/images/food-bg-pattern.svg');
-  background-size: 520px 520px;
-  background-repeat: repeat;
-  animation: food-pattern-drift 140s linear infinite;
-}
-
-@keyframes food-pattern-drift {
-  0% { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-160px, -120px, 0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .food-pattern-bg {
-    animation: none;
-  }
-}
-
 .orb {
   position: absolute;
   border-radius: 50%;

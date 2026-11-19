@@ -58,9 +58,14 @@
 
 .banner-hero--full .banner-backdrop-shade {
   background:
-    linear-gradient(to bottom, rgba(80, 10, 18, 0.55) 0%, rgba(80, 10, 18, 0.08) 20%, transparent 45%),
-    linear-gradient(to right, transparent 0%, rgba(142, 26, 40, 0.35) 42%, rgba(158, 26, 40, 0.88) 58%, rgba(158, 26, 40, 0.96) 72%),
-    linear-gradient(to top, rgba(158, 26, 40, 0.82) 0%, transparent 22%);
+    linear-gradient(to bottom, rgba(80, 10, 18, 0.5) 0%, rgba(158, 26, 40, 0.12) 20%, transparent 42%),
+    linear-gradient(
+      102deg,
+      rgba(178, 30, 35, 0.5) 0%,
+      rgba(158, 26, 40, 0.68) 42%,
+      rgba(130, 18, 28, 0.86) 72%,
+      rgba(96, 12, 20, 0.94) 100%
+    );
 }
 
 .banner-hero--compact .banner-backdrop-shade {
@@ -149,6 +154,33 @@
   text-align: left;
 }
 
+.banner-lead {
+  position: relative;
+}
+
+.banner-brush {
+  display: none;
+}
+
+.banner-hero--full .banner-lead {
+  z-index: 0;
+  padding: 22px 36px 26px 28px;
+}
+
+.banner-hero--full .banner-brush {
+  display: block;
+  position: absolute;
+  z-index: -1;
+  left: -8%;
+  right: -7%;
+  top: -6%;
+  bottom: -4%;
+  width: auto;
+  height: auto;
+  color: rgba(255, 246, 234, 0.94);
+  pointer-events: none;
+}
+
 .banner-eyebrow {
   font-size: 0.8rem;
   font-weight: 600;
@@ -158,6 +190,19 @@
   margin-bottom: 14px;
 }
 
+.banner-hero--full .banner-eyebrow {
+  color: #111;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  letter-spacing: 0.1em;
+  text-wrap: balance;
+}
+
+@media (max-width: 480px) {
+  .banner-hero--full .banner-eyebrow {
+    font-size: 0.95rem;
+  }
+}
+
 .banner-title {
   font-family: 'Oswald', 'Inter', sans-serif;
   font-size: clamp(2.5rem, 6vw, 4.5rem);
@@ -165,6 +210,26 @@
   line-height: 1.05;
   color: #fff;
   margin-bottom: 16px;
+}
+
+.banner-hero--full .banner-title {
+  color: #000;
+}
+
+:host ::ng-deep .banner-title em {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.28em;
+  letter-spacing: 0;
+  line-height: 0.85;
+}
+
+@media (min-width: 769px) {
+  .banner-hero--full .banner-title {
+    font-size: clamp(2.25rem, 3.9vw, 4rem);
+    white-space: nowrap;
+  }
 }
 
 .banner-hero--compact .banner-title {
@@ -181,6 +246,18 @@
   max-width: 420px;
   margin: 0 0 28px;
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+}
+
+.banner-hero--full .banner-tagline {
+  color: #111;
+  text-shadow: none;
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  line-height: 1.5;
+  max-width: 520px;
+  margin: 0;
 }
 
 @media (max-width: 768px) {
@@ -205,13 +282,12 @@
 
   .banner-hero--full .banner-backdrop-shade {
     background:
-      linear-gradient(to bottom, rgba(80, 10, 18, 0.5) 0%, rgba(80, 10, 18, 0.1) 24%, transparent 46%),
+      linear-gradient(to bottom, rgba(80, 10, 18, 0.55) 0%, rgba(158, 26, 40, 0.2) 22%, transparent 40%),
       linear-gradient(
-        to top,
-        rgba(120, 16, 26, 0.94) 0%,
-        rgba(158, 26, 40, 0.76) 32%,
-        rgba(158, 26, 40, 0.2) 62%,
-        transparent 100%
+        to bottom,
+        rgba(178, 30, 35, 0.62) 0%,
+        rgba(158, 26, 40, 0.5) 55%,
+        rgba(178, 30, 35, 0.38) 100%
       ) !important;
   }
 

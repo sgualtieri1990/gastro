@@ -33,17 +33,22 @@
       }
     </div>
 
-    <div class="footer-info" appScrollReveal [appScrollRevealDelay]="100">
+    <div class="footer-info" id="impressum" appScrollReveal [appScrollRevealDelay]="100">
       <h3>Impressum</h3>
       <p>
         <a [href]="'mailto:' + contact.email">{{ contact.email }}</a>
       </p>
-      <p>{{ contact.name }}</p>
-      <p>{{ contact.address }}</p>
-      <p>{{ contact.phone }}</p>
+      <p class="footer-address">
+        {{ contact.name }}<br />
+        {{ contact.street }}<br />
+        {{ contact.zipCity }}
+      </p>
+      <p class="footer-phones">
+        <a [href]="contact.phoneHref">{{ contact.phone }}</a>
+      </p>
       <p>
-        WhatsApp:
-        <a [href]="contact.whatsappLink" target="_blank" rel="noopener">{{ contact.whatsapp }}</a>
+        WhatsApp:<br />
+        <a href="#whatsapp" (click)="openWhatsapp($event)">{{ contact.whatsapp }}</a>
       </p>
       <div class="social-links">
         <a [href]="contact.instagram" target="_blank" rel="noopener" aria-label="Instagram">

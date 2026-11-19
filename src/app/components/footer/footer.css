@@ -1,20 +1,10 @@
 .footer {
-  background: var(--glass-surface-dark);
-  backdrop-filter: var(--glass-blur-strong);
-  -webkit-backdrop-filter: var(--glass-blur-strong);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: #111111;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   color: rgba(255, 255, 255, 0.88);
   margin-top: auto;
   position: relative;
   z-index: 1;
-}
-
-.footer::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 40%);
-  pointer-events: none;
 }
 
 .footer-grid {
@@ -112,6 +102,11 @@
   font-size: var(--text-sm);
   line-height: 1.8;
   margin-bottom: 4px;
+}
+
+.footer-address,
+.footer-phones {
+  margin-top: 14px;
 }
 
 .footer-info a {

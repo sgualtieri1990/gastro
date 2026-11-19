@@ -1,7 +1,7 @@
 <app-page-hero
   title="Kunde werden"
-  eyebrow="B2B Registrierung"
-  subtitle="GASTRO & FEINKOST – ZUGANG ZU UNSEREM SORTIMENT"
+  eyebrow="Kunde werden"
+  subtitle="DIGITALER KATALOG MIT PREISLISTE – KOSTENLOS FÜR GASTRO & HANDEL"
   [image]="images.hero"
   bgPosition="22% 12%"
 />
@@ -11,13 +11,14 @@
     <div class="glass-panel form-panel" appScrollReveal>
       @if (submitted) {
         <p class="success-msg">
-          Vielen Dank für Ihre Registrierung, {{ name }}! Unser Team prüft Ihre Anfrage und meldet
-          sich in Kürze bei {{ company }}.
+          Vielen Dank für Deine Registrierung, {{ name }}! Wir prüfen Deine Angaben und melden uns
+          mit der Preisliste.
         </p>
       } @else {
         <p class="form-intro">
-          Registrieren Sie sich als B2B-Kunde und erhalten Sie Zugang zu unserem Sortiment,
-          Katalogen und exklusiven Angeboten für Gastronomiebetriebe und Feinkosthandel.
+          Registriere Dich als Kunde und erhalte <strong>alle Produkte mit Preisliste als
+          digitalen Katalog</strong> – inklusive Cornetti, Cannoli, Arancini und dem exklusiven
+          Pizzella-Sortiment.
         </p>
         <form (ngSubmit)="onSubmit()">
           <div class="form-row">
@@ -65,7 +66,7 @@
           <label class="consent-label">
             <input type="checkbox" [(ngModel)]="consent" name="consent" required />
             <span>
-              Ich stimme zu, dass Sicitalia meine Daten zur Bearbeitung der B2B-Registrierung
+              Ich stimme zu, dass Sicitalia meine Daten zur Bearbeitung der Kundenregistrierung
               verarbeitet und mich per E-Mail kontaktieren darf. *
             </span>
           </label>
@@ -74,7 +75,7 @@
             class="btn btn-primary btn-full"
             [disabled]="!company || !name || !email || !consent"
           >
-            Registrierung absenden
+            Katalog mit Preisliste anfordern
           </button>
         </form>
       }

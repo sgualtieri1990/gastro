@@ -89,10 +89,6 @@ export const IMAGES = {
   arancino: '/images/geschaeftsfuehrer-arancino.jpg',
   cornetti: '/images/geschaeftsfuehrer-cornetti.jpg',
   introCornetto: '/images/intro-cornetto.jpg',
-  laPerfetta: '/images/la-perfetta-pinza-hero.jpg',
-  laPerfettaCover: '/images/la-perfetta-card-cover.jpg',
-  laPerfettaBasis: '/images/la-perfetta-basis-tomatensauce.jpg',
-  laPerfettaBelegung: '/images/la-perfetta-belegung.jpg',
   videoThumbnail: '/images/video-thumbnail.jpg',
   downloadsMenu: '/images/downloads-menu.jpg',
   downloadPraesentation: '/images/download-praesentation.jpg',
@@ -115,42 +111,131 @@ export const IMAGES = {
 } as const;
 
 export const HERO_KEYWORDS = [
-  'La Perfetta Pizzabasen',
-  'Cannoli Siciliani',
-  'Cornetti & Babà',
-  'Premium Gelato',
   'Arancini Classici',
-  'Italienisches Streetfood',
-  'Pasticceria di Qualità',
+  'Cannoli Siciliani',
+  'Cornetti Italiani',
+  'Italienisches Gebäck',
+  'Glutenfreie Produktlinien',
+  'Premium Gelato',
   'Lieferung deutschlandweit',
 ];
 
-export const NAV_ITEMS: NavItem[] = [
-  { path: '/', label: 'Willkommen' },
-  { path: '/gastrogeraete', label: 'Gastrogeräte' },
-  { path: '/ueber-uns', label: 'Über uns' },
-  { path: '/produkte', label: 'Produkte' },
-  { path: '/la-perfetta', label: 'La Perfetta' },
-  { path: '/termin', label: 'Termin buchen' },
-  { path: '/kunde-werden', label: 'Kunde werden' },
-  { path: '/karriere', label: 'Karriere' },
-  { path: 'https://www.instagram.com/sicitalia/', label: 'Instagram', external: true },
+export interface KingProduct {
+  id: string;
+  rank: string;
+  name: string;
+  tagline: string;
+  description: string;
+  image?: string;
+  emoji: string;
+  delivered: number;
+  facts: string[];
+}
+
+/** Unsere Bestseller – Hauptprodukte der Startseite */
+export const KING_PRODUCTS: KingProduct[] = [
+  {
+    id: 'cornetti',
+    rank: 'I',
+    name: 'Cornetti',
+    tagline: 'Der Star am Morgen',
+    description:
+      'Buttrig, luftig, goldbraun – italienische Cornetti, die Dein Frühstück und Deine Café-Theke zum Highlight machen.',
+    image: '/images/king-cornetto.png',
+    emoji: '🥐',
+    delivered: 10000,
+    facts: ['Fertig in Minuten', 'Gefüllt & klassisch', 'Top-Marge am Morgen'],
+  },
+  {
+    id: 'cannoli',
+    rank: 'II',
+    name: 'Cannoli',
+    tagline: 'Das Original aus Sizilien',
+    description:
+      'Knusprige Hülle, cremige Ricotta- oder Pistazienfüllung – der sizilianische Dessert-Klassiker, servierfertig für Deine Karte.',
+    image: '/images/king-cannolo.png',
+    emoji: '🇮🇹',
+    delivered: 12000,
+    facts: ['Ricotta & Pistacchio', 'Servierfertig', 'Dessert-Bestseller'],
+  },
+  {
+    id: 'arancini',
+    rank: 'III',
+    name: 'Arancini',
+    tagline: 'Streetfood-Legende',
+    description:
+      'Knusprig paniert, herzhaft gefüllt mit Ragù und Erbsen – die sizilianische Reisspezialität für Bistro, Snackbar und warme Küche.',
+    image: '/images/king-arancino.png',
+    emoji: '🍙',
+    delivered: 8500,
+    facts: ['18 Min. bei 210 °C', 'Tiefgekühlt lieferbar', 'Snack-Bestseller'],
+  },
 ];
 
-/** Navigation links links vom Logo (Referenz-Layout) */
+/** Exklusiver Partner – Pizzella */
+export const PIZZELLA = {
+  name: 'Pizzella',
+  badge: 'Das Pizzella-System',
+  title: 'Ein einzigartiges Produkt',
+  description:
+    'Pizzella wird nach strengsten handwerklichen Regeln hergestellt, wobei nur ausgewählte Mehle und hochwertige Zutaten verwendet werden.',
+  image: '/images/pizzella-bereich.png',
+  catalogFile: 'pizzella-katalog.pdf',
+  benefits: [
+    'Handgefertigte Zubereitung',
+    'Langsame, natürliche Teigführung',
+    'Weniger als 0,2 % Hefe',
+    'Feines Steinbacken',
+    'Natürliches Gefrierverfahren',
+    'Ohne Zusatz von Konservierungsstoffen',
+  ],
+};
+
+/** Vorteile für B2B-Kunden – Fokus: digitaler Katalog mit Preisliste */
+export const B2B_BENEFITS = [
+  {
+    title: 'Digitaler Katalog',
+    desc: 'Alle Produkte mit Bildern, Gebinden & Zubereitung – jederzeit auf dem Handy.',
+  },
+  {
+    title: 'Exklusive Preisliste',
+    desc: 'Deine Konditionen auf einen Blick – nur für registrierte Kunden.',
+  },
+  {
+    title: 'Lieferung deutschlandweit',
+    desc: 'Tiefgekühlt und zuverlässig – direkt zu Deinem Betrieb.',
+  },
+  {
+    title: 'Neuheiten zuerst',
+    desc: 'Neue Produkte, Aktionen & Pizzella-Exklusives vor allen anderen.',
+  },
+];
+
+export const NAV_ITEMS: NavItem[] = [
+  { path: '/', label: 'Sicitalia' },
+  { path: '/', label: 'Bestseller', fragment: 'bestseller' },
+  { path: '/', label: 'Lieferung', fragment: 'liefernetz' },
+  { path: '/', label: 'Kunde werden', fragment: 'kunde-werden' },
+  { path: '/produktportfolio', label: 'Portfolio' },
+  { path: '/', label: 'Geschichte', fragment: 'ueber-uns' },
+  { path: '/', label: 'Pizzella', fragment: 'pizzella' },
+  { path: '/', label: 'Termin vereinbaren', fragment: 'video-call' },
+];
+
+/** Navigation links links vom Logo */
 export const NAV_LEFT: NavItem[] = [
-  { path: '/', label: 'Willkommen' },
-  { path: '/', label: 'Produkte', fragment: 'sortiment' },
-  { path: '/', label: 'Über uns', fragment: 'geschaeftsfuehrer', scrollBlock: 'start' },
+  { path: '/', label: 'Sicitalia' },
+  { path: '/', label: 'Bestseller', fragment: 'bestseller' },
+  { path: '/', label: 'Lieferung', fragment: 'liefernetz' },
+  { path: '/', label: 'Kunde werden', fragment: 'kunde-werden' },
 ];
 
 /** Navigation links rechts vom Logo */
 export const NAV_RIGHT: NavItem[] = [
-  { path: '/la-perfetta', label: 'La Perfetta' },
-  { path: '/termin', label: 'Termin' },
-  { path: '/kunde-werden', label: 'B2B' },
-  { path: '/karriere', label: 'Karriere' },
-  { path: 'https://www.instagram.com/sicitalia/', label: 'Instagram', external: true },
+  { path: '/produktportfolio', label: 'Portfolio' },
+  { path: '/', label: 'Geschichte', fragment: 'ueber-uns' },
+  { path: '/', label: 'Pizzella', fragment: 'pizzella' },
+  { path: '/', label: 'Termin vereinbaren', fragment: 'video-call' },
 ];
 
 export const DOWNLOADS: DownloadItem[] = [
@@ -182,11 +267,6 @@ export const DOWNLOADS: DownloadItem[] = [
 ];
 
 export const PRODUCTS: ProductItem[] = [
-  {
-    title: 'La Perfetta Premium Pizzabasen',
-    image: IMAGES.laPerfetta,
-    description: 'Authentische vorgebackene Pizzabasen – schnell belegt, perfekt gebacken.',
-  },
   {
     title: 'Pasticceria Konditorei',
     image: '/images/produkt-pasticceria.jpg',
@@ -221,12 +301,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     description:
       'Servierfertige Feinkost aus Sizilien – perfekt für Cafés, Bistros und Dessertkarten in der Gastronomie.',
     coverImage: IMAGES.dolceVitaMonoRange,
-  },
-  {
-    id: 'la-perfetta',
-    name: 'La Perfetta Pizzabasen',
-    description: 'Authentische Pizzabasen – schnell belegt, perfekt gebacken, sofort auf der Karte.',
-    coverImage: IMAGES.laPerfettaCover,
   },
   {
     id: 'gelateria',
@@ -433,19 +507,6 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     readyToServe: true,
   },
   {
-    id: 'la-perfetta-basen',
-    categoryId: 'la-perfetta',
-    line: 'La Perfetta',
-    name: 'Premium Pizzabasen',
-    tagline: 'Pizza in Minuten auf der Karte',
-    coverImage: IMAGES.laPerfettaBasis,
-    gallery: [IMAGES.laPerfettaBasis, IMAGES.laPerfettaBelegung, IMAGES.laPerfetta],
-    description:
-      'Vorgebackene Premium-Pizzabasen für Gastronomie und Bistros – schnell belegt, perfekt gebacken, authentischer Geschmack ohne großen Aufwand.',
-    features: ['Zeitersparnis in der Küche', 'Konstante Qualität', 'Flexibel belegbar'],
-    readyToServe: true,
-  },
-  {
     id: 'gelateria-line',
     categoryId: 'gelateria',
     line: 'Gelateria Sicitalia',
@@ -552,11 +613,11 @@ export const INSTAGRAM_REELS: InstagramReel[] = [
   {
     id: 'folge-1',
     episode: 1,
-    title: 'La Perfetta – Qualität am Teig',
-    subtitle: 'Carmelo prüft jede Pizzabase – authentisch, luftig, servierfertig.',
+    title: 'Qualität am Teig',
+    subtitle: 'Carmelo prüft jede Charge – authentisch, luftig, servierfertig.',
     thumbnail: '/images/instagram-reel-folge-1.jpg',
     reelUrl: 'https://www.instagram.com/sicitalia/reels/',
-    alt: 'Instagram Reel Folge 1 – La Perfetta Teigqualität',
+    alt: 'Instagram Reel Folge 1 – Teigqualität',
   },
   {
     id: 'folge-2',
@@ -590,7 +651,7 @@ export const INSTAGRAM_REELS: InstagramReel[] = [
 export const INSTAGRAM_POSTS: InstagramPost[] = [
   {
     image: '/images/instagram-1.jpg',
-    alt: 'Frische Pizza – La Perfetta für deine Karte',
+    alt: 'Frische Pizza für deine Karte',
   },
   {
     image: '/images/instagram-2.jpg',
@@ -624,27 +685,96 @@ export const CONTACT = {
   name: 'Carmelo Marotta',
   role: 'Geschäftsführer & Gründer',
   address: 'Beckerfelder Str. 96, 47269 Duisburg',
-  phone: '0800 SNACK-IT / 0800 762 2548',
-  whatsapp: '0049-178 35 72 191',
+  street: 'Beckerfelder Str. 96',
+  zipCity: '47269 Duisburg',
+  phone: '+49 178 357 2191',
+  phoneHref: 'tel:+491783572191',
+  whatsapp: '+49 178 357 2191',
   whatsappLink: 'https://wa.me/491783572191',
   instagram: 'https://www.instagram.com/sicitalia/',
   facebook: 'https://www.facebook.com/sicitalia/',
-  youtubeVideo: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+  youtubeVideo: 'https://www.youtube-nocookie.com/embed/2tfmFIvD4Ls',
   quote:
     '„Als Italiener in Deutschland kenne ich das Gefühl – den echten Süden vermissen. Genau deshalb haben wir Sicitalia gegründet: Damit Du Deinen Gästen echte Genussmomente schenken kannst."',
 };
+
+/** Kennzahlen auf der Startseite (animiert hochgezählt) */
+export const HOME_STATS = [
+  { value: 2009, prefix: 'seit ', suffix: '', label: 'Erfolgreich am Markt' },
+  { value: 1000, prefix: '', suffix: '+', label: 'Gastronomie- & Handelskunden' },
+  { value: 16, prefix: '', suffix: '', label: 'Bundesländer beliefert' },
+  { value: 100, prefix: '', suffix: '%', label: 'Original italienisch' },
+];
+
+/** Lieferkette – vom Süden bis in Deinen Betrieb */
+export const SUPPLY_STEPS = [
+  {
+    step: '01',
+    title: 'Import',
+    desc: 'Direkt von ausgewählten Manufakturen aus Sizilien, Kampanien und ganz Süditalien.',
+  },
+  {
+    step: '02',
+    title: 'Lager',
+    desc: 'Tiefgekühlt gelagert in Duisburg – lückenlose Kühlkette, jederzeit lieferbereit.',
+  },
+  {
+    step: '03',
+    title: 'Distribution',
+    desc: 'Zuverlässig und tiefgekühlt deutschlandweit – direkt zu Deinem Betrieb.',
+  },
+];
+
+/** Zielgruppen – für wen Sicitalia liefert */
+export const TARGET_GROUPS = [
+  {
+    title: 'Gastronomie',
+    desc: 'Restaurants, Pizzerien & Bistros – servierfertig in Minuten.',
+    image: '/images/instagram-1.jpg',
+  },
+  {
+    title: 'Bäckereien',
+    desc: 'Cornetti & Pasticceria für die Theke am Morgen.',
+    image: IMAGES.cornetti,
+  },
+  {
+    title: 'Cafés & Bars',
+    desc: 'Dolci & Snacks, die zum Espresso gehören.',
+    image: '/images/produkt-cannoli.jpg',
+  },
+  {
+    title: 'Eisdielen',
+    desc: 'Premium Gelato & Desserts für die Saison.',
+    image: IMAGES.gelateria,
+  },
+  {
+    title: 'Handel',
+    desc: 'Feinkost & Lebensmittelhandel mit echten Spezialitäten.',
+    image: '/images/produkt-pizzabasen.jpg',
+  },
+];
+
+/** Städte für die Liefernetz-Karte (Längen-/Breitengrad) */
+export const NETWORK_HUB = { name: 'Duisburg', lon: 6.76, lat: 51.43 };
+
+export const NETWORK_CITIES = [
+  { name: 'Hamburg', lon: 10.0, lat: 53.55 },
+  { name: 'Bremen', lon: 8.8, lat: 53.08 },
+  { name: 'Berlin', lon: 13.4, lat: 52.52 },
+  { name: 'Hannover', lon: 9.73, lat: 52.37 },
+  { name: 'Leipzig', lon: 12.37, lat: 51.34 },
+  { name: 'Dresden', lon: 13.74, lat: 51.05 },
+  { name: 'Köln', lon: 6.96, lat: 50.94 },
+  { name: 'Frankfurt', lon: 8.68, lat: 50.11 },
+  { name: 'Nürnberg', lon: 11.08, lat: 49.45 },
+  { name: 'Stuttgart', lon: 9.18, lat: 48.78 },
+  { name: 'München', lon: 11.58, lat: 48.14 },
+];
 
 export const TRUST_STATS = [
   { value: '100%', label: 'Italienische Qualität' },
   { value: 'NRW', label: 'Standort & Herz' },
   { value: 'DE-weit', label: 'Lieferung' },
-];
-
-export const HIGHLIGHTS = [
-  { emoji: '🥐', title: 'Cornetti & Babà', desc: 'Frisch, knusprig, authentisch' },
-  { emoji: '🍕', title: 'La Perfetta', desc: 'Pizza in Minuten auf der Karte' },
-  { emoji: '🍨', title: 'Gelateria', desc: 'Premium-Eis für Deine Theke' },
-  { emoji: '🫔', title: 'Cannoli', desc: 'Sizilianische Klassiker' },
 ];
 
 export const JOB_OPENINGS: JobOpening[] = [
@@ -672,7 +802,7 @@ export const JOB_OPENINGS: JobOpening[] = [
     type: 'Vollzeit',
     start: 'Ab sofort',
     description:
-      'In unserem Lager in Duisburg sorgst du dafür, dass Cornetti, Cannoli und La Perfetta pünktlich bei unseren Kunden ankommen.',
+      'In unserem Lager in Duisburg sorgst du dafür, dass Cornetti, Cannoli und Arancini pünktlich bei unseren Kunden ankommen.',
     tasks: [
       'Warenannahme, Kontrolle und Einlagerung',
       'Kommissionierung und Versandvorbereitung',

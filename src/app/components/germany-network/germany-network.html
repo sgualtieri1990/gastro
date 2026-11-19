@@ -1,0 +1,57 @@
+<svg
+  class="network"
+  [class.is-visible]="visible()"
+  viewBox="0 0 490 640"
+  role="img"
+  aria-label="Liefernetz von Duisburg in ganz Deutschland"
+>
+  <defs>
+    <radialGradient id="net-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e85c1a" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#e85c1a" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="net-route" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffd7a8" />
+      <stop offset="100%" stop-color="#e85c1a" />
+    </linearGradient>
+  </defs>
+
+  <path class="network-outline" [attr.d]="outline" />
+
+  <g class="network-dots">
+    @for (dot of dots; track $index) {
+      <circle [attr.cx]="dot.x" [attr.cy]="dot.y" r="1.6" />
+    }
+  </g>
+
+  <g class="network-routes">
+    @for (city of cities; track city.name; let i = $index) {
+      <path class="network-route" [attr.d]="city.route" pathLength="1" [style.--i]="i" />
+      <path class="network-flow" [attr.d]="city.route" pathLength="1" [style.--i]="i" />
+    }
+  </g>
+
+  <g class="network-cities">
+    @for (city of cities; track city.name; let i = $index) {
+      <g class="network-city" [style.--i]="i">
+        <circle class="network-city-pulse" [attr.cx]="city.x" [attr.cy]="city.y" r="5" />
+        <circle class="network-city-dot" [attr.cx]="city.x" [attr.cy]="city.y" r="4" />
+        <text
+          [attr.x]="city.labelLeft ? city.x - 9 : city.x + 9"
+          [attr.y]="city.y + 4"
+          [attr.text-anchor]="city.labelLeft ? 'end' : 'start'"
+        >
+          {{ city.name }}
+        </text>
+      </g>
+    }
+  </g>
+
+  <g class="network-hub">
+    <circle [attr.cx]="hub.x" [attr.cy]="hub.y" r="46" fill="url(#net-glow)" />
+    <circle class="network-hub-ring" [attr.cx]="hub.x" [attr.cy]="hub.y" r="12" />
+    <circle class="network-hub-ring network-hub-ring--late" [attr.cx]="hub.x" [attr.cy]="hub.y" r="12" />
+    <circle class="network-hub-core" [attr.cx]="hub.x" [attr.cy]="hub.y" r="8" />
+    <text class="network-hub-label" [attr.x]="hub.x + 14" [attr.y]="hub.y - 12">{{ hub.name }} · Lager</text>
+  </g>
+</svg>

@@ -1,14 +1,14 @@
-<section class="product-catalog section" [id]="sectionId()">
+<section class="product-catalog section" [class.product-catalog--compact]="compactIntro()" [id]="sectionId()">
   <div class="container">
     <header class="portfolio-intro" appScrollReveal>
-      <span class="section-tag">Sortiment</span>
-      <h2 class="section-title">Servierfertige Feinkost für deine Gastronomie</h2>
       @if (compactIntro()) {
+        <h2 class="section-title">Ein Vorgeschmack unserer servierfertigen Feinkost</h2>
         <p class="section-subtitle">
-          Wähle eine Serie oder Produktwelt – dann siehst du alle Details und kannst markieren, was
-          dich interessiert.
+          Für deine Gastronomie, Cafés, Bäckereien und Eisdielen.
         </p>
       } @else {
+      <span class="section-tag">Sortiment</span>
+      <h2 class="section-title">Servierfertige Feinkost für deine Gastronomie</h2>
         <p class="section-subtitle">
           Wähle eine Serie oder Produktwelt aus, sieh dir die Produkte in Ruhe an und markiere alles,
           was für dein Konzept spannend ist – mit einem Klick sagst du uns: „Das interessiert mich“.
@@ -21,20 +21,25 @@
         @for (entry of browseEntries; track entry.id; let entryIndex = $index) {
           <button
             type="button"
-            class="browse-card glass-card"
+            class="browse-card"
+            [class.glass-card]="!compactIntro()"
             (click)="openBrowse(entry.id)"
             appScrollReveal
-            appReveal="scale"
-            [appScrollRevealDelay]="entryIndex * 60"
+            appReveal="up"
+            [appScrollRevealDelay]="entryIndex * 40"
           >
-            <div class="browse-card-image glass-frame">
+            <div class="browse-card-image" [class.glass-frame]="!compactIntro()">
               <img [src]="entry.coverImage" [alt]="entry.name" loading="lazy" />
             </div>
             <div class="browse-card-body">
-              <p class="browse-card-eyebrow">{{ entry.seriesId ? 'Serie' : 'Kategorie' }}</p>
+              @if (!compactIntro()) {
+                <p class="browse-card-eyebrow">{{ entry.seriesId ? 'Serie' : 'Kategorie' }}</p>
+              }
               <h3>{{ entry.name }}</h3>
-              <p>{{ entry.description }}</p>
-              <span class="browse-card-cta btn btn-glass">Entdecken</span>
+              @if (!compactIntro()) {
+                <p>{{ entry.description }}</p>
+                <span class="browse-card-cta btn btn-glass">Entdecken</span>
+              }
             </div>
           </button>
         }

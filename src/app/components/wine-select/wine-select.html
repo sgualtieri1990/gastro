@@ -1,0 +1,34 @@
+<div class="wine-select" [class.is-open]="open()">
+  <button
+    type="button"
+    class="wine-select-trigger"
+    [attr.aria-expanded]="open()"
+    aria-haspopup="listbox"
+    (click)="toggle()"
+    (keydown)="onKeydown($event)"
+  >
+    <span [class.is-placeholder]="!value()">{{ value() || placeholder() }}</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  </button>
+
+  @if (open()) {
+    <ul class="wine-select-menu" role="listbox">
+      @for (option of options(); track option; let i = $index) {
+        <li>
+          <button
+            type="button"
+            role="option"
+            [attr.aria-selected]="value() === option"
+            [class.is-active]="i === activeIndex()"
+            (mouseenter)="activeIndex.set(i)"
+            (click)="choose(option)"
+          >
+            {{ option }}
+          </button>
+        </li>
+      }
+    </ul>
+  }
+</div>

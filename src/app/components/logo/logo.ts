@@ -1,26 +1,28 @@
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IMAGES } from '../../data/site-content';
 
 @Component({
   selector: 'app-logo',
   imports: [RouterLink],
   template: `
-    <a routerLink="/" class="logo-link" [class.logo-link--hero]="variant() === 'hero'">
-      <img [src]="logoSrc" alt="Sicitalia – So schmeckt der Süden" class="logo-img" />
+    <a routerLink="/" class="logo-link" aria-label="Sicitalia – So schmeckt der Süden">
+      <img [src]="variant() === 'hero' ? '/images/logo-mark.png' : '/images/logo-mark-dark.png'" alt="" class="logo-img" />
     </a>
   `,
   styles: `
     .logo-link {
       display: flex;
       align-items: center;
+      flex-shrink: 0;
       text-decoration: none;
     }
 
     .logo-img {
-      height: 46px;
-      width: auto;
       display: block;
+      height: 48px;
+      width: calc(48px * 391 / 463);
+      max-width: none;
+      object-fit: contain;
       transition: transform var(--transition);
     }
 
@@ -28,25 +30,21 @@ import { IMAGES } from '../../data/site-content';
       transform: scale(1.03);
     }
 
-    .logo-link--hero .logo-img {
-      filter: drop-shadow(0 1px 8px rgba(255, 255, 255, 0.55))
-        drop-shadow(0 2px 14px rgba(0, 0, 0, 0.35));
-    }
-
     @media (max-width: 1100px) {
       .logo-img {
-        height: 38px;
+        height: 40px;
+        width: calc(40px * 391 / 463);
       }
     }
 
     @media (max-width: 480px) {
       .logo-img {
-        height: 32px;
+        height: 36px;
+        width: calc(36px * 391 / 463);
       }
     }
   `,
 })
 export class Logo {
   readonly variant = input<'default' | 'hero'>('default');
-  readonly logoSrc = IMAGES.logo;
 }

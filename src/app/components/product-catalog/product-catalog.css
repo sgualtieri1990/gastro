@@ -168,8 +168,79 @@
   gap: 28px;
 }
 
+.product-catalog--compact {
+  padding-top: 48px;
+  padding-bottom: 72px;
+}
+
+.product-catalog--compact .container {
+  max-width: 1440px;
+}
+
+.product-catalog--compact .portfolio-intro {
+  margin-bottom: 28px;
+}
+
+.product-catalog--compact .section-title {
+  font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+  font-weight: 500;
+}
+
+.product-catalog--compact .browse-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.product-catalog--compact .browse-card {
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.product-catalog--compact .browse-card:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.product-catalog--compact .browse-card-image {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.product-catalog--compact .browse-card-image img {
+  object-fit: cover;
+}
+
+.product-catalog--compact .browse-card:hover .browse-card-image img {
+  transform: none;
+}
+
+.product-catalog--compact .browse-card-body {
+  padding: 10px 2px 0;
+}
+
+.product-catalog--compact .browse-card-body h3 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 0;
+}
+
+@media (max-width: 800px) {
+  .product-catalog--compact .browse-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+}
+
 @media (max-width: 560px) {
   .browse-grid {
     grid-template-columns: 1fr;
+  }
+
+  .product-catalog--compact .browse-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

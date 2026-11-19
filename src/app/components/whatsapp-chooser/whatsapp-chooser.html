@@ -1,0 +1,55 @@
+@if (chooser.open()) {
+  <div class="wa-overlay" (click)="chooser.close()">
+    <div
+      class="wa-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="wa-welcome-title"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="wa-glow" aria-hidden="true"></div>
+
+      <button type="button" class="wa-close" aria-label="Schließen" (click)="chooser.close()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+
+      <p class="wa-eyebrow">Kontaktaufnahme</p>
+      <h2 id="wa-welcome-title">Herzlich <em>willkommen.</em></h2>
+      <p class="wa-lead">Schreib uns per WhatsApp oder ruf direkt an.</p>
+
+      <div class="wa-choices">
+        <button type="button" (click)="chooser.continueAs('b2b')">
+          <span class="wa-mark" aria-hidden="true">
+            <img src="/images/logo-mark-dark.png" alt="" />
+          </span>
+          <span>
+            <strong>B2B Gewerbekunden</strong>
+            <small>Gastronomie &amp; Handel</small>
+          </span>
+        </button>
+        <button type="button" (click)="chooser.continueAs('b2c')">
+          <span class="wa-mark" aria-hidden="true">
+            <img src="/images/logo-mark-dark.png" alt="" />
+          </span>
+          <span>
+            <strong>B2C Privatverbraucher</strong>
+            <small>Privater Genuss</small>
+          </span>
+        </button>
+        <a class="wa-call" [href]="phoneHref" (click)="chooser.close()">
+          <span class="wa-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M6.5 4.5h3l1.5 3.5-2 1.2a12 12 0 0 0 5.8 5.8l1.2-2 3.5 1.5v3A1.5 1.5 0 0 1 18 19 14.5 14.5 0 0 1 5 6a1.5 1.5 0 0 1 1.5-1.5z" />
+            </svg>
+          </span>
+          <span>
+            <strong>Direkt anrufen</strong>
+            <small>{{ phone }}</small>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+}

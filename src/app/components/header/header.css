@@ -79,6 +79,7 @@
 .nav-logo {
   justify-self: start;
   flex-shrink: 0;
+  min-width: max-content;
   margin-right: 20px;
 }
 
@@ -103,14 +104,64 @@
   gap: 4px;
 }
 
+.nav-social {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 6px;
+}
+
+.nav-social-link {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all var(--transition-bounce);
+}
+
+.nav-social-link svg {
+  width: 18px;
+  height: 18px;
+}
+
+.header--hero .nav-social-link {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.nav-social-link:hover {
+  color: #fff;
+  background: var(--color-brand-red);
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+
+.header--hero.scrolled .nav-social-link {
+  color: var(--color-text);
+  background: var(--glass-surface);
+  border-color: var(--glass-border);
+}
+
+.nav-social--mobile {
+  display: none;
+  margin: 12px 0 0;
+}
+
 .nav-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 14px;
-  font-size: 0.75rem;
+  padding: 8px 11px;
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-text);
   border-radius: var(--radius-pill);
@@ -151,6 +202,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  cursor: pointer;
   width: 40px;
   height: 40px;
   background: var(--color-brand-red);
@@ -232,17 +285,36 @@
   display: flex;
 }
 
+.nav-mobile.open .nav-social--mobile {
+  display: flex;
+}
+
+.nav-mobile .nav-social-link {
+  color: var(--color-text);
+  background: var(--glass-surface);
+  border-color: var(--glass-border);
+}
+
 .nav-mobile .nav-link {
   padding: 14px 18px;
   font-size: var(--text-sm);
   letter-spacing: 0.06em;
+  color: var(--color-text);
+  text-shadow: none;
+}
+
+.header--hero .nav-mobile .nav-link.active {
+  background: linear-gradient(135deg, var(--color-brand-red), #96181c);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(178, 30, 35, 0.35);
+  backdrop-filter: none;
 }
 
 @media (max-width: 1320px) {
   .nav-link {
-    padding: 8px 10px;
-    font-size: 0.6875rem;
-    letter-spacing: 0.07em;
+    padding: 8px 8px;
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
   }
 }
 

@@ -1,0 +1,63 @@
+@if (submitted) {
+  <div class="success-msg">
+    <strong>Danke, {{ name }}! Deine Anfrage ist raus.</strong>
+    <p>
+      Wunschtermin: {{ submittedSummary }}. Sobald Carmelo bestätigt, erhältst Du an
+      {{ email }} die Einladung mit Google-Meet-Link.
+    </p>
+  </div>
+} @else {
+  <form (ngSubmit)="onSubmit()">
+    <div class="booking-grid">
+      <div class="booking-fields">
+        <p class="booking-kicker">Google Meet · 30 Minuten</p>
+        <h2 class="booking-title">Termin <em>vereinbaren.</em></h2>
+        <p class="booking-lead">
+          Wähle rechts einen freien Slot und trag links deine Daten ein. Wir melden uns mit dem
+          Google-Meet-Link.
+        </p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="vc-name">Name *</label>
+            <input id="vc-name" type="text" [(ngModel)]="name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="vc-company">Betrieb</label>
+            <input id="vc-company" type="text" [(ngModel)]="company" name="company" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="vc-email">E-Mail *</label>
+            <input id="vc-email" type="email" [(ngModel)]="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="vc-phone">Telefon</label>
+            <input id="vc-phone" type="tel" [(ngModel)]="phone" name="phone" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="vc-message">Worum geht's?</label>
+          <textarea
+            id="vc-message"
+            [(ngModel)]="message"
+            name="message"
+            rows="3"
+            placeholder="Optional: Betrieb, Konzept oder gewünschte Produkte"
+          ></textarea>
+          @if (selectedProducts().length) {
+            <p class="form-hint">{{ selectedProducts().length }} Produkt(e) aus dem Portfolio übernommen.</p>
+          }
+        </div>
+        <button type="submit" class="btn btn-primary btn-full" [disabled]="!canSubmit">
+          Video-Call anfragen
+        </button>
+      </div>
+
+      <div class="booking-calendar">
+        <app-appointment-picker [(selectedDate)]="selectedDate" [(selectedTime)]="selectedTime" />
+      </div>
+    </div>
+  </form>
+}
