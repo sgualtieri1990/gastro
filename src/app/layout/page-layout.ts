@@ -4,10 +4,11 @@ import { Header } from '../components/header/header';
 import { Footer } from '../components/footer/footer';
 import { WhatsappButton } from '../components/whatsapp-button/whatsapp-button';
 import { WhatsappChooser } from '../components/whatsapp-chooser/whatsapp-chooser';
+import { CookieBanner } from '../components/cookie-banner/cookie-banner';
 
 @Component({
   selector: 'app-page-layout',
-  imports: [RouterOutlet, Header, Footer, WhatsappButton, WhatsappChooser],
+  imports: [RouterOutlet, Header, Footer, WhatsappButton, WhatsappChooser, CookieBanner],
   template: `
     <div class="ambient-bg" aria-hidden="true">
       <span class="orb orb-1"></span>
@@ -21,6 +22,7 @@ import { WhatsappChooser } from '../components/whatsapp-chooser/whatsapp-chooser
     <app-footer />
     <app-whatsapp-button />
     <app-whatsapp-chooser />
+    <app-cookie-banner />
   `,
   styles: `
     :host {

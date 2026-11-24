@@ -1,15 +1,51 @@
 .legal-content {
-  max-width: 720px;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
   padding: 40px;
   line-height: 1.75;
 }
 
 .legal-content p {
   margin-bottom: 16px;
+  /* Zeilenumbrüche aus den Textdaten (z. B. Adressen) übernehmen */
+  white-space: pre-line;
+}
+
+.legal-content h2 {
+  margin: 36px 0 12px;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--color-brand-dark);
+}
+
+.legal-content h2:first-child {
+  margin-top: 0;
+}
+
+.legal-content ul {
+  margin: 0 0 16px;
+  padding-left: 22px;
+  list-style: disc;
+}
+
+.legal-content ul.legal-links {
+  padding-left: 0;
+  list-style: none;
+}
+
+.legal-content li {
+  margin-bottom: 6px;
 }
 
 .legal-content a {
   color: var(--color-brand-red);
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .legal-content {
+    padding: 24px 20px;
+  }
 }

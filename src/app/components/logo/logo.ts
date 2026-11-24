@@ -6,7 +6,11 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
   template: `
     <a routerLink="/" class="logo-link" aria-label="Sicitalia – So schmeckt der Süden">
-      <img [src]="variant() === 'hero' ? '/images/logo-mark.png' : '/images/logo-mark-dark.png'" alt="" class="logo-img" />
+      @if (variant() === 'gold') {
+        <span class="logo-img logo-gold" aria-hidden="true"></span>
+      } @else {
+        <img [src]="variant() === 'hero' ? '/images/logo-mark.png' : '/images/logo-mark-dark.png'" alt="" class="logo-img" />
+      }
     </a>
   `,
   styles: `
@@ -24,6 +28,13 @@ import { RouterLink } from '@angular/router';
       max-width: none;
       object-fit: contain;
       transition: transform var(--transition);
+    }
+
+    /* Goldene Einfärbung: Form des dunklen Logos als Maske, Füllung im Goldverlauf der Buttons */
+    .logo-gold {
+      background: linear-gradient(135deg, #f0cd7c 0%, #c89a3c 100%);
+      -webkit-mask: url('/images/logo-mark-dark.png') center / contain no-repeat;
+      mask: url('/images/logo-mark-dark.png') center / contain no-repeat;
     }
 
     .logo-link:hover .logo-img {
@@ -46,5 +57,5 @@ import { RouterLink } from '@angular/router';
   `,
 })
 export class Logo {
-  readonly variant = input<'default' | 'hero'>('default');
+  readonly variant = input<'default' | 'hero' | 'gold'>('default');
 }

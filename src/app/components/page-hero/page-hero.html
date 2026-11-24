@@ -1,37 +1,26 @@
-<section class="banner-hero" [class.banner-hero--full]="size() === 'full'" [class.banner-hero--compact]="size() === 'compact'">
-  <div class="banner-backdrop" aria-hidden="true">
+<section class="page-hero">
+  <div class="page-hero-bg" aria-hidden="true">
     <div
-      class="banner-backdrop-photo"
+      class="page-hero-photo"
       [style.background-image]="'url(' + image() + ')'"
       [style.background-position]="bgPosition()"
     ></div>
-    <div class="banner-backdrop-shade"></div>
-    <div class="banner-backdrop-rings"></div>
+    <div class="page-hero-shade"></div>
   </div>
 
-  <div class="container banner-content">
-    <div class="banner-layout" [class.banner-layout--with-keywords]="size() === 'full'">
-      <div class="banner-copy-wrap">
-        <div class="banner-copy" appScrollReveal appReveal="left">
-          <div class="banner-lead">
-            <svg class="banner-brush" viewBox="0 0 1000 420" preserveAspectRatio="none" aria-hidden="true">
-              <path
-                fill="currentColor"
-                d="M987.9 233.1 Q987.9 233.1 974.3 236 Q960.6 239 965.6 242.1 Q970.7 245.2 970.4 248.6 Q970.1 251.9 963.1 255.2 Q956 258.5 941.5 262.7 Q926.9 266.9 935.8 269.7 Q944.7 272.4 932.9 279.4 Q921.1 286.3 907.9 286.6 Q894.8 286.8 891.4 287.7 Q888 288.6 873.4 292.4 Q858.9 296.1 834 296.5 Q809.1 296.9 799.1 303.9 Q789.1 310.9 774.2 310.5 Q759.2 310.1 756.3 311.4 Q753.4 312.6 728.2 308.9 Q703.1 305.2 691 311.2 Q678.9 317.2 667 314.5 Q655.1 311.9 642 313.6 Q629 315.3 613.1 318.8 Q597.3 322.4 584.9 317.8 Q572.4 313.2 558.6 319.9 Q544.8 326.5 529.7 321.4 Q514.5 316.3 499.8 314.9 Q485.1 313.4 471.5 319.8 Q457.8 326.2 444.7 323.3 Q431.6 320.4 418.5 321.9 Q405.4 323.4 387 321.7 Q368.7 319.9 350.4 320 Q332.1 320.1 322.8 317.8 Q313.6 315.4 300.9 316.1 Q288.2 316.8 268.2 310.8 Q248.2 304.8 237.7 298.4 Q227.3 292.1 213 294 Q198.8 295.8 180.6 293.3 Q162.5 290.7 155.4 285.6 Q148.3 280.5 148.5 275.3 Q148.8 270 135.3 263.7 Q121.9 257.3 114.4 256.4 Q107 255.5 96.8 248.7 Q86.5 242 72.8 239.7 Q59.1 237.5 60 232.3 Q60.9 227.1 29.4 223.1 Q-2.1 219 1.2 214.8 Q4.5 210.6 13.3 207.9 Q22.2 205.1 9.6 201.8 Q-3 198.4 16.3 196.4 Q35.5 194.5 35.7 191.9 Q35.9 189.3 33.5 186.3 Q31 183.2 37 181.2 Q42.9 179.1 51.5 176.5 Q60.1 173.9 54.9 170.7 Q49.6 167.4 68.5 165.3 Q87.4 163.3 94.3 162.7 Q101.1 162.1 108.1 155.7 Q115 149.4 127.8 145.9 Q140.5 142.4 155.2 143 Q169.9 143.6 185.4 140.5 Q200.9 137.4 222.4 132.9 Q243.9 128.4 255.9 123.3 Q267.8 118.2 282.5 117.5 Q297.1 116.8 309.6 112.2 Q322.1 107.5 334 104.9 Q346 102.2 353.4 97.6 Q360.8 92.9 382 88.2 Q403.2 83.5 416.6 84.5 Q430.1 85.5 443 72.8 Q455.9 60.2 470.9 66.9 Q485.9 73.6 499.7 80 Q513.6 86.4 527.7 86.8 Q541.9 87.2 558.6 93.6 Q575.4 100 589.7 97.9 Q604 95.8 613.6 100 Q623.1 104.1 635.8 109 Q648.5 113.9 671.2 115.9 Q693.8 117.9 705.5 128 Q717.1 138.1 727.2 143.1 Q737.3 148.1 762.8 148.3 Q788.2 148.6 789 155.9 Q789.8 163.2 810.6 162.8 Q831.4 162.3 845.1 167 Q858.7 171.7 870.3 175.4 Q881.9 179 881.2 182.6 Q880.5 186.2 893.1 190.9 Q905.7 195.6 914.6 197.4 Q923.4 199.1 939.2 200.1 Q954.9 201.1 955.8 204 Q956.7 206.8 975.2 210.2 Q993.7 213.7 982.2 217.2 Q970.7 220.7 969.5 223.5 Z"
-              />
-            </svg>
-            @if (eyebrow()) {
-              <p class="banner-eyebrow">{{ eyebrow() }}</p>
-            }
-            <h1 class="banner-title" [innerHTML]="title()"></h1>
-            @if (subtitle()) {
-              <p class="banner-tagline">{{ subtitle() }}</p>
-            }
-          </div>
-          <ng-content />
-        </div>
-      </div>
-      <ng-content select="[banner-keywords]" />
+  <div class="container page-hero-inner">
+    <div class="page-hero-copy" appScrollReveal appReveal="left">
+      @if (eyebrow()) {
+        <p class="page-hero-badge">
+          <span class="page-hero-dot" aria-hidden="true"></span>
+          {{ eyebrow() }}
+        </p>
+      }
+      <h1 class="page-hero-title" [innerHTML]="title()"></h1>
+      @if (subtitle()) {
+        <p class="page-hero-sub">{{ subtitle() }}</p>
+      }
+      <ng-content />
     </div>
   </div>
 </section>

@@ -52,19 +52,10 @@
   </a>
 </section>
 
-<!-- ═══ MARQUEE ═══ -->
-<section class="marquee" aria-label="Sortiment im Überblick">
-  <div class="marquee-track">
-    @for (pass of [0, 1]; track pass) {
-      <ul [attr.aria-hidden]="pass === 1">
-        @for (word of heroKeywords; track word; let i = $index) {
-          <li>
-            {{ word }}
-            <img class="marquee-food" [src]="marqueeFoods[i]" alt="" />
-          </li>
-        }
-      </ul>
-    }
+<!-- ═══ SORTIMENT-LEISTE ═══ -->
+<section class="keyword-strip" aria-label="Sortiment im Überblick">
+  <div class="container">
+    <app-keyword-typewriter [words]="heroKeywords" />
   </div>
 </section>
 
@@ -178,7 +169,7 @@
     <div class="intro-grid">
     <div class="intro-head" appScrollReveal appReveal="left">
       <p class="eyebrow">Das ist Sicitalia</p>
-      <h2 class="display">Lieferanten gibt es viele. <em>Ein Partner wie wir ist selten.</em></h2>
+      <h2 class="display">Lieferanten gibt es viele. <em>Ein Partner wie uns ist selten.</em></h2>
       <p class="lead">
         Pünktlich liefern kann jeder. Wir kennen deinen Service-Alltag und helfen dir, dein
         Restaurant erfolgreicher und entspannter zu führen.
@@ -311,10 +302,21 @@
       </ul>
 
       @if (submitted) {
-        <p class="b2b-success">
-          Vielen Dank, {{ firstName }}! Wir prüfen Deine Angaben und melden uns zur Freischaltung
-          mit dem Katalog und Deinen Preisen.
-        </p>
+        <div class="b2b-success">
+          @if (demo) {
+            <p>
+              Vielen Dank, {{ firstName }}! Du bist jetzt <strong>eingeloggt</strong> und kannst Dir
+              Kataloge und das Portfolio mit Preisen ansehen.
+            </p>
+            <p><a class="btn btn-light" routerLink="/kundenbereich">Zum Kundenbereich</a></p>
+          } @else {
+            <p>
+              Vielen Dank, {{ firstName }}! Wir prüfen Deine Angaben und schalten Dein Kundenkonto frei.
+              Sobald das erledigt ist, erhältst Du eine E-Mail und kannst Dich mit Deiner E-Mail-Adresse
+              und Deinem Passwort im <a routerLink="/anmelden">Kundenbereich</a> anmelden.
+            </p>
+          }
+        </div>
       } @else {
         <form class="b2b-form" (ngSubmit)="submitRegistration()">
           <div class="b2b-stepper" id="b2b-stepper">
@@ -443,11 +445,45 @@
           @if (formStep === 2) {
             <div class="b2b-fields">
               <label class="b2b-field--wide">
-                E-Mail-Adresse (persönlich)
-                <input id="b2b-email" type="email" name="email" [(ngModel)]="email" />
+                E-Mail-Adresse (persönlich) *
+                <input id="b2b-email" type="email" name="email" autocomplete="username" [(ngModel)]="email" required />
                 <span class="b2b-hint">
-                  Für Angebote und <strong>persönliche Nachrichten</strong>, wie z. B. Zustellung neuer Preislisten.
+                  Damit meldest Du Dich später im <strong>Kundenbereich</strong> an. Wir nutzen sie auch für Angebote und
+                  <strong>persönliche Nachrichten</strong>, wie z. B. die Zustellung neuer Preislisten.
                 </span>
+              </label>
+              <label>
+                Passwort wählen *
+                <input
+                  id="b2b-password"
+                  [type]="showPassword ? 'text' : 'password'"
+                  name="password"
+                  autocomplete="new-password"
+                  [(ngModel)]="password"
+                  [attr.minlength]="minPasswordLength"
+                  required
+                />
+                <span class="b2b-hint" [class.b2b-hint--error]="password && !passwordValid">
+                  Mindestens {{ minPasswordLength }} Zeichen.
+                </span>
+              </label>
+              <label>
+                Passwort wiederholen *
+                <input
+                  id="b2b-password-repeat"
+                  [type]="showPassword ? 'text' : 'password'"
+                  name="passwordRepeat"
+                  autocomplete="new-password"
+                  [(ngModel)]="passwordRepeat"
+                  required
+                />
+                @if (passwordRepeat && !passwordsMatch) {
+                  <span class="b2b-hint b2b-hint--error">Die Passwörter stimmen nicht überein.</span>
+                }
+              </label>
+              <label class="b2b-consent b2b-field--wide">
+                <input type="checkbox" name="showPassword" [(ngModel)]="showPassword" />
+                <span>Passwörter anzeigen</span>
               </label>
               <label class="b2b-field--wide">
                 E-Mail-Adresse Rechnungsstellung *
@@ -516,8 +552,14 @@
             </div>
             <label class="b2b-consent">
               <input type="checkbox" name="consent" [(ngModel)]="consent" required />
-              <span>Ich stimme zu, dass meine Daten zum Zweck der Kontoerstellung verarbeitet werden. *</span>
+              <span>
+                Ich stimme zu, dass meine Daten zum Zweck der Kontoerstellung und -verwaltung verarbeitet werden.
+                Es gilt die <a routerLink="/datenschutz" target="_blank">Datenschutzerklärung</a>. *
+              </span>
             </label>
+            @if (submitError) {
+              <p class="b2b-error" role="alert">{{ submitError }}</p>
+            }
           }
 
           <div class="b2b-step-nav">
@@ -527,7 +569,9 @@
             @if (formStep < formSteps.length - 1) {
               <button type="button" class="btn btn-light" (click)="nextStep()" [disabled]="!isStepValid()">Weiter</button>
             } @else {
-              <button type="submit" class="btn btn-light" [disabled]="!formReady">Kundenkonto eröffnen</button>
+              <button type="submit" class="btn btn-light" [disabled]="!formReady || submitting">
+                {{ submitting ? 'Wird gesendet …' : 'Kundenkonto eröffnen' }}
+              </button>
             }
           </div>
         </form>
@@ -570,13 +614,10 @@
 
     <div class="story-grid">
       <div class="story-video" appScrollReveal appReveal="scale">
-        <iframe
-          [src]="videoUrl"
+        <app-youtube-embed
+          [src]="contact.youtubeVideo"
           title="Sicitalia Imagevideo – So schmeckt der Süden"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
+        />
       </div>
 
       <figure class="story-quote" appScrollReveal appReveal="right">

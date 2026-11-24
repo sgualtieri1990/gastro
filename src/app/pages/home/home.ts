@@ -1,18 +1,19 @@
 import { AfterViewInit, Component, HostListener, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { YoutubeEmbed } from '../../components/youtube-embed/youtube-embed';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CatalogReader } from '../../components/catalog-reader/catalog-reader';
 import { GermanyNetwork } from '../../components/germany-network/germany-network';
+import { KeywordTypewriter } from '../../components/keyword-typewriter/keyword-typewriter';
 import { VideoCallBooking } from '../../components/video-call-booking/video-call-booking';
 import { WineSelect } from '../../components/wine-select/wine-select';
 import { CountUpDirective } from '../../directives/count-up.directive';
 import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 import {
+  HERO_KEYWORDS,
   B2B_BENEFITS,
   CONTACT,
   DOWNLOADS,
-  HERO_KEYWORDS,
   HOME_STATS,
   IMAGES,
   KING_PRODUCTS,
@@ -21,6 +22,7 @@ import {
   TARGET_GROUPS,
 } from '../../data/site-content';
 import { PORTFOLIO_PRODUCTS } from '../../data/portfolio-catalog';
+import { AuthFailure, AuthService, Profile, authErrorMessage } from '../../services/auth.service';
 import { ProductInterestService } from '../../services/product-interest.service';
 import { ScrollNavService } from '../../services/scroll-nav.service';
 import { WhatsappChooserService } from '../../services/whatsapp-chooser.service';
@@ -36,6 +38,8 @@ const FRAGMENT_SCROLL: Record<string, ScrollLogicalPosition> = {
   imports: [
     FormsModule,
     RouterLink,
+    KeywordTypewriter,
+    YoutubeEmbed,
     ScrollRevealDirective,
     CountUpDirective,
     GermanyNetwork,
@@ -51,25 +55,13 @@ export class Home implements AfterViewInit {
   private readonly scrollNav = inject(ScrollNavService);
   private readonly interest = inject(ProductInterestService);
   private readonly whatsapp = inject(WhatsappChooserService);
-  private readonly sanitizer = inject(DomSanitizer);
-
-  readonly videoUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-    CONTACT.youtubeVideo,
-  );
+  private readonly auth = inject(AuthService);
+  readonly demo = this.auth.demo;
 
   readonly contact = CONTACT;
   readonly downloads = DOWNLOADS;
   readonly images = IMAGES;
   readonly heroKeywords = HERO_KEYWORDS;
-  readonly marqueeFoods = [
-    '/images/king-arancino.png',
-    '/images/king-cannolo.png',
-    '/images/king-cornetto.png',
-    '/images/king-cannolo.png',
-    '/images/king-cornetto.png',
-    '/images/king-cannolo.png',
-    '/images/king-cornetto.png',
-  ];
   readonly kings = KING_PRODUCTS;
   readonly previewProducts = PORTFOLIO_PRODUCTS.slice(0, 10);
   readonly pizzella = PIZZELLA;
@@ -176,9 +168,28 @@ export class Home implements AfterViewInit {
   billingHouseNumber = '';
   billingZip = '';
   billingCity = '';
+  password = '';
+  passwordRepeat = '';
+  showPassword = false;
   consent = false;
   submitted = false;
+  submitting = false;
+  submitError = '';
   formStep = 0;
+
+  readonly minPasswordLength = 10;
+
+  get passwordValid(): boolean {
+    return this.password.length >= this.minPasswordLength;
+  }
+
+  get passwordsMatch(): boolean {
+    return this.password === this.passwordRepeat;
+  }
+
+  get emailValid(): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email.trim());
+  }
 
   get contactChosen(): boolean {
     return this.contactEmail || this.contactLandline || this.contactMobile || this.contactWhatsapp;
@@ -210,7 +221,14 @@ export class Home implements AfterViewInit {
       return !!(this.street.trim() && this.houseNumber.trim() && this.zip.trim() && this.city.trim() && deliveryReady && billingReady);
     }
     if (step === 2) {
-      return !!(this.billingEmail.trim() && this.phone.trim() && this.contactChosen);
+      return !!(
+        this.emailValid &&
+        this.passwordValid &&
+        this.passwordsMatch &&
+        this.billingEmail.trim() &&
+        this.phone.trim() &&
+        this.contactChosen
+      );
     }
     return !!(this.vatId.trim() && this.consent);
   }
@@ -275,10 +293,69 @@ export class Home implements AfterViewInit {
     this.whatsapp.show();
   }
 
-  submitRegistration(): void {
-    if (this.formReady) {
+  async submitRegistration(): Promise<void> {
+    if (!this.formReady || this.submitting) {
+      return;
+    }
+    this.submitting = true;
+    this.submitError = '';
+
+    const profile: Profile = {
+      position: this.position,
+      businessType: this.businessType,
+      legalForm: this.legalForm,
+      street: this.street,
+      houseNumber: this.houseNumber,
+      zip: this.zip,
+      city: this.city,
+      billingEmail: this.billingEmail,
+      phone: this.phone,
+      phoneAlt: this.phoneAlt,
+      vatId: this.vatId,
+      deliveryStart: this.deliveryStart,
+      productInterest: this.productInterest,
+      contactVia: [
+        this.contactEmail ? 'E-Mail' : '',
+        this.contactLandline ? 'Festnetz' : '',
+        this.contactMobile ? 'Handy' : '',
+        this.contactWhatsapp ? 'WhatsApp' : '',
+      ].filter(Boolean),
+    };
+    if (this.differentDelivery) {
+      Object.assign(profile, {
+        deliveryStreet: this.deliveryStreet,
+        deliveryHouseNumber: this.deliveryHouseNumber,
+        deliveryZip: this.deliveryZip,
+        deliveryCity: this.deliveryCity,
+      });
+    }
+    if (this.differentBilling) {
+      Object.assign(profile, {
+        billingStreet: this.billingStreet,
+        billingHouseNumber: this.billingHouseNumber,
+        billingZip: this.billingZip,
+        billingCity: this.billingCity,
+      });
+    }
+
+    try {
+      await this.auth.register({
+        email: this.email.trim(),
+        password: this.password,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        company: this.company,
+        consent: true,
+        profile,
+      });
+      this.password = '';
+      this.passwordRepeat = '';
       this.submitted = true;
       this.interest.clear();
+    } catch (error) {
+      this.submitError = authErrorMessage(error instanceof AuthFailure ? error.code : 'server_error');
+    } finally {
+      this.submitting = false;
     }
   }
 

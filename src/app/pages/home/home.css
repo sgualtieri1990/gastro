@@ -432,50 +432,11 @@
   100% { opacity: 0; transform: translateY(14px); }
 }
 
-/* ═══ MARQUEE ═══ */
-.marquee {
-  position: relative;
-  z-index: 2;
-  overflow: hidden;
+/* ═══ SORTIMENT-LEISTE (Schreibmaschine) ═══ */
+.keyword-strip {
+  background: var(--color-brand-cream);
+  border-bottom: 1px solid rgba(92, 46, 46, 0.1);
   padding: 22px 0;
-  background: var(--color-brand-red);
-  color: #fff;
-  transform: rotate(-1.4deg);
-  margin: -26px -2% 0;
-  box-shadow: 0 20px 50px rgba(178, 30, 35, 0.3);
-}
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 38s linear infinite;
-}
-
-.marquee:hover .marquee-track { animation-play-state: paused; }
-
-.marquee ul { display: flex; flex-shrink: 0; }
-
-.marquee li {
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  font-family: 'Oswald', var(--font-body);
-  font-size: clamp(1.25rem, 2.4vw, 2rem);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.marquee-food {
-  width: 2.15em;
-  height: 1.7em;
-  margin: 0 clamp(18px, 2.6vw, 40px);
-  object-fit: contain;
-  filter: drop-shadow(0 6px 10px rgba(26, 8, 9, 0.35));
-}
-
-@keyframes marquee {
-  to { transform: translateX(-50%); }
 }
 
 /* ═══ STATS ═══ */
@@ -1256,6 +1217,7 @@
 
 .b2b-form input[type='text'],
 .b2b-form input[type='email'],
+.b2b-form input[type='password'],
 .b2b-form input[type='tel'],
 .b2b-form select,
 .b2b-form textarea {
@@ -1305,6 +1267,30 @@
   letter-spacing: 0;
   text-transform: none;
   color: #ffd7a8;
+}
+
+.b2b-hint--error {
+  color: #ffb4b4;
+}
+
+.b2b-success p + p {
+  margin-top: 14px;
+}
+
+.b2b-error {
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(120, 10, 10, 0.45);
+  border: 1px solid rgba(255, 180, 180, 0.5);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.b2b-success a:not(.btn),
+.b2b-consent a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .b2b-consent {
@@ -1975,7 +1961,6 @@ app-product-catalog { display: block; }
   .b2b-more,
   .b2b-more-inner > *:not(.b2b-fields),
   .b2b-more .b2b-fields > label { transition: none; }
-  .marquee-track,
   .timeline::after,
   .timeline-node,
   .b2b-icon img { animation: none; }

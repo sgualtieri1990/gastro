@@ -18,14 +18,11 @@
         Erfahren Sie mehr über unsere Philosophie und unser Engagement für Qualität und Geschmack.
       </p>
       <div class="video-wrap glass-frame">
-        <img [src]="images.videoThumbnail" alt="Sicitalia Imagevideo Vorschau" class="video-poster" />
-        <iframe
-          [src]="videoUrl"
+        <app-youtube-embed
+          [src]="contact.youtubeVideo"
           title="Sicitalia Imagevideo"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+          [poster]="images.videoThumbnail"
+        />
       </div>
     </div>
 

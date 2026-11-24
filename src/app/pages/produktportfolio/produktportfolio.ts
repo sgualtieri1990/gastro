@@ -6,12 +6,14 @@ import {
   PORTFOLIO_PRODUCTS,
   PortfolioProduct,
 } from '../../data/portfolio-catalog';
+import { demoPrice } from '../../data/demo-prices';
+import { AuthService } from '../../services/auth.service';
 
 const FLAVOR_COLORS: Record<string, string> = {
   nocciola: '#8a5a32',
   arachide: '#c4894a',
   vaniglia: '#f3e2b3',
-  'vagnilia e': '#f3e2b3',
+  'vaniglia e': '#f3e2b3',
   menta: '#7dbe8a',
   yogurt: '#f7f1e8',
   'yogurt mango': '#f0b45a',
@@ -45,6 +47,11 @@ const FLAVOR_COLORS: Record<string, string> = {
 })
 export class Produktportfolio {
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly auth = inject(AuthService);
+
+  readonly loggedIn = this.auth.loggedIn;
+  /** Vorschau: eingeloggte Besucher sehen Beispielpreise. */
+  readonly showDemoPrices = computed(() => this.auth.demo && this.auth.loggedIn());
 
   readonly categories = PORTFOLIO_CATEGORIES;
   readonly total = PORTFOLIO_PRODUCTS.length;
@@ -102,6 +109,11 @@ export class Produktportfolio {
     const g = parseInt(hex.slice(2, 4), 16);
     const b = parseInt(hex.slice(4, 6), 16);
     return r * 0.299 + g * 0.587 + b * 0.114 > 160 ? '#3d2c2c' : '#fffaf4';
+  }
+
+  /** Echter Preis aus dem Katalog, in der Vorschau sonst ein Beispielpreis. */
+  priceFor(product: PortfolioProduct): string | null {
+    return this.catalogPrice(product) ?? (this.showDemoPrices() ? demoPrice(product.id) : null);
   }
 
   catalogPrice(product: PortfolioProduct): string | null {

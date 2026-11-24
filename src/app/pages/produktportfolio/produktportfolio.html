@@ -2,13 +2,22 @@
   <div class="container">
     <p class="eyebrow">Vorgeschmack</p>
     <h1 class="display">Produkt<em>portfolio.</em></h1>
-    <p class="lead">
-      Ein Ausschnitt aus hunderten Produkten. Den gesamten Katalog mit Preisen gibt es, wenn du Kunde wirst.
-    </p>
-    <p class="portfolio-prompt">
-      Sie wollen direkt den <strong>Produktkatalog mit Preisen</strong> erhalten? Dann klicken Sie hier auf „Kunde werden“.
-    </p>
-    <a class="btn btn-primary portfolio-cta" routerLink="/" fragment="kunde-werden">Kunde werden</a>
+    @if (loggedIn()) {
+      <p class="lead">
+        Das gesamte Sortiment mit Deinen Preisen.
+        @if (showDemoPrices()) {
+          <em>Die Preise in dieser Vorschau sind Beispielwerte.</em>
+        }
+      </p>
+    } @else {
+      <p class="lead">
+        Ein Ausschnitt aus hunderten Produkten. Den gesamten Katalog mit Preisen gibt es, wenn du Kunde wirst.
+      </p>
+      <p class="portfolio-prompt">
+        Sie wollen direkt den <strong>Produktkatalog mit Preisen</strong> erhalten? Dann klicken Sie hier auf „Kunde werden“.
+      </p>
+      <a class="btn btn-primary portfolio-cta" routerLink="/" fragment="kunde-werden">Kunde werden</a>
+    }
   </div>
 </section>
 
@@ -76,6 +85,9 @@
                 @if (product.meta) {
                   <span class="product-meta">{{ product.meta }}</span>
                 }
+                @if (priceFor(product); as price) {
+                  <span class="product-price">{{ price }}</span>
+                }
               </span>
             </button>
           </article>
@@ -83,12 +95,14 @@
       </div>
     }
 
-    <div class="portfolio-end">
-      <p class="portfolio-prompt">
-        Sie wollen direkt den <strong>Produktkatalog mit Preisen</strong> erhalten? Dann klicken Sie hier auf „Kunde werden“.
-      </p>
-      <a class="btn btn-primary portfolio-cta" routerLink="/" fragment="kunde-werden">Kunde werden</a>
-    </div>
+    @if (!loggedIn()) {
+      <div class="portfolio-end">
+        <p class="portfolio-prompt">
+          Sie wollen direkt den <strong>Produktkatalog mit Preisen</strong> erhalten? Dann klicken Sie hier auf „Kunde werden“.
+        </p>
+        <a class="btn btn-primary portfolio-cta" routerLink="/" fragment="kunde-werden">Kunde werden</a>
+      </div>
+    }
   </div>
 </section>
 
@@ -136,12 +150,14 @@
           }
           <div>
             <dt>Preis</dt>
-            <dd>{{ catalogPrice(product) ?? 'Preis auf Anfrage' }}</dd>
+            <dd>{{ priceFor(product) ?? 'Preis auf Anfrage' }}</dd>
           </div>
         </dl>
-        <a class="btn btn-primary" routerLink="/" fragment="kunde-werden" (click)="close()">
-          Kunde werden
-        </a>
+        @if (!loggedIn()) {
+          <a class="btn btn-primary" routerLink="/" fragment="kunde-werden" (click)="close()">
+            Kunde werden
+          </a>
+        }
       </div>
     </div>
   </div>

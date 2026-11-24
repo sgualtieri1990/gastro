@@ -279,6 +279,13 @@
   line-height: 1.35;
 }
 
+.product-price {
+  margin-top: 4px;
+  color: var(--color-brand-red);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
 .portfolio-end {
   display: flex;
   flex-direction: column;

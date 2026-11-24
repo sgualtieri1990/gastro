@@ -48,10 +48,27 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "ignore": [
+                  "api/config.php"
+                ]
               }
             ],
             "styles": [
+              "node_modules/@fontsource/inter/latin-300.css",
+              "node_modules/@fontsource/inter/latin-400.css",
+              "node_modules/@fontsource/inter/latin-500.css",
+              "node_modules/@fontsource/inter/latin-600.css",
+              "node_modules/@fontsource/inter/latin-700.css",
+              "node_modules/@fontsource/inter/latin-800.css",
+              "node_modules/@fontsource/oswald/latin-300.css",
+              "node_modules/@fontsource/oswald/latin-400.css",
+              "node_modules/@fontsource/oswald/latin-500.css",
+              "node_modules/@fontsource/oswald/latin-600.css",
+              "node_modules/@fontsource/playfair-display/latin-400.css",
+              "node_modules/@fontsource/playfair-display/latin-400-italic.css",
+              "node_modules/@fontsource/playfair-display/latin-600.css",
+              "node_modules/@fontsource/playfair-display/latin-700.css",
               "src/styles.scss"
             ]
           },
@@ -74,7 +91,46 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "public",
+                  "ignore": [
+                    "api/**"
+                  ]
+                }
+              ]
+            },
+            "preview": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "36kB",
+                  "maximumError": "48kB"
+                }
+              ],
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.preview.ts"
+                }
+              ],
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "public",
+                  "ignore": [
+                    "api/**"
+                  ]
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -87,9 +143,15 @@
             },
             "development": {
               "buildTarget": "gastro:build:development"
+            },
+            "preview": {
+              "buildTarget": "gastro:build:preview"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "proxy.conf.json"
+          }
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
@@ -110,6 +172,20 @@
               }
             ],
             "styles": [
+              "node_modules/@fontsource/inter/latin-300.css",
+              "node_modules/@fontsource/inter/latin-400.css",
+              "node_modules/@fontsource/inter/latin-500.css",
+              "node_modules/@fontsource/inter/latin-600.css",
+              "node_modules/@fontsource/inter/latin-700.css",
+              "node_modules/@fontsource/inter/latin-800.css",
+              "node_modules/@fontsource/oswald/latin-300.css",
+              "node_modules/@fontsource/oswald/latin-400.css",
+              "node_modules/@fontsource/oswald/latin-500.css",
+              "node_modules/@fontsource/oswald/latin-600.css",
+              "node_modules/@fontsource/playfair-display/latin-400.css",
+              "node_modules/@fontsource/playfair-display/latin-400-italic.css",
+              "node_modules/@fontsource/playfair-display/latin-600.css",
+              "node_modules/@fontsource/playfair-display/latin-700.css",
               "src/styles.scss"
             ]
           }

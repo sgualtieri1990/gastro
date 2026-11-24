@@ -111,13 +111,9 @@ export const IMAGES = {
 } as const;
 
 export const HERO_KEYWORDS = [
-  'Arancini Classici',
-  'Cannoli Siciliani',
-  'Cornetti Italiani',
-  'Italienisches Gebäck',
-  'Glutenfreie Produktlinien',
-  'Premium Gelato',
-  'Lieferung deutschlandweit',
+  'Import, Lager und Distribution aus einer Hand',
+  'B2B-Lieferant für Gastronomie & Handel',
+  'Erster Lieferant deutschlandweit für Arancini, Cannoli und Cornetti',
 ];
 
 export interface KingProduct {
@@ -255,7 +251,7 @@ export const DOWNLOADS: DownloadItem[] = [
     image: IMAGES.downloadPizzella,
   },
   {
-    title: 'Bindi Artikelliste Gelantine',
+    title: 'Bindi Artikelliste Gelatine',
     file: 'bindi-gelantine.pdf',
     image: IMAGES.downloadGelantine,
   },
@@ -275,7 +271,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     title: 'Arancini Siciliani',
     image: '/images/produkt-arancini.jpg',
-    description: 'Traditionelle sicilianische Reisbällchen – knusprig und aromatisch.',
+    description: 'Traditionelle sizilianische Reisbällchen – knusprig und aromatisch.',
   },
   {
     title: 'Streetfood',
@@ -290,7 +286,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     title: 'Cannoli Siciliani',
     image: '/images/produkt-cannoli.jpg',
-    description: 'Original sicilianische Cannoli – knusprig, cremig, unvergleichlich.',
+    description: 'Original sizilianische Cannoli – knusprig, cremig, unvergleichlich.',
   },
 ];
 
@@ -588,7 +584,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     coverImage: '/images/produkt-arancini.jpg',
     gallery: ['/images/produkt-arancini.jpg', IMAGES.arancino],
     description:
-      'Traditionelle sicilianische Reisbällchen – knusprig außen, aromatisch innen. Perfekt für Bistros, Snackbars und warme Küche.',
+      'Traditionelle sizilianische Reisbällchen – knusprig außen, aromatisch innen. Perfekt für Bistros, Snackbars und warme Küche.',
     features: ['Warm servierbar', 'Beliebter Snack', 'Authentisch sizilianisch'],
     readyToServe: true,
   },
@@ -828,7 +824,7 @@ export const JOB_OPENINGS: JobOpening[] = [
     ],
     profile: [
       'Erfahrung in Social Media, Content oder Marketing',
-      'Gespür für Food, Gastronomie und visuelle Storytelling',
+      'Gespür für Food, Gastronomie und visuelles Storytelling',
       'Sicher in Deutsch; Italienisch ist ein Plus',
     ],
   },

@@ -111,6 +111,48 @@
   margin-left: 6px;
 }
 
+.nav-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-brand-dark);
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  transition: all var(--transition-bounce);
+}
+
+.nav-status:hover {
+  border-color: var(--color-brand-red);
+  color: var(--color-brand-red);
+}
+
+.nav-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22a559;
+  box-shadow: 0 0 0 3px rgba(34, 165, 89, 0.25);
+}
+
+.header--hero .nav-status {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.header--hero.scrolled .nav-status {
+  color: var(--color-brand-dark);
+  background: var(--glass-surface);
+  border-color: var(--glass-border);
+}
+
 .nav-social-link {
   display: grid;
   place-items: center;
@@ -310,7 +352,22 @@
   backdrop-filter: none;
 }
 
+@media (max-width: 560px) {
+  .nav-status {
+    padding: 6px 10px;
+    gap: 6px;
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+  }
+}
+
 @media (max-width: 1320px) {
+  .nav-status {
+    padding: 6px 11px;
+    font-size: 0.64rem;
+    letter-spacing: 0.08em;
+  }
+
   .nav-link {
     padding: 8px 8px;
     font-size: 0.65rem;
@@ -387,4 +444,29 @@
   .nav-right-group {
     gap: 6px;
   }
+}
+
+/* Social-Icons in den Markenfarben (Instagram-Verlauf, WhatsApp-Grün) */
+.header .nav-social-link.nav-social-link--instagram {
+  color: #fff;
+  border-color: transparent;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+
+.header .nav-social-link.nav-social-link--whatsapp {
+  color: #fff;
+  border-color: transparent;
+  background: #25d366;
+}
+
+.header .nav-social-link.nav-social-link--instagram:hover,
+.header .nav-social-link.nav-social-link--whatsapp:hover {
+  color: #fff;
+  border-color: transparent;
+  filter: brightness(1.08) saturate(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+}
+
+.header .nav-social-link.nav-social-link--whatsapp:hover {
+  background: #1ebe5b;
 }

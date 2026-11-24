@@ -42,3 +42,7 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 .vercel
+
+# Kundenbereich: lokale Konfiguration und Entwicklungsdaten (enthalten Zugangsdaten bzw. Kundendaten)
+/public/api/config.php
+/.dev-data/

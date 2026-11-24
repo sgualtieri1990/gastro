@@ -2,14 +2,14 @@
   <div class="container footer-grid">
     <div class="footer-newsletter" appScrollReveal>
       <p class="footer-brand-label">Sicitalia</p>
-      <h2 class="footer-title">Kontaktieren Sie Uns</h2>
+      <h2 class="footer-title">Kontaktieren Sie uns</h2>
 
       @if (submitted) {
         <p class="footer-success">Vielen Dank! Wir melden uns in Kürze bei Ihnen.</p>
       } @else {
         <form class="newsletter-form" (ngSubmit)="onSubmit()">
           <div class="form-field">
-            <label for="footer-email">Email *</label>
+            <label for="footer-email">E-Mail *</label>
             <input
               id="footer-email"
               type="email"
@@ -73,6 +73,9 @@
         @for (link of legalLinks; track link.href) {
           <li><a [routerLink]="link.href">{{ link.label }}</a></li>
         }
+        <li>
+          <a href="#cookie-einstellungen" (click)="openCookieSettings($event)">Cookie-Einstellungen</a>
+        </li>
       </ul>
     </div>
   </div>

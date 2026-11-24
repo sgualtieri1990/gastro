@@ -9,16 +9,46 @@
 <section class="page-body">
   <div class="container">
     <div class="glass-panel legal-content" appScrollReveal>
-      <p>
-        Diese Seite wird derzeit aktualisiert. Für Fragen zu „{{ title }}" wenden Sie sich bitte
-        direkt an unser Team.
-      </p>
-      <p>
-        <strong>E-Mail:</strong>
-        <a [href]="'mailto:' + contact.email">{{ contact.email }}</a>
-      </p>
-      <p><strong>Telefon:</strong> {{ contact.phone }}</p>
-      <p><strong>Adresse:</strong> {{ contact.name }}, {{ contact.address }}</p>
+      @if (doc) {
+        @for (block of doc.blocks; track $index) {
+          @switch (block.type) {
+            @case ('h2') {
+              <h2>{{ block.text }}</h2>
+            }
+            @case ('p') {
+              <p>{{ block.text }}</p>
+            }
+            @case ('ul') {
+              <ul>
+                @for (item of block.items ?? []; track item) {
+                  <li>{{ item }}</li>
+                }
+              </ul>
+            }
+            @case ('links') {
+              <ul class="legal-links">
+                @for (link of block.links ?? []; track link.href) {
+                  <li>
+                    <strong>{{ link.label }}:</strong>
+                    <a [href]="link.href">{{ link.text }}</a>
+                  </li>
+                }
+              </ul>
+            }
+          }
+        }
+      } @else {
+        <p>
+          Diese Seite wird derzeit aktualisiert. Für Fragen zu „{{ title }}" wenden Sie sich bitte
+          direkt an unser Team.
+        </p>
+        <p>
+          <strong>E-Mail:</strong>
+          <a [href]="'mailto:' + contact.email">{{ contact.email }}</a>
+        </p>
+        <p><strong>Telefon:</strong> {{ contact.phone }}</p>
+        <p><strong>Adresse:</strong> {{ contact.name }}, {{ contact.address }}</p>
+      }
     </div>
   </div>
 </section>

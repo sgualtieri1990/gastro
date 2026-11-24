@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
 import { PageLayout } from './layout/page-layout';
 
 export const routes: Routes = [
@@ -31,6 +32,26 @@ export const routes: Routes = [
         data: { fragment: 'b2b-katalog' },
       },
       {
+        path: 'anmelden',
+        loadComponent: () => import('./pages/konto/konto').then(m => m.Konto),
+        data: { mode: 'login' },
+      },
+      {
+        path: 'passwort-vergessen',
+        loadComponent: () => import('./pages/konto/konto').then(m => m.Konto),
+        data: { mode: 'forgot' },
+      },
+      {
+        path: 'passwort-zuruecksetzen',
+        loadComponent: () => import('./pages/konto/konto').then(m => m.Konto),
+        data: { mode: 'reset' },
+      },
+      {
+        path: 'kundenbereich',
+        canActivate: [authGuard],
+        loadComponent: () => import('./pages/kundenbereich/kundenbereich').then(m => m.Kundenbereich),
+      },
+      {
         path: 'karriere',
         loadComponent: () => import('./pages/karriere/karriere').then(m => m.Karriere),
       },
@@ -41,12 +62,12 @@ export const routes: Routes = [
       {
         path: 'tdb',
         loadComponent: () => import('./pages/legal/legal').then(m => m.Legal),
-        data: { title: 'Technische Datenblätter (TDB) erhalten' },
+        data: { title: 'Technische Datenblätter (TDB) erhalten', doc: 'tdb' },
       },
       {
         path: 'datenschutz',
         loadComponent: () => import('./pages/legal/legal').then(m => m.Legal),
-        data: { title: 'Datenschutzerklärung' },
+        data: { title: 'Datenschutzerklärung', doc: 'datenschutz' },
       },
       {
         path: 'barrierefreiheit',
@@ -61,7 +82,7 @@ export const routes: Routes = [
       {
         path: 'agb',
         loadComponent: () => import('./pages/legal/legal').then(m => m.Legal),
-        data: { title: 'Allgemeine Geschäftsbedingungen' },
+        data: { title: 'Allgemeine Geschäftsbedingungen', doc: 'agb' },
       },
       {
         path: 'rueckerstattung',

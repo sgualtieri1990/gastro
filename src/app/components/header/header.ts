@@ -3,6 +3,7 @@ import { AfterViewInit, Component, HostListener, PLATFORM_ID, inject, signal } f
 import { Router, RouterLink } from '@angular/router';
 import { Logo } from '../logo/logo';
 import { CONTACT, NAV_LEFT, NAV_RIGHT, NavItem } from '../../data/site-content';
+import { AuthService } from '../../services/auth.service';
 import { ScrollNavService } from '../../services/scroll-nav.service';
 import { WhatsappChooserService } from '../../services/whatsapp-chooser.service';
 
@@ -19,6 +20,9 @@ export class Header implements AfterViewInit {
   private readonly scrollNav = inject(ScrollNavService);
   private readonly whatsapp = inject(WhatsappChooserService);
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly auth = inject(AuthService);
+
+  readonly loggedIn = this.auth.loggedIn;
 
   readonly navLeft = NAV_LEFT;
   readonly navRight = NAV_RIGHT;
@@ -35,6 +39,7 @@ export class Header implements AfterViewInit {
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
+      void this.auth.ensureLoaded();
       this.syncActiveSection();
     }
   }
