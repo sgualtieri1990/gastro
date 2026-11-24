@@ -1,0 +1,8 @@
+# Single-Page-App: unbekannte Pfade (z. B. /kundenbereich) an die Angular-App weiterreichen
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+  RewriteRule ^ /index.html [L]
+</IfModule>

@@ -1,0 +1,130 @@
+<app-page-hero
+  [title]="title"
+  eyebrow="Sicitalia"
+  subtitle="FÜR REGISTRIERTE KUNDEN"
+  [image]="images.hero"
+  bgPosition="22% 12%"
+/>
+
+<section class="page-body">
+  <div class="container">
+    <div class="glass-panel form-panel">
+      @switch (mode) {
+        @case ('login') {
+          @if (demo) {
+            <p class="demo-note" role="note">
+              <strong>Vorschau-Version:</strong> Zugang mit <strong>{{ demoEmail }}</strong> – das
+              Passwortfeld kann leer bleiben.
+            </p>
+          }
+          <p class="form-intro">
+            Melde Dich mit der E-Mail-Adresse und dem Passwort an, die Du bei der Registrierung
+            vergeben hast.
+          </p>
+        }
+        @case ('forgot') {
+          @if (!done()) {
+            <p class="form-intro">
+              Gib Deine E-Mail-Adresse ein. Wenn dazu ein freigeschaltetes Konto besteht, senden wir
+              Dir einen Link zum Zurücksetzen des Passworts.
+            </p>
+          }
+        }
+        @case ('reset') {
+          @if (!done() && !tokenMissing) {
+            <p class="form-intro">Vergib ein neues Passwort für Dein Kundenkonto.</p>
+          }
+        }
+      }
+
+      @if (mode === 'forgot' && done()) {
+        <p class="success-msg" role="status">
+          Wenn zu dieser Adresse ein Konto besteht, ist eine E-Mail mit dem Link unterwegs.
+          Bitte prüfe auch Deinen Spam-Ordner.
+        </p>
+      } @else if (mode === 'reset' && done()) {
+        <p class="success-msg" role="status">Dein Passwort wurde geändert.</p>
+        <p class="form-links"><a class="btn btn-primary" routerLink="/anmelden">Jetzt anmelden</a></p>
+      } @else if (tokenMissing) {
+        <p class="error-msg" role="alert">Dieser Link ist ungültig oder unvollständig.</p>
+        <p class="form-links"><a routerLink="/passwort-vergessen">Neuen Link anfordern</a></p>
+      } @else {
+        <form (ngSubmit)="submit()" novalidate>
+          @if (mode !== 'reset') {
+            <div class="form-group">
+              <label for="konto-email">E-Mail-Adresse</label>
+              <input
+                id="konto-email"
+                type="email"
+                name="email"
+                autocomplete="username"
+                [(ngModel)]="email"
+                required
+              />
+            </div>
+          }
+
+          @if (mode !== 'forgot') {
+            <div class="form-group">
+              <label for="konto-password">{{ mode === 'reset' ? 'Neues Passwort' : 'Passwort' }}</label>
+              <div class="password-field">
+                <input
+                  id="konto-password"
+                  [type]="showPassword() ? 'text' : 'password'"
+                  name="password"
+                  [autocomplete]="mode === 'reset' ? 'new-password' : 'current-password'"
+                  [(ngModel)]="password"
+                  required
+                />
+                <button type="button" class="toggle" (click)="showPassword.set(!showPassword())">
+                  {{ showPassword() ? 'Verbergen' : 'Anzeigen' }}
+                </button>
+              </div>
+              @if (mode === 'reset') {
+                <p class="form-hint">Mindestens 10 Zeichen.</p>
+              }
+            </div>
+          }
+
+          @if (mode === 'reset') {
+            <div class="form-group">
+              <label for="konto-password-repeat">Passwort wiederholen</label>
+              <input
+                id="konto-password-repeat"
+                [type]="showPassword() ? 'text' : 'password'"
+                name="passwordRepeat"
+                autocomplete="new-password"
+                [(ngModel)]="passwordRepeat"
+                required
+              />
+              @if (passwordRepeat && !passwordsMatch) {
+                <p class="form-hint">Die Passwörter stimmen nicht überein.</p>
+              }
+            </div>
+          }
+
+          @if (error()) {
+            <p class="error-msg" role="alert">{{ error() }}</p>
+          }
+
+          <button type="submit" class="btn btn-primary btn-full" [disabled]="!formValid || busy()">
+            @switch (mode) {
+              @case ('login') { Anmelden }
+              @case ('forgot') { Link anfordern }
+              @default { Passwort speichern }
+            }
+          </button>
+        </form>
+
+        <p class="form-links">
+          @if (mode === 'login') {
+            <a routerLink="/passwort-vergessen">Passwort vergessen?</a>
+            <span>Noch kein Kunde? <a routerLink="/" fragment="kunde-werden">Kunde werden</a></span>
+          } @else {
+            <a routerLink="/anmelden">Zurück zur Anmeldung</a>
+          }
+        </p>
+      }
+    </div>
+  </div>
+</section>

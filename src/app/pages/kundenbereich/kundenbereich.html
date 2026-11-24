@@ -1,0 +1,92 @@
+<app-page-hero
+  title="Kundenbereich"
+  eyebrow="Sicitalia"
+  subtitle="DEINE PREISE · DEINE DATEN"
+  [image]="images.hero"
+  bgPosition="22% 12%"
+/>
+
+<section class="page-body">
+  <div class="container">
+    @if (user(); as u) {
+      <div class="dashboard">
+        <div class="glass-panel panel welcome-panel">
+          <p class="eyebrow">Willkommen</p>
+          <h2 class="welcome">Willkommen, lieber {{ u.company }}</h2>
+          <p class="person">Angemeldet als {{ u.firstName }} {{ u.lastName }} · {{ u.email }}</p>
+          <button type="button" class="btn btn-outline" (click)="logout()">Abmelden</button>
+        </div>
+
+        <div class="glass-panel panel">
+          <h3>Interne Kataloge &amp; Artikellisten</h3>
+          @if (downloads().length) {
+            <ul class="catalogs">
+              @for (item of downloads(); track item.id) {
+                <li class="catalog-card">
+                  @if (item.image) {
+                    <img [src]="item.image" alt="" loading="lazy" />
+                  }
+                  <strong>{{ item.label }}</strong>
+                  <a class="btn btn-primary" [href]="item.url" download>Herunterladen</a>
+                </li>
+              }
+            </ul>
+          } @else {
+            <p>
+              Deine Kataloge und Preislisten stellen wir Dir hier bereit. Sobald sie vorliegen, erscheinen
+              sie an dieser Stelle – oder frag uns direkt:
+              <a [href]="'mailto:' + contact.email">{{ contact.email }}</a>.
+            </p>
+          }
+        </div>
+
+        <div class="glass-panel panel">
+          <h3>Portfolio mit Preisen</h3>
+          <p>
+            Das gesamte Sortiment mit Artikelnummern, Gebinden und Deinen Preisen – jederzeit online
+            durchsuchbar.
+          </p>
+          <p class="actions">
+            <a class="btn btn-primary" routerLink="/produktportfolio">Portfolio ansehen</a>
+          </p>
+        </div>
+
+        <div class="glass-panel panel">
+          <h3>Deine Angaben</h3>
+          <dl class="facts">
+            <dt>E-Mail (Anmeldung)</dt>
+            <dd>{{ u.email }}</dd>
+            @if (u.profile.billingEmail) {
+              <dt>E-Mail Rechnung</dt>
+              <dd>{{ u.profile.billingEmail }}</dd>
+            }
+            @if (u.profile.phone) {
+              <dt>Telefon</dt>
+              <dd>{{ u.profile.phone }}</dd>
+            }
+            @if (address().length) {
+              <dt>Geschäftsadresse</dt>
+              <dd>@for (line of address(); track $index) {<span>{{ line }}</span>}</dd>
+            }
+            @if (deliveryAddress().length) {
+              <dt>Lieferadresse</dt>
+              <dd>@for (line of deliveryAddress(); track $index) {<span>{{ line }}</span>}</dd>
+            }
+            @if (billingAddress().length) {
+              <dt>Rechnungsadresse</dt>
+              <dd>@for (line of billingAddress(); track $index) {<span>{{ line }}</span>}</dd>
+            }
+            @if (u.profile.vatId) {
+              <dt>USt-IdNr.</dt>
+              <dd>{{ u.profile.vatId }}</dd>
+            }
+          </dl>
+          <p class="note">
+            Möchtest Du Angaben ändern? Schreib uns kurz an
+            <a [href]="'mailto:' + contact.email">{{ contact.email }}</a>.
+          </p>
+        </div>
+      </div>
+    }
+  </div>
+</section>

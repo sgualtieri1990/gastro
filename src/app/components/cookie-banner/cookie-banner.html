@@ -1,0 +1,44 @@
+@if (consent.panelOpen()) {
+  <section class="cb" role="dialog" aria-labelledby="cb-title" aria-describedby="cb-text">
+    <h2 id="cb-title" class="cb-title">Datenschutz-Einstellungen</h2>
+    <p id="cb-text" class="cb-text">
+      Diese Website nutzt nur technisch notwendige Speicherungen. Externe Inhalte wie YouTube-Videos
+      werden erst nach Ihrer Zustimmung geladen. Mehr dazu in unserer
+      <a routerLink="/datenschutz">Datenschutzerklärung</a>.
+    </p>
+
+    @if (details()) {
+      <ul class="cb-options">
+        <li>
+          <label>
+            <input type="checkbox" checked disabled />
+            <span>
+              <strong>Notwendig</strong>
+              Speichert Ihre Auswahl hier sowie Ihre Produktmerkliste in dieser Sitzung. Immer aktiv.
+            </span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" [checked]="mediaChoice()" (change)="toggleMedia($event)" />
+            <span>
+              <strong>Externe Medien (YouTube)</strong>
+              Lädt eingebettete Videos von YouTube. Dabei werden Daten wie Ihre IP-Adresse an YouTube
+              übertragen.
+            </span>
+          </label>
+        </li>
+      </ul>
+    }
+
+    <div class="cb-actions">
+      <button type="button" class="cb-btn" (click)="consent.rejectOptional()">Nur notwendige</button>
+      @if (details()) {
+        <button type="button" class="cb-btn" (click)="saveSelection()">Auswahl speichern</button>
+      } @else {
+        <button type="button" class="cb-btn" (click)="details.set(true)">Einstellungen</button>
+      }
+      <button type="button" class="cb-btn" (click)="consent.acceptAll()">Alle akzeptieren</button>
+    </div>
+  </section>
+}

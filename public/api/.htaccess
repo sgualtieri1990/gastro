@@ -1,0 +1,11 @@
+Options -Indexes
+
+# Interne Dateien und Konfiguration nie ausliefern
+<FilesMatch "^(_.*\.php|config.*\.php)$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Cache-Control "no-store"
+</IfModule>
