@@ -111,6 +111,43 @@
   margin-left: 6px;
 }
 
+.account-menu {
+  position: relative;
+}
+
+.account-menu-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 160px;
+  padding: 6px;
+  background: #fff;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  box-shadow: var(--glass-shadow-lg);
+}
+
+.account-menu-panel a,
+.account-menu-panel button {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 0.85rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.account-menu-panel a:hover,
+.account-menu-panel button:hover {
+  background: var(--glass-surface);
+  color: var(--color-brand-red);
+}
+
 .nav-status {
   display: inline-flex;
   align-items: center;
@@ -446,11 +483,11 @@
   }
 }
 
-/* Social-Icons in den Markenfarben (Instagram-Verlauf, WhatsApp-Grün) */
+/* Social-Icons in den Markenfarben */
 .header .nav-social-link.nav-social-link--instagram {
   color: #fff;
   border-color: transparent;
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+  background: #c13584;
 }
 
 .header .nav-social-link.nav-social-link--whatsapp {

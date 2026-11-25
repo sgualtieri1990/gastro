@@ -89,7 +89,7 @@
 
 .wa-dialog h2 em {
   font-family: var(--font-display);
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
   letter-spacing: 0;
   text-transform: none;

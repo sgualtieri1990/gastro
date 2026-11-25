@@ -29,6 +29,7 @@ export class Header implements AfterViewInit {
   readonly instagram = CONTACT.instagram;
   readonly scrolled = signal(false);
   readonly menuOpen = signal(false);
+  readonly accountMenuOpen = signal(false);
   /** Leer = Startseite oben, sonst der Abschnitt unter der Navigationslinie. */
   readonly activeFragment = signal('');
   private homeLock = false;
@@ -56,6 +57,29 @@ export class Header implements AfterViewInit {
 
   closeMenu(): void {
     this.menuOpen.set(false);
+  }
+
+  toggleAccountMenu(): void {
+    this.accountMenuOpen.update((value) => !value);
+  }
+
+  @HostListener('document:click', ['$event'])
+  closeAccountMenuOnOutsideClick(event: MouseEvent): void {
+    if (!(event.target instanceof Element) || !event.target.closest('.account-menu')) {
+      this.accountMenuOpen.set(false);
+    }
+  }
+
+  @HostListener('document:keydown.escape')
+  closeAccountMenu(): void {
+    this.accountMenuOpen.set(false);
+  }
+
+  async logout(): Promise<void> {
+    this.closeAccountMenu();
+    this.closeMenu();
+    await this.auth.logout();
+    await this.router.navigateByUrl('/');
   }
 
   openWhatsapp(): void {
